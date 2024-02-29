@@ -1,0 +1,4 @@
+Semaine 1:
+
+Nous avons crée les fichiers de base conception, journal, README et reponses.
+Nous avons mis en place notre repositoire pour pouvoir travailler avec github.
