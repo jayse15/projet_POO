@@ -1,0 +1,10 @@
+P1.1)
+Nous avons représenté leurs coordonnées comme un array de taille 3. Cela nous
+permet de plus facilement travailler avec des boucles, l'inconvenient est
+qu'il y a la possibilité de mal indexer ces array, mais nous allons gérer ces
+situations avec des messages d'erreur ou des exceptions (try, throw).
+Pour l'instant nous avons un attribut privé, l'array en question, et 4 méthodes
+publiques, set_coord, get_coord, affiche et compare, toutes expliquées dans le
+fichier Vecteur3D.h. Nous avons suivi les consignes données mais la méthode en
+plus (get_coord) est nécessaire car nous avons choisi de mettre l'array des
+composantes comme attribut privé.

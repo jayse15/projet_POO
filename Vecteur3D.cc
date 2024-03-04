@@ -10,12 +10,8 @@ void Vecteur3D::set_coord(uint i, double x)
 
 double Vecteur3D::get_coord(uint i) const
 {
-  if (i > 2)
-  {
-    cerr << "False indexing !!" << endl;
-    return;
-  }
-  else {return vect_[i];}
+  if (i > 2) {throw "False indexing !!";}
+  return vect_[i];
 }
 
 void Vecteur3D::affiche() const
@@ -24,7 +20,7 @@ void Vecteur3D::affiche() const
   cout << endl;
 }
 
-bool Vecteur3D::compare(const Vecteur3D& v, double precision = 1e-10) const
+bool Vecteur3D::compare(const Vecteur3D& v, double precision) const
 {
   for(uint i(0); i<3; i++)
   {

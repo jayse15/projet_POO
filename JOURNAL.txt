@@ -2,3 +2,10 @@ Semaine 1:
 
 Nous avons crée les fichiers de base conception, journal, README et reponses.
 Nous avons mis en place notre dépôt sur github.
+
+Semaine 2:
+
+Nous avons fini la conception des fichiers Vecteur 3D. Nous avons rajouté un
+module "utils" afin d'y mettre des fonctions qui pourront être utile pour ce
+projet. Le makefile est fonctionnel mais il faut imposer l'utilisation de C++
+(par défaut C), et indiquer la version.
