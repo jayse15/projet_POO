@@ -10,6 +10,8 @@ class Vecteur3D
 
   public:
   void set_coord(uint i, double x);
-  void affiche();
+  double get_coord(uint i) const;
+  void affiche() const;
+  bool compare(const Vecteur3D& v, double precision = 1e-10) const;
 
 };
