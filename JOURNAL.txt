@@ -10,3 +10,6 @@ module "utils" afin d'y mettre des fonctions qui pourront être utile pour ce
 projet. Le makefile est fonctionnel mais il faut imposer l'utilisation de C++
 (par défaut C), et indiquer la version. Toutes les méthodes de base de Vecteur3D
 sont fonctionelles.
+Nous avons utilisé des array de dimension 3 pour représenter les vecteurs, 
+mais il nous faut encore gérer les cas d'erreurs où l'utilisateur tente d'entrer 
+une coordonnées dans un mauvais index. 

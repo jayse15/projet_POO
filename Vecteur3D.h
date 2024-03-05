@@ -1,14 +1,14 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-using namespace std;
+
 
 typedef unsigned int uint;
 
 class Vecteur3D
 {
   private:
-  array<double, 3> vect_;
+  std::array<double, 3> vect_;
   // Choix d'un array car le travail en boucle est beaucoup plus simple quand
   // on aimerait traiter plusieurs vecteurs et toutes leurs composantes à la
   // suite.
@@ -26,7 +26,7 @@ class Vecteur3D
   // Affiche les 3 coordonnées de this.
 
   bool compare(const Vecteur3D& v, double precision = 1e-10) const;
-  // Retourne true si this et v ont les mêmes composantes au "precision"
+  // Retourne true si this et v ont les mêmes composantes à une "precision"
   // près, false sinon.
 
   Vecteur3D addition(const Vecteur3D& v) const;
