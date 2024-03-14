@@ -14,6 +14,18 @@ class Vecteur3D
   // suite.
 
   public:
+  Vecteur3D(double x=0, double y=0, double z=0) {
+    set_coord(0, x);
+    set_coord(1, y);
+    set_coord(2, z);
+  }
+  // Constructeur et constructeur par défaut de la classe Vecteur3D. 
+  // Le vecteur par défaut créé est le vecteur nul
+
+  Vecteur3D(Vecteur3D const& autre) 
+    : vect_({autre.get_coord(0), autre.get_coord(1), autre.get_coord(2)}) {} 
+  // Constructeur de copie pour la classe Vecteur3D
+
   void set_coord(uint i, double x);
   // Met la i-ème composante de this égale à la valeur donnée (0=x, 1=y, 2=z).
   // Message d'erreur si i > 2.
@@ -22,8 +34,12 @@ class Vecteur3D
   // Retourne la valeur de la i-ème composante de this. Il faut gérer une
   // exception si i > 2.
 
-  void affiche() const;
+  void affiche() const; 
   // Affiche les 3 coordonnées de this.
+
+  bool operator==(Vecteur3D const& v) const;
+
+  bool operator!=(Vecteur3D const& v) const;
 
   bool compare(const Vecteur3D& v, double precision = 1e-10) const;
   // Retourne true si this et v ont les mêmes composantes à une "precision"

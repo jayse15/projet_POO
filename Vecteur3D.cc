@@ -20,6 +20,21 @@ void Vecteur3D::affiche() const
   cout << endl;
 }
 
+bool Vecteur3D::operator!=(const Vecteur3D& v) const
+{
+  return not compare(v);
+}
+
+bool Vecteur3D::operator==(const Vecteur3D& v) const 
+{
+  return compare(v);
+}
+
+ostream& operator<<(ostream& sortie, Vecteur3D v) {
+  v.affiche();
+  return sortie;
+}
+
 bool Vecteur3D::compare(const Vecteur3D& v, double precision) const
 {
   for(uint i(0); i<3; i++)
@@ -38,6 +53,10 @@ Vecteur3D Vecteur3D::addition(const Vecteur3D& v) const
     sum.set_coord(i, this->get_coord(i)+v.get_coord(i));
   }
   return sum;
+}
+
+const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {
+  return v1.addition(v2); 
 }
 
 Vecteur3D Vecteur3D::soustraction(const Vecteur3D& v) const
