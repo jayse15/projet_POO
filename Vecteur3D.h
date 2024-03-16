@@ -38,8 +38,16 @@ class Vecteur3D
   // Affiche les 3 coordonnées de this.
 
   bool operator==(Vecteur3D const& v) const;
+  // Opérateur de comparaison entre deux vecteurs
 
   bool operator!=(Vecteur3D const& v) const;
+  // Opérateur de comparaison entre deux vecteurs
+
+  const Vecteur3D& operator+=(Vecteur3D const& autre); 
+  // Addition par surcharge interne, ajoute à this les composantes du vecteur autre
+
+  const Vecteur3D& operator-=(Vecteur3D const& autre); 
+  // Soustraction par surcharge interne, retire à this les composantes du vecteur autre
 
   bool compare(const Vecteur3D& v, double precision = 1e-10) const;
   // Retourne true si this et v ont les mêmes composantes à une "precision"
@@ -60,12 +68,21 @@ class Vecteur3D
   // Retourne un vecteur avec comme composantes lambda fois chaque composante de
   // this.
 
+  Vecteur3D operator*=(double const lambda);
+  // Opérateur de la multiplication scalaire
+
   double prod_scal(const Vecteur3D& v) const;
-  // Retourne le produit scalaire de this et de v.
+  // Retourne le produit scalaire de this et de v
+  
+  double operator*(const Vecteur3D& v) const; 
+  // Opérateur du produit scalaire entre this et v
 
   Vecteur3D prod_vect(const Vecteur3D& v) const;
   // Retourne un vecteur avec composantes associés au produit vectoriel de this
   // et de v.
+
+  Vecteur3D operator^(const Vecteur3D& v) const; 
+  // Operateur du produit vectoriel entre this et v
 
   double norme2() const;
   // Retourne la norme au carré de this
@@ -75,4 +92,6 @@ class Vecteur3D
 
   Vecteur3D unitaire() const;
   // Retourne le vecteur unitaire associé à this.
+
+  Vecteur3D operator~() const; 
 };

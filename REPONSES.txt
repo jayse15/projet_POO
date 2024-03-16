@@ -8,3 +8,29 @@ publiques, set_coord, get_coord, affiche et compare, toutes expliquées dans le
 fichier Vecteur3D.h. Nous avons suivi les consignes données mais la méthode en
 plus (get_coord) est nécessaire car nous avons choisi de mettre l'array des
 composantes comme attribut privé.
+
+P4.1) 
+Nous avons bien ajouté un constructeur de copie, de façon à pouvoir plus 
+facilement définir des opérations telles que l'initialisation d'un vecteur
+comme l'addition, la soustraction ou le produit vectoriel de deux vecteurs. 
+
+P4.2) 
+Si l'on devait définir un constructeur en coordonnées sphériques, les attributs 
+de la classe ne changerait concrètement pas, car nous pourrions simplement 
+crééer le constructeur de manière à faire la conversion en coordonnées cartésiennes.
+La difficulté majeure que représente la construction des vecteurs en coordonnées 
+sphériques réside dans les opérations de base que l'on voudrait effectuer sur les 
+vecteurs. En effet, l'addition de deux vecteurs en coordonnées sphériques est bien 
+plus complexe qu'en coordonnées cartésiennes, de mêmes pour le produit scalaire 
+et le produit vectoriel. 
+
+
+P4.3) 
+Nous avons introduit de nombreux opérateurs: 
+    -les opérateurs += et -=; //incrémentation et décrémentation
+    -les opérateurs + et -; //addition et soustraction
+    -les opérateurs == et !=; //comparaison
+    -l'opérateur *=; //multiplication scalaire
+    -l'opérateur *; //produit scalaire
+    -l'opérateur ^; //produit vectoriel
+    -l'opérateur ~; //vecteur unitaire

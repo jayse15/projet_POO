@@ -30,7 +30,7 @@ bool Vecteur3D::operator==(const Vecteur3D& v) const
   return compare(v);
 }
 
-ostream& operator<<(ostream& sortie, Vecteur3D v) {
+ostream& operator<<(ostream& sortie, Vecteur3D const& v) {
   v.affiche();
   return sortie;
 }
@@ -45,6 +45,37 @@ bool Vecteur3D::compare(const Vecteur3D& v, double precision) const
   return true;
 }
 
+const Vecteur3D& Vecteur3D::operator+=(Vecteur3D const& autre) {
+  *this = this->addition(autre);
+  return *this;
+}
+
+
+const Vecteur3D& Vecteur3D::operator-=(Vecteur3D const& autre) {
+  *this += autre.oppose(); 
+  return *this;
+}
+
+const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {
+  Vecteur3D v3(v1+=v2); 
+  return v3; 
+} 
+
+const Vecteur3D operator-(Vecteur3D v1, Vecteur3D const& v2) {
+  Vecteur3D v3(v1-=v2); 
+  return v3; 
+} 
+
+const Vecteur3D operator-(Vecteur3D const& autre) { 
+  return autre.oppose();
+}
+
+Vecteur3D Vecteur3D::operator*=(double const lambda) {
+  *this = {lambda*vect_[0], lambda*vect_[1], lambda*vect_[2]}; 
+  return *this;
+}
+
+
 Vecteur3D Vecteur3D::addition(const Vecteur3D& v) const
 {
   Vecteur3D sum;
@@ -53,10 +84,6 @@ Vecteur3D Vecteur3D::addition(const Vecteur3D& v) const
     sum.set_coord(i, this->get_coord(i)+v.get_coord(i));
   }
   return sum;
-}
-
-const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {
-  return v1.addition(v2); 
 }
 
 Vecteur3D Vecteur3D::soustraction(const Vecteur3D& v) const
@@ -96,6 +123,11 @@ double Vecteur3D::prod_scal(const Vecteur3D& v) const
   return scal;
 }
 
+double Vecteur3D::operator*(Vecteur3D const& v) const{
+  return this->prod_scal(v); 
+}
+
+
 Vecteur3D Vecteur3D::prod_vect(const Vecteur3D& v) const
 {
   Vecteur3D prod;
@@ -110,6 +142,10 @@ Vecteur3D Vecteur3D::prod_vect(const Vecteur3D& v) const
   return prod;
 }
 
+Vecteur3D Vecteur3D::operator^(Vecteur3D const& v) const{
+  return this->prod_vect(v);
+}
+
 double Vecteur3D::norme2() const
 {
   return pow(this->get_coord(0), 2) + pow(this->get_coord(1), 2) +
@@ -122,3 +158,5 @@ double Vecteur3D::norme() const
 }
 
 Vecteur3D Vecteur3D::unitaire() const {return this->mult(1/this->norme());}
+
+Vecteur3D Vecteur3D::operator~() const {return this->unitaire();}

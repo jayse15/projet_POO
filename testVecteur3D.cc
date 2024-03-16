@@ -1,6 +1,7 @@
 #include "Vecteur3D.h"
 using namespace std;
 
+
 int main()
 {
   // un vecteur en 3D :
@@ -20,7 +21,8 @@ int main()
   //cout << "Vecteur 3 : " << vect3 << endl;
 
   //cout << "Vecteur 4 : " << vect4 << endl;
-  
+
+
   cout << "Le vecteur 1 est ";
   if (vect1 == vect2) {
     cout << "égal au";
@@ -34,6 +36,19 @@ int main()
     cout << "égal au";
   }
   cout << " vecteur 3." << endl;
+
+  vect1 *= 2.0; 
+  vect1.affiche(); 
+
+  cout << "Produit scalaire entre vect2 et vect3: " << vect2*vect3 << endl; 
+
+  Vecteur3D v5(vect2^vect3);
+  cout << "Produit vectoriel entre vect2 et vect3: "; 
+  v5.affiche(); 
+  
+  Vecteur3D a(2.0, 3.0, 1.0); 
+  Vecteur3D direction(~a); 
+  direction.affiche(); 
 
   return 0;
 }
