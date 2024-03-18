@@ -14,10 +14,10 @@ double Vecteur3D::get_coord(uint i) const
   return vect_[i];
 }
 
-void Vecteur3D::affiche() const
+void Vecteur3D::affiche(ostream& sortie) const
 {
-  for(auto coord:vect_){cout << coord << " ";}
-  cout << endl;
+  for(auto coord:vect_){sortie << coord << " ";}
+  sortie << endl;
 }
 
 bool Vecteur3D::operator!=(const Vecteur3D& v) const
@@ -25,13 +25,13 @@ bool Vecteur3D::operator!=(const Vecteur3D& v) const
   return not compare(v);
 }
 
-bool Vecteur3D::operator==(const Vecteur3D& v) const 
+bool Vecteur3D::operator==(const Vecteur3D& v) const
 {
   return compare(v);
 }
 
 ostream& operator<<(ostream& sortie, Vecteur3D const& v) {
-  v.affiche();
+  v.affiche(sortie);
   return sortie;
 }
 
@@ -52,26 +52,26 @@ const Vecteur3D& Vecteur3D::operator+=(Vecteur3D const& autre) {
 
 
 const Vecteur3D& Vecteur3D::operator-=(Vecteur3D const& autre) {
-  *this += autre.oppose(); 
+  *this += autre.oppose();
   return *this;
 }
 
 const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {
-  Vecteur3D v3(v1+=v2); 
-  return v3; 
-} 
+  Vecteur3D v3(v1+=v2);
+  return v3;
+}
 
 const Vecteur3D operator-(Vecteur3D v1, Vecteur3D const& v2) {
-  Vecteur3D v3(v1-=v2); 
-  return v3; 
-} 
+  Vecteur3D v3(v1-=v2);
+  return v3;
+}
 
-const Vecteur3D operator-(Vecteur3D const& autre) { 
+const Vecteur3D operator-(Vecteur3D const& autre) {
   return autre.oppose();
 }
 
 Vecteur3D Vecteur3D::operator*=(double const lambda) {
-  *this = {lambda*vect_[0], lambda*vect_[1], lambda*vect_[2]}; 
+  *this = {lambda*vect_[0], lambda*vect_[1], lambda*vect_[2]};
   return *this;
 }
 
@@ -124,7 +124,7 @@ double Vecteur3D::prod_scal(const Vecteur3D& v) const
 }
 
 double Vecteur3D::operator*(Vecteur3D const& v) const{
-  return this->prod_scal(v); 
+  return this->prod_scal(v);
 }
 
 
