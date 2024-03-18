@@ -13,3 +13,21 @@ sont fonctionelles.
 Nous avons utilisé des array de dimension 3 pour représenter les vecteurs, 
 mais il nous faut encore gérer les cas d'erreurs où l'utilisateur tente d'entrer 
 une coordonnées dans un mauvais index. 
+
+Semaine 3: 
+
+Le make avait déjà été créée lors de la conception des fichiers en semaine 2, 
+et était déjà fonctionnel. Aucune question n'ayant été posée dans le sujet de 
+cette semaine, nous avons repris le programme en quête d'optimisation. 
+
+Semaine 4: 
+
+Nous avons défini les différents constructeurs de la classe Vecteur3D 
+(par défaut, qui renvoie le vecteur nul / copie). 
+Nous avons également définis de nombreux opérateurs pour simplifier l'utilisation
+du programme par le programmeur utilisateur. 
+Cependant, nous avons rencontré certaines difficultés lors de la définition de
+l'opérateur d'affichage, <<. 
+Enfin, nous avons remodellé complétement le programme testVecteur3D.cc de manière 
+à ne faire des tests que grâce aux opérateurs, sans passer par les fonctions 
+créées en semaine 2. 
