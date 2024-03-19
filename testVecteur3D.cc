@@ -38,17 +38,17 @@ int main()
   cout << " vecteur 3." << endl;
 
   vect1 *= 2.0;
-  vect1.affiche();
+  cout << vect1 << endl;
 
   cout << "Produit scalaire entre vect2 et vect3: " << vect2*vect3 << endl;
 
   Vecteur3D v5(vect2^vect3);
   cout << "Produit vectoriel entre vect2 et vect3: ";
-  v5.affiche();
+  cout << v5 << endl;
 
   Vecteur3D a(2.0, 3.0, 1.0);
   Vecteur3D direction(~a);
-  direction.affiche();
+  cout << direction << endl;
 
   return 0;
 }
