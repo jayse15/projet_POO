@@ -9,28 +9,30 @@ fichier Vecteur3D.h. Nous avons suivi les consignes données mais la méthode en
 plus (get_coord) est nécessaire car nous avons choisi de mettre l'array des
 composantes comme attribut privé.
 
-P4.1) 
-Nous avons bien ajouté un constructeur de copie, de façon à pouvoir plus 
-facilement définir des opérations telles que l'initialisation d'un vecteur
-comme l'addition, la soustraction ou le produit vectoriel de deux vecteurs. 
+P4.1)
+Nous n'avons pas ajouté de constructeur de copie. Comme le seul attribut d'un
+vecteur est un array, alors le constructeur de copie par défaut fonctionne très
+bien.
 
-P4.2) 
-Si l'on devait définir un constructeur en coordonnées sphériques, les attributs 
-de la classe ne changerait concrètement pas, car nous pourrions simplement 
-crééer le constructeur de manière à faire la conversion en coordonnées cartésiennes.
-La difficulté majeure que représente la construction des vecteurs en coordonnées 
-sphériques réside dans les opérations de base que l'on voudrait effectuer sur les 
-vecteurs. En effet, l'addition de deux vecteurs en coordonnées sphériques est bien 
-plus complexe qu'en coordonnées cartésiennes, de mêmes pour le produit scalaire 
-et le produit vectoriel. 
+P4.2)
+Si l'on devait définir un constructeur en coordonnées sphériques, il n'y aurait
+aucune différence au niveau des attributs, on peut simplement convertir de
+sphériques à cartésiennes. Il y aura un conflit avec le constructeur en
+coordonnées cartésiennes car on aurait les mêmes entrées, mais cela peut être
+résolu avec un booléen en plus comme entrée. Au final, rajouter l'option
+d'initialiser en spheriques ne pose pas de problème et pourrait même être très
+utile !
 
 
-P4.3) 
-Nous avons introduit de nombreux opérateurs: 
+P4.3)
+Nous avons introduit de nombreux opérateurs:
     -les opérateurs += et -=; //incrémentation et décrémentation
     -les opérateurs + et -; //addition et soustraction
     -les opérateurs == et !=; //comparaison
-    -l'opérateur *=; //multiplication scalaire
+    -les opérateurs *= et /=; //multiplication et division scalaire
+    -les opérateurs * et /; // idem mais pour retourner un vecteur
     -l'opérateur *; //produit scalaire
+    -l'opérateur ^=; //le produit vectoriel d'un vecteur avec lui même
     -l'opérateur ^; //produit vectoriel
     -l'opérateur ~; //vecteur unitaire
+    -l'opérateur -; //l'inverse d'un vecteur
