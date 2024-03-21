@@ -1,6 +1,5 @@
-#include "Vecteur3D.h"
+#include <iostream>
 #include "Particule.h"
-#include "utils.h"
 using namespace std;
 
 ostream& Particule::affiche(ostream& sortie) const {
