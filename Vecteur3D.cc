@@ -1,5 +1,9 @@
 #include "Vecteur3D.h"
 #include "utils.h"
+#include <cmath>
+#include <iostream>
+#include <array>
+
 using namespace std;
 
 // *****************************************************************************
@@ -24,12 +28,12 @@ ostream& Vecteur3D::affiche(ostream& sortie) const
   return sortie;
 }
 
-bool Vecteur3D::compare(Vecteur3D const& autre, double precision) const
+bool Vecteur3D::compare(Vecteur3D const& autre) const
 {
   for(uint i(0); i<3; i++)
   {
-    if(round_to_decimal(autre.get_coord(i), precision) !=
-       round_to_decimal(vect_[i], precision)) {return false;}
+    if(round_to_decimal(autre.get_coord(i)) !=
+       round_to_decimal(vect_[i])) {return false;}
   }
   return true;
 }

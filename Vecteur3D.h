@@ -1,11 +1,8 @@
 #pragma once
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #include <array>
-
-
-typedef unsigned int uint;
-
+#include "utils.h"
 
 class Vecteur3D
 {
@@ -32,9 +29,7 @@ class Vecteur3D
   std::ostream& affiche(std::ostream& sortie) const;
   // Affiche les 3 coordonnées de this dans sortie.
 
-  static constexpr double PRECISION = 1e-10;
-
-  bool compare(Vecteur3D const& autre, double precision = PRECISION) const;
+  bool compare(Vecteur3D const& autre) const;
   // Retourne true si this et autre ont les mêmes composantes à une "precision"
   // près, false sinon.
 
