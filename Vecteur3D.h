@@ -16,6 +16,7 @@ class Vecteur3D
   // suite.
 
   public:
+
   Vecteur3D(double x=0, double y=0, double z=0) : vect_({x, y, z}) {}
   // Constructeur et constructeur par défaut de la classe Vecteur3D.
   // Le vecteur par défaut créé est le vecteur nul
@@ -31,7 +32,9 @@ class Vecteur3D
   std::ostream& affiche(std::ostream& sortie) const;
   // Affiche les 3 coordonnées de this dans sortie.
 
-  bool compare(Vecteur3D const& autre, double precision = 1e-10) const;
+  static constexpr double PRECISION = 1e-10;
+
+  bool compare(Vecteur3D const& autre, double precision = PRECISION) const;
   // Retourne true si this et autre ont les mêmes composantes à une "precision"
   // près, false sinon.
 
