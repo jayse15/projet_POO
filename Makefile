@@ -1,25 +1,22 @@
 CC = $(CXX)
 CXXFLAGS = -std=c++20 -pedantic -Wall
 
-all: Vecteur3D Particule Enceinte
+all: vecteur/Vecteur3D particule/Particule enceinte/Enceinte
 
-Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
+vecteur/Vecteur3D: vecteur/Vecteur3D.o tests/testVecteur3D.o utils.o
 
-Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
+vecteur/Vecteur3D.o: vecteur/Vecteur3D.cc vecteur/Vecteur3D.h utils.h
 
-testVecteur3D.o: testVecteur3D.cc Vecteur3D.h utils.h
+tests/testVecteur3D.o: tests/testVecteur3D.cc vecteur/Vecteur3D.h utils.h
 
-Particule: Particule.o testParticule.o Vecteur3D.o
+particule/Particule: particule/Particule.o tests/testParticule.o vecteur/Vecteur3D.o utils.o
 
-Particule.o: Particule.cc Particule.h 
+particule/Particule.o: particule/Particule.cc particule/Particule.h
 
-testParticule.o: testParticule.cc Particule.h Vecteur3D.h
+tests/testParticule.o: tests/testParticule.cc particule/Particule.h vecteur/Vecteur3D.h
 
-Enceinte : Enceinte.o testEnceinte.o
+enceinte/Enceinte : enceinte/Enceinte.o
 
-Enceinte.o : Enceinte.cc Enceinte.h 
-
-testEnceinte.o : testEnceinte.cc Enceinte.h 
+enceinte/Enceinte.o : enceinte/Enceinte.h
 
 utils.o: utils.cc utils.h
-

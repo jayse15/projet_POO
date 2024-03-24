@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Vecteur3D.h"
+#include "../vecteur/Vecteur3D.h"
 
 class Particule
 {
@@ -12,11 +12,8 @@ class Particule
         // les opérations définies dans la classe Vecteur3D
 
    public :
-        Particule(double m, Vecteur3D p, Vecteur3D v) {
-            masse = m;
-            position = p;
-            vitesse = v;
-            }
+        Particule(double m, Vecteur3D p, Vecteur3D v)
+          : masse(m), position(p), vitesse(v) {}
         // Constructeur de la classe Particule. Pas de constructeur par défaut.
 
         std::ostream& affiche(std::ostream& sortie) const;

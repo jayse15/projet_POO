@@ -38,4 +38,5 @@ Nous avons remplacé toutes les fonctions faites en semaine 2 par des opérateur
 il reste plus qu'un setter, un getter et un comparateur afin de pouvoir manipuler
 la précision de comparaison entre vecteurs. Toutes les opérations algébriques
 entre vecteurs et entre vecteurs et scalaires sont opérationelles ainsi que la
-méthode d'affichage <<.
+méthode d'affichage <<. Nous avons aussi crée la classe Particule et la classe
+Enceinte, qui compilent sans problème.
