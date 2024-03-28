@@ -1,22 +1,29 @@
 CC = $(CXX)
 CXXFLAGS = -std=c++20 -pedantic -Wall
 
-all: vecteur/Vecteur3D particule/Particule enceinte/Enceinte
+all: exec/Vecteur3D exec/Particule exec/Enceinte
 
-vecteur/Vecteur3D: vecteur/Vecteur3D.o tests/testVecteur3D.o utils.o
+exec/Vecteur3D: exec/Vecteur3D.o exec/testVecteur3D.o exec/utils.o
 
-vecteur/Vecteur3D.o: vecteur/Vecteur3D.cc vecteur/Vecteur3D.h utils.h
+exec/Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
 
-tests/testVecteur3D.o: tests/testVecteur3D.cc vecteur/Vecteur3D.h utils.h
+exec/testVecteur3D.o: tests/testVecteur3D.cc Vecteur3D.h utils.h
 
-particule/Particule: particule/Particule.o tests/testParticule.o vecteur/Vecteur3D.o utils.o
+exec/Particule: exec/Particule.o tests/testParticule.o exec/Vecteur3D.o utils.o
 
-particule/Particule.o: particule/Particule.cc particule/Particule.h
+exec/Particule.o: Particule.cc Particule.h Vecteur3D.h utils.h Dessinable.h
+  								SupportADessin.h Enceinte.h Systeme.h
 
-tests/testParticule.o: tests/testParticule.cc particule/Particule.h vecteur/Vecteur3D.h
+exec/testParticule.o: tests/testParticule.cc Particule.h Vecteur3D.h
 
-enceinte/Enceinte : enceinte/Enceinte.o
+exec/Enceinte.o : Enceinte.cc Enceinte.h Dessinable.h SupportADessin.h
+									Particule.h Vecteur3D.h utils.h Systeme.h
 
-enceinte/Enceinte.o : enceinte/Enceinte.h
+TextViewer.o: TextViewer.cc TextViewer.h Enceinte.h Dessinable.h
+  						SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
 
-utils.o: utils.cc utils.h
+
+exerciceP7.o: exerciceP7.cc TextViewer.h Enceinte.h Dessinable.h
+  						SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
+
+exec/utils.o: utils.cc utils.h

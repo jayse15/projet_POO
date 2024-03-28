@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "Dessinable.h"
+#include "SupportADessin.h"
 
 class Enceinte : public Dessinable
 {
