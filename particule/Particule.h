@@ -4,21 +4,34 @@
 
 class Particule
 {
-    private :
-        double masse;
-        Vecteur3D position;
-        Vecteur3D vitesse;
-        // On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
-        // les opérations définies dans la classe Vecteur3D
+  protected :
+    double masse;
+    Vecteur3D position;
+    Vecteur3D vitesse;
+    // On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
+    // les opérations définies dans la classe Vecteur3D
 
-   public :
-        Particule(double m, Vecteur3D p, Vecteur3D v)
-          : masse(m), position(p), vitesse(v) {}
-        // Constructeur de la classe Particule. Pas de constructeur par défaut.
-
-        std::ostream& affiche(std::ostream& sortie) const;
-        // Méthode d'affiche des attributs d'une particule
+  public :
+    Particule(double m, Vecteur3D p, Vecteur3D v)
+      : masse(m), position(p), vitesse(v) {}
+    // Constructeur de la classe Particule. Pas de constructeur par défaut.
+    virtual std::ostream& affiche(std::ostream& sortie) const;
+    // Méthode d'affiche des attributs d'une particule
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
 // Opérateur d'affichage de particules
+
+class Neon : public Particule
+{
+  public:
+    std::ostream& affiche(std::ostream& sortie) const override;
+    // Méthode d'affiche des attributs d'une particule
+};
+
+class Argon : public Particule
+{
+  public:
+    std::ostream& affiche(std::ostream& sortie) const override;
+    // Méthode d'affiche des attributs d'une particule
+};
