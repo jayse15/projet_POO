@@ -16,10 +16,10 @@ int main() {
   Argon p3(39.948, pos3, vit3);
   Particule p4(p2);
 
-  cout << "Particule 1: " << p1 << endl;
-  cout << "Particule 2: " << p2 << endl;
-  cout << "Particule 3: " << p3 << endl;
-  cout << "Particule 4: " << p4 << endl;
+  cout << p1 << endl;
+  cout << p2 << endl;
+  cout << p3 << endl;
+  cout << p4 << endl;
 
   return 0;
 }
