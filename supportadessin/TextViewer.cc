@@ -17,6 +17,6 @@ void TextViewer::dessine(Enceinte const& e) {
     cout << e << endl;
 }
 
-void TextViewer::dessine(System const& s) {
+void TextViewer::dessine(Systeme const& s) {
     cout << s << endl; 
 }

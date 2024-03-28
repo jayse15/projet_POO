@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "../vecteur/Vecteur3D.h"
+#include "../dessinable/Dessinable.h"
 
 class Particule : public Dessinable
 {

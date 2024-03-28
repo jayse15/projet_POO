@@ -4,11 +4,10 @@
 #include "../utils.h"
 #include "../supportadessin/SupportADessin.h"
 
-class Dessinable {
+class Dessinable 
+{
     private: 
-
-
+    
     public: 
         virtual void dessine_sur(SupportADessin& support) = 0; 
-
 }; 

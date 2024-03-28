@@ -8,20 +8,17 @@
 
 
 
-class SupportADessin : public Dessinable 
+class SupportADessin
 {
     private: 
         std::iostream& affich_; 
 
     public: 
-        virtual void dessine_sur(SupportADessin& support) override
-        { support.dessine(*this); }
-
         virtual ~SupportADessin() = default;
         // on suppose ici que les supports ne seront ni copiés ni déplacés
         virtual void dessine(Neon const&) = 0;
         virtual void dessine(Argon const&) = 0;
         virtual void dessine(Enceinte const&) = 0;
-        virtual void dessine(System const&) = 0;
+        virtual void dessine(Systeme const&) = 0;
         // ... autres choses que vous voudriez dessiner...
 }; 
