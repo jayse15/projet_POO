@@ -4,11 +4,14 @@
 #include "../utils.h"
 #include "../dessinable/Dessinable.h"
 #include "../enceinte/Enceinte.h"
+#include "../particule/Particule.h"
 
-class SupportADessin : public Dessinable {
+
+
+class SupportADessin : public Dessinable 
+{
     private: 
-        
-
+        std::iostream& affich_; 
 
     public: 
         virtual void dessine_sur(SupportADessin& support) override
@@ -19,8 +22,6 @@ class SupportADessin : public Dessinable {
         virtual void dessine(Neon const&) = 0;
         virtual void dessine(Argon const&) = 0;
         virtual void dessine(Enceinte const&) = 0;
-        virtual void dessine(Systeme const&) = 0;
+        virtual void dessine(System const&) = 0;
         // ... autres choses que vous voudriez dessiner...
-
-
 }; 
