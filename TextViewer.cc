@@ -1,16 +1,17 @@
-#include "TextViewer.h"
-#include "../utils.h"
-#include <cmath>
 #include <iostream>
+#include "TextViewer.h"
+#include "Systeme.h"
+#include "Enceinte.h"
+#include "Particule.h"
 
-using namespace std; 
+using namespace std;
 
 void TextViewer::dessine(Neon const& n) {
-    cout << n << endl; 
+    cout << n << endl;
 }
 
 void TextViewer::dessine(Argon const& a) {
-    cout << a64l << endl; 
+    cout << a << endl;
 }
 
 void TextViewer::dessine(Enceinte const& e) {

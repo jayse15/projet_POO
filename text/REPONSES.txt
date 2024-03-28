@@ -23,7 +23,6 @@ résolu avec un booléen en plus comme entrée. Au final, rajouter l'option
 d'initialiser en spheriques ne pose pas de problème et pourrait même être très
 utile !
 
-
 P4.3)
 Nous avons introduit de nombreux opérateurs:
     -les opérateurs += et -=; //incrémentation et décrémentation
@@ -36,3 +35,17 @@ Nous avons introduit de nombreux opérateurs:
     -l'opérateur ^; //produit vectoriel
     -l'opérateur ~; //vecteur unitaire
     -l'opérateur -; //l'inverse d'un vecteur
+
+P7.1)
+la méthode dessine_sur est, pour la classe Dessinable, une methode virtuelle
+qui sera héritée et "overridée" par les differents objets dessinables du systeme
+(partiucle, enceinte). Dessinable sera une classe abstraite, car on utilisera
+les méthodes d'affichage prédéfinies dans les sous-classes de Dessinable et dans
+les différentes sous-classes de SupportADessin pour les dessiner.
+
+P8.1)
+Il faut faire attention aux copies (surface ou profonde), le concept d'unicité
+ou non (unique_ptr) et tout ce qui est liée a l'allocation et la déallocation de
+mémoire. Il faudra aussi prendre en compte la structure des méthodes si l'on
+cherche a faire du polymorphisme, il faut que les methodes soient
+virtuelles et prennent en compte qu'on travaille avec des pointeurs !

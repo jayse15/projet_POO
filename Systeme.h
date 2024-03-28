@@ -1,9 +1,9 @@
 #include <vector>
 #include <iostream>
-#include "../particule/Particule.h"
-#include "../enceinte/Enceinte.h"
+#include "Particule.h"
+#include "Enceinte.h"
 
-class Systeme 
+class Systeme : public Dessinable
 { 
     private : 
         Enceinte* enceinte_; 
@@ -17,9 +17,9 @@ class Systeme
 
         std::ostream& affiche(std::ostream& sortie) const; 
 
-        Systeme ajouter_particule(Particule* const&); 
+        void ajouter_particule(Particule* const&); 
 
-        Systeme supp_all(); 
+        void supp_all(); 
 };
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& S); 

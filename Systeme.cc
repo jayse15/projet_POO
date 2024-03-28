@@ -13,16 +13,15 @@ ostream& Systeme::affiche(ostream& sortie) const {
     return sortie; 
 }
 
-ostream& operator<<(ostream& sortie, Systeme S) {
+ostream& operator<<(ostream& sortie, Systeme const& S) {
     S.affiche(sortie); 
     return sortie; 
 }
 
-Systeme Systeme::ajouter_particule(Particule* const& P) {
-    particules_.push_back(P); 
-    return *this; 
+void Systeme::ajouter_particule(Particule* const& P) {
+    particules_.push_back(P);
 }
 
-Systeme Systeme::supp_all() {
+void Systeme::supp_all() {
     particules_.clear(); 
 }
