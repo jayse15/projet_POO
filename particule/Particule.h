@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../vecteur/Vecteur3D.h"
 
-class Particule
+class Particule : public Dessinable
 {
   protected :
     double masse;
@@ -17,6 +17,9 @@ class Particule
     // Constructeur de la classe Particule. Pas de constructeur par défaut.
     virtual std::ostream& affiche(std::ostream& sortie) const;
     // Méthode d'affiche des attributs d'une particule
+
+    virtual void dessine_sur(SupportADessin& support) override
+    { support.dessine(*this); }
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
