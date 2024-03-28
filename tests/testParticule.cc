@@ -12,8 +12,8 @@ int main() {
   Vecteur3D vit3(0,0,-0.5);
 
   Particule p1(4.002602, pos1, vit1);
-  Particule p2(20.1797, pos2, vit2);
-  Particule p3(39.948, pos3, vit3);
+  Neon p2(20.1797, pos2, vit2);
+  Argon p3(39.948, pos3, vit3);
   Particule p4(p2);
 
   cout << "Particule 1: " << p1 << endl;

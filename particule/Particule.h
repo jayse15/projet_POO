@@ -25,13 +25,15 @@ std::ostream& operator<<(std::ostream& sortie, Particule const& P);
 class Neon : public Particule
 {
   public:
+    Neon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
-    // Méthode d'affiche des attributs d'une particule
+    // Méthode d'affiche pour le néon
 };
 
 class Argon : public Particule
 {
   public:
+    Argon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
-    // Méthode d'affiche des attributs d'une particule
+    // Méthode d'affiche pour l'argon
 };
