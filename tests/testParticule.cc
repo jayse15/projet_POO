@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../particule/Particule.h"
+#include "../Particule.h"
 using namespace std;
 
 int main() {

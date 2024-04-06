@@ -1,4 +1,4 @@
-#include "../system/Systeme.h"
+#include "../Systeme.h"
 
 using namespace std; 
 
@@ -10,6 +10,6 @@ int main() {
     S1.ajouter_particule(new Argon(39.948, {1, 1, 3.1}, {0, 0, -0.5})); 
 
     cout << S1 << endl; 
-    
+
     return 0; 
 }
