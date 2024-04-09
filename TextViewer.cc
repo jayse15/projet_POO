@@ -6,18 +6,22 @@
 
 using namespace std;
 
+void TextViewer::dessine(Particule const& p) {
+    visualisation << p << endl; 
+}
+
 void TextViewer::dessine(Neon const& n) {
-    cout << n << endl;
+    visualisation << n << endl;
 }
 
 void TextViewer::dessine(Argon const& a) {
-    cout << a << endl;
+    visualisation << a << endl;
 }
 
 void TextViewer::dessine(Enceinte const& e) {
-    cout << e << endl;
+    visualisation << e << endl;
 }
 
 void TextViewer::dessine(Systeme const& s) {
-    cout << s << endl; 
+    visualisation << s << endl; 
 }

@@ -13,7 +13,9 @@ int main() {
     S.ajouter_particule(new Neon(p1)); 
     S.ajouter_particule(new Argon(p2)); 
     
-    
+    TextViewer ecran(cout); 
+
+    S.dessine_sur(ecran); 
 
     return 0; 
 }
