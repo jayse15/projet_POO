@@ -40,3 +40,14 @@ la précision de comparaison entre vecteurs. Toutes les opérations algébriques
 entre vecteurs et entre vecteurs et scalaires sont opérationelles ainsi que la
 méthode d'affichage <<. Nous avons aussi crée la classe Particule et la classe
 Enceinte, qui compilent sans problème.
+
+Semaine 6: 
+
+Dans un premier temps, nous avons pour l'instant introduit 2 sous classe de la 
+classe Particule, Argon et Néon, dont nous avons juste redéfini l'opérateur 
+d'affichage <<, pour que lorsque l'on veut afficher une telle particule, 
+son élément chimique apparaisse. 
+Deuxièmement, nous avons défini les différentes classes liées au graphisme de notre
+projet, les classes Dessinable, SupportADessin, et TextViewer. 
+Cependant, nous avons rencontré des difficultés au niveau de la compréhension de 
+la classe TextViewer, ce qui nous a ralenti dans l'écriture du fichier exerciceP7.cc.
