@@ -21,6 +21,12 @@ ostream& Argon::affiche(ostream& sortie) const {
   return sortie;
 }
 
+ostream& Helium::affiche(ostream& sortie) const {
+  sortie << "Hélium : "; 
+  Particule::affiche(sortie); 
+  return sortie;
+}
+
 ostream& operator<<(ostream& sortie, Particule const& P) {
   sortie << "particule ";
   return P.affiche(sortie);

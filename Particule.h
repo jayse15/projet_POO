@@ -42,3 +42,11 @@ class Argon : public Particule
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'argon
 };
+
+class Helium : public Particule 
+{
+  public:
+    Helium(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
+    std::ostream& affiche(std::ostream& sortie) const override;
+    // Méthode d'affiche pour l'hélium
+}; 

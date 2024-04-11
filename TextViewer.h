@@ -22,6 +22,7 @@ class TextViewer : public SupportADessin
 
         void dessine(Neon const&) override;
         void dessine(Argon const&) override;
+        void dessine(Helium const&) override;
         void dessine(Particule const&) override;
         void dessine(Enceinte const&) override;
         void dessine(Systeme const&) override;

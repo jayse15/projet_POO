@@ -18,6 +18,10 @@ void TextViewer::dessine(Argon const& a) {
     visualisation << a << endl;
 }
 
+void TextViewer::dessine(Helium const& h) {
+    visualisation << h << endl;
+}
+
 void TextViewer::dessine(Enceinte const& e) {
     visualisation << e << endl;
 }
