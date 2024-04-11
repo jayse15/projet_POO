@@ -23,6 +23,7 @@ class SupportADessin
 
       virtual void dessine(Neon const&) = 0;
       virtual void dessine(Argon const&) = 0;
+      virtual void dessine(Helium const&) = 0;
       virtual void dessine(Particule const&) = 0;
       virtual void dessine(Enceinte const&) = 0;
       virtual void dessine(Systeme const&) = 0;

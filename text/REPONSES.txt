@@ -64,3 +64,14 @@ différentes de la super classe Particule.
 P8.3) 
 Pour empêcher totalement la copie et l'affectation des instances de la classe Systeme, 
 nous allons utiliser la commande "delete" offerte par c++11. 
+
+P9.1)
+
+
+P9.2)
+Si on pose n le nombre de particules dans notre système, alors étant donné que l'on 
+compare les positions d'une particule par rapport à toutes les autres, la complexité
+de l'algorithme est en grand_théta(n). Maintenant, si nous faisons cela pour toute les
+particules (et en supposant que une fois qu'une particule a été comparée à toutes les
+autres, on ne répète pas l'opération lorsque l'on fait cette comparaison depuis une 
+autre particule), nous aurons un algorithme en grand_théta(n!). 

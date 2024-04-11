@@ -19,6 +19,10 @@ class Enceinte : public Dessinable
 
         std::ostream& affiche(std::ostream& sortie) const;
 
+        double get_h() const; 
+        double get_l() const; 
+        double get_p() const; 
+        
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
     };

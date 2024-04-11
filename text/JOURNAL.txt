@@ -51,3 +51,12 @@ Deuxièmement, nous avons défini les différentes classes liées au graphisme d
 projet, les classes Dessinable, SupportADessin, et TextViewer. 
 Cependant, nous avons rencontré des difficultés au niveau de la compréhension de 
 la classe TextViewer, ce qui nous a ralenti dans l'écriture du fichier exerciceP7.cc.
+
+Semaine 7: 
+
+De manière à mieux notifier des erreurs de présentation dans le programme, nous avons
+introduit une troisième sous classe de particule, Helium, qui reprend simplement le meme
+modèle que les classes Argon et Néon introduites précédemment. 
+Pour pouvoir gérer les collisions, nous avons du introduire des getter dans les classes 
+Enceintes et Particule, pour accéder aux dimensions de l'enceinte créée dans le système
+ainsi que les coordonnées et les composantes de la vitesse de chaque particules. 

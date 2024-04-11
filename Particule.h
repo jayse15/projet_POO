@@ -22,6 +22,17 @@ class Particule : public Dessinable
 
     virtual void dessine_sur(SupportADessin& support) override
     { support.dessine(*this); }
+
+    virtual double get_pos(unsigned int) const; 
+
+    virtual double get_vit(unsigned int) const; 
+
+    virtual void set_pos(unsigned int, double); 
+
+    virtual void set_vit(unsigned int, double); 
+
+    virtual void evolue(double); 
+    // Méthode permettant de faire bouger une particule d'un temps dt
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
