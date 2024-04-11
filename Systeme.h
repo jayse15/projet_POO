@@ -30,7 +30,7 @@ class Systeme : public Dessinable
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
         
-        void collision_paroi(unsigned int, Particule); 
+        void collision_paroi(Particule); 
 
         void evolue(double); 
 };

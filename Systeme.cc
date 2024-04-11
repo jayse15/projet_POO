@@ -26,16 +26,16 @@ void Systeme::supp_all() {
     particules_.clear(); 
 }
 
-void Systeme::collision_paroi(unsigned int i, Particule p) {
-    if (p.get_pos(i) - enceinte_->get_h() >= PRECISION) {
+void Systeme::collision_paroi(Particule p) {
+    if (p.get_pos(2) - enceinte_->get_h() >= PRECISION) {
         p.set_pos(2,2*enceinte_->get_h()-p.get_pos(2));
         p.set_vit(2,-p.get_vit(2));
         }
-    if (p.get_pos(i) - enceinte_->get_l() >= PRECISION) {
+    if (p.get_pos(0) - enceinte_->get_l() >= PRECISION) {
         p.set_pos(0,2*enceinte_->get_l()-p.get_pos(0));
         p.set_vit(0,-p.get_vit(0));
         }
-    if (p.get_pos(i) - enceinte_->get_p() >= PRECISION) {
+    if (p.get_pos(1) - enceinte_->get_p() >= PRECISION) {
         p.set_pos(1,2*enceinte_->get_p()-p.get_pos(1));
         p.set_vit(1,-p.get_vit(1));
     }
@@ -48,7 +48,7 @@ void Systeme::evolue(double dt) {
     {
         part->evolue(dt); 
         for (int i(0); i <= 2; ++i) {
-            this->collision_paroi(i, *part);
+            this->collision_paroi(*part);
         }
     }
 }
