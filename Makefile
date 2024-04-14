@@ -1,29 +1,29 @@
 CC = $(CXX)
 CXXFLAGS = -std=c++20 -pedantic -Wall
 
-all: exec/Vecteur3D exec/Particule exec/Enceinte
+all: Vecteur3D Particule Enceinte
 
-exec/Vecteur3D: exec/Vecteur3D.o exec/testVecteur3D.o exec/utils.o
+Enceinte: Enceinte.o exerciceP7.o utils.o Particule.o Vecteur3D.o 
+Vecteur3D: Vecteur3D.o tests/testVecteur3D.o utils.o
 
-exec/Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
+Particule: Particule.o tests/testParticule.o Vecteur3D.o utils.o
 
-exec/testVecteur3D.o: tests/testVecteur3D.cc Vecteur3D.h utils.h
+Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
 
-exec/Particule: exec/Particule.o tests/testParticule.o exec/Vecteur3D.o utils.o
+testVecteur3D.o: tests/testVecteur3D.cc Vecteur3D.h utils.h
 
-exec/Particule.o: Particule.cc Particule.h Vecteur3D.h utils.h Dessinable.h
-  								SupportADessin.h Enceinte.h Systeme.h
+Particule.o: Particule.cc Particule.h Vecteur3D.h utils.h Dessinable.h
+	SupportADessin.h Enceinte.h Systeme.h
 
-exec/testParticule.o: tests/testParticule.cc Particule.h Vecteur3D.h
+testParticule.o: tests/testParticule.cc Particule.h Vecteur3D.h
 
-exec/Enceinte.o : Enceinte.cc Enceinte.h Dessinable.h SupportADessin.h
-									Particule.h Vecteur3D.h utils.h Systeme.h
+Enceinte.o: Enceinte.cc Enceinte.h Dessinable.h SupportADessin.h
+	Particule.h Vecteur3D.h utils.h Systeme.h
 
 TextViewer.o: TextViewer.cc TextViewer.h Enceinte.h Dessinable.h
-  						SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
-
+	SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
 
 exerciceP7.o: exerciceP7.cc TextViewer.h Enceinte.h Dessinable.h
-  						SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
+	SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h
 
-exec/utils.o: utils.cc utils.h
+utils.o: utils.cc utils.h
