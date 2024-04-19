@@ -47,9 +47,7 @@ void Systeme::evolue(double dt) {
     for (auto part : particules_)
     {
         part->evolue(dt); 
-        for (int i(0); i <= 2; ++i) {
-            this->collision_paroi(*part);
-        }
+        this->collision_paroi(*part);
     }
 }
 
