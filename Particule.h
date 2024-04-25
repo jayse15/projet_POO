@@ -23,15 +23,15 @@ class Particule : public Dessinable
     virtual void dessine_sur(SupportADessin& support) override
     { support.dessine(*this); }
 
-    virtual double get_pos(unsigned int) const; 
+    double get_pos(unsigned int) const;
 
-    virtual double get_vit(unsigned int) const; 
+    double get_vit(unsigned int) const;
 
-    virtual void set_pos(unsigned int, double); 
+    void set_pos(unsigned int, double);
 
-    virtual void set_vit(unsigned int, double); 
+    void set_vit(unsigned int, double);
 
-    virtual void evolue(double); 
+    void evolue(double);
     // Méthode permettant de faire bouger une particule d'un temps dt
 };
 
@@ -54,10 +54,10 @@ class Argon : public Particule
     // Méthode d'affiche pour l'argon
 };
 
-class Helium : public Particule 
+class Helium : public Particule
 {
   public:
     Helium(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'hélium
-}; 
+};
