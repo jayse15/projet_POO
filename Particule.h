@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Vecteur3D.h"
+#include "utils.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
 
@@ -33,6 +34,8 @@ class Particule : public Dessinable
 
     virtual void evolue(double); 
     // Méthode permettant de faire bouger une particule d'un temps dt
+
+    virtual void collision_particule(Particule const &); 
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);

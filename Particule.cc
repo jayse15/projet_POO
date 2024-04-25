@@ -49,6 +49,12 @@ void Particule::set_vit(unsigned int i, double x) {
 }
 
 void Particule::evolue(double dt) {
-  Vecteur3D deplacement({vitesse.get_coord(0)*dt, vitesse.get_coord(1)*dt, vitesse.get_coord(2)*dt});
+  Vecteur3D deplacement(vitesse*=dt);
   position+=deplacement; 
+}
+
+void Particule::collision_particule(Particule const& autre) {
+  if ((this->position-autre.position).norme() <= EPSILON) {
+    
+  }
 }

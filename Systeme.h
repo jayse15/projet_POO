@@ -32,6 +32,8 @@ class Systeme : public Dessinable
         
         void collision_paroi(Particule); 
 
+        void collision_particules(Particule);
+
         void evolue(double); 
 };
 
