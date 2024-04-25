@@ -60,3 +60,5 @@ modèle que les classes Argon et Néon introduites précédemment.
 Pour pouvoir gérer les collisions, nous avons du introduire des getter dans les classes 
 Enceintes et Particule, pour accéder aux dimensions de l'enceinte créée dans le système
 ainsi que les coordonnées et les composantes de la vitesse de chaque particules. 
+En effet, lors d'une collision, nous devons modifier la direction de la vitesse et/ou 
+les valeurs de ses composantes (notamment dans le cas d'un choc entre particules). 
