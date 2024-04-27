@@ -1,21 +1,20 @@
 #include "Systeme.h"
-
-using namespace std; 
+using namespace std;
 
 ostream& Systeme::affiche(ostream& sortie) const {
     if (particules_.size() == 0) {sortie << "Le système est vide.";}
     else {
-        sortie << "Le système est constitué des " << particules_.size() << " particules suivantes: " << endl; 
+        sortie << "Le système est constitué des " << particules_.size() << " particules suivantes: " << endl;
         for (auto element : particules_) {
-            cout << *element << endl; 
+            cout << *element << endl;
         }
     }
-    return sortie; 
+    return sortie;
 }
 
 ostream& operator<<(ostream& sortie, Systeme const& S) {
-    S.affiche(sortie); 
-    return sortie; 
+    S.affiche(sortie);
+    return sortie;
 }
 
 void Systeme::ajouter_particule(Particule* const& P) {
@@ -23,7 +22,7 @@ void Systeme::ajouter_particule(Particule* const& P) {
 }
 
 void Systeme::supp_all() {
-    particules_.clear(); 
+    particules_.clear();
 }
 
 void Systeme::collision_paroi(Particule p) {
@@ -41,20 +40,19 @@ void Systeme::collision_paroi(Particule p) {
     }
 }
 // Par défaut nous définissons que la hauteur de l'enceinte est le long de l'axe z, donc la troisième coordonnées d'un Vecteur3D
-// la longueur est le long de l'axe x, donc la première coordonnée, et la profondeur le long de l'axe y, donc la deuxième coordonnée. 
+// la longueur est le long de l'axe x, donc la première coordonnée, et la profondeur le long de l'axe y, donc la deuxième coordonnée.
 
 void Systeme::collision_particules(Particule p) {
     for (auto part : particules_) {
-        
+
     }
 }
 
 void Systeme::evolue(double dt) {
     for (auto part : particules_)
     {
-        part->evolue(dt); 
+        part->evolue(dt);
         this->collision_paroi(*part);
     }
-    
-}
 
+}
