@@ -9,7 +9,7 @@ class Systeme : public Dessinable
     private : 
         Enceinte* enceinte_; 
         std::vector<Particule*> particules_; 
-        static GenerateurAleatoire tirage; 
+        static GenerateurAleatoire tirage_; 
         
     public : 
         Systeme(double h = 20, double l = 20, double p = 20) {

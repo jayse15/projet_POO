@@ -45,7 +45,7 @@ void Systeme::collision_paroi(Particule p) {
 
 void Systeme::collision_particules(Particule p) {
     for (auto part : particules_) {
-        
+        p.collision_particule(*part, tirage_);
     }
 }
 
@@ -54,6 +54,7 @@ void Systeme::evolue(double dt) {
     {
         part->evolue(dt); 
         this->collision_paroi(*part);
+        
     }
     
 }

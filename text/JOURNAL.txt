@@ -53,7 +53,9 @@ Cependant, nous avons rencontré des difficultés au niveau de la compréhension
 la classe TextViewer, ce qui nous a ralenti dans l'écriture du fichier exerciceP7.cc.
 
 Semaine 7: 
-
+Alban//
+Dans un premier temps, j'ai suivi le tutoriel graphique associé au projet pour mettre à 
+jour la classe TextViewer. 
 De manière à mieux notifier des erreurs de présentation dans le programme, nous avons
 introduit une troisième sous classe de particule, Helium, qui reprend simplement le meme
 modèle que les classes Argon et Néon introduites précédemment. 
@@ -62,3 +64,8 @@ Enceintes et Particule, pour accéder aux dimensions de l'enceinte créée dans 
 ainsi que les coordonnées et les composantes de la vitesse de chaque particules. 
 En effet, lors d'une collision, nous devons modifier la direction de la vitesse et/ou 
 les valeurs de ses composantes (notamment dans le cas d'un choc entre particules). 
+
+Semaine 8: 
+Retour Jason//
+Suite au retour de Jason, nous avons débriefé de mon avancée en semaine 7. Nous n'avons 
+pas pu poursuivre énormément l'avancée du projet. 
