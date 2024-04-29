@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
+#include "GenerateurAleatoire.h"
 
 class Particule : public Dessinable
 {
@@ -35,7 +36,9 @@ class Particule : public Dessinable
     void evolue(double);
     // Méthode permettant de faire bouger une particule d'un temps dt
 
-    virtual void collision_particule(Particule const &); 
+    bool test_contact(Particule const& autre) const; 
+
+    virtual void collision_particule(Particule&, GenerateurAleatoire); 
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);

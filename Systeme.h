@@ -12,7 +12,7 @@ class Systeme : public Dessinable
     private :
         Enceinte* enceinte_;
         std::vector<Particule*> particules_;
-        static GenerateurAleatoire tirage;
+        static GenerateurAleatoire tirage_;
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) {
@@ -35,7 +35,7 @@ class Systeme : public Dessinable
 
         void collision_paroi(Particule);
 
-        void collision_particules(Particule);
+        void collision_particules(Particule, int);
 
         void evolue(double);
 };

@@ -44,17 +44,19 @@ void Systeme::collision_paroi(Particule p) {
 // Par défaut nous définissons que la hauteur de l'enceinte est le long de l'axe z, donc la troisième coordonnées d'un Vecteur3D
 // la longueur est le long de l'axe x, donc la première coordonnée, et la profondeur le long de l'axe y, donc la deuxième coordonnée.
 
-void Systeme::collision_particules(Particule p) {
-    for (auto part : particules_) {
-
+void Systeme::collision_particules(Particule p, int j) {
+    if (j >= particules_.size()) {
+        for (int i(j); i < particules_.size(); ++i) {
+            p.collision_particule(*particules_[i], tirage_);
+        }
     }
 }
 
 void Systeme::evolue(double dt) {
-    for (auto part : particules_)
+    for (int j(0); j < particules_.size() - 1; ++j)
     {
-        part->evolue(dt);
-        this->collision_paroi(*part);
+        particules_[j]->evolue(dt);
+        collision_paroi(*particules_[j]);
+        collision_particules(*particules_[j], j+1);
     }
-
 }
