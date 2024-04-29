@@ -1,13 +1,10 @@
-#include <iostream>
 #include "TextViewer.h"
-#include "Systeme.h"
-#include "Enceinte.h"
-#include "Particule.h"
+#include <iostream>
 
 using namespace std;
 
 void TextViewer::dessine(Particule const& p) {
-    visualisation << p << endl; 
+    visualisation << p << endl;
 }
 
 void TextViewer::dessine(Neon const& n) {
@@ -27,5 +24,5 @@ void TextViewer::dessine(Enceinte const& e) {
 }
 
 void TextViewer::dessine(Systeme const& s) {
-    visualisation << s << endl; 
+    visualisation << s << endl;
 }

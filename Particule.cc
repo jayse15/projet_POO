@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Particule.h"
+#include <iostream>
 
 using namespace std;
 
@@ -22,8 +22,8 @@ ostream& Argon::affiche(ostream& sortie) const {
 }
 
 ostream& Helium::affiche(ostream& sortie) const {
-  sortie << "Hélium : "; 
-  Particule::affiche(sortie); 
+  sortie << "Hélium : ";
+  Particule::affiche(sortie);
   return sortie;
 }
 
@@ -33,11 +33,11 @@ ostream& operator<<(ostream& sortie, Particule const& P) {
 }
 
 double Particule::get_pos(unsigned int i) const {
-  return position.get_coord(i); 
+  return position.get_coord(i);
 }
 
 double Particule::get_vit(unsigned int i) const {
-  return vitesse.get_coord(i); 
+  return vitesse.get_coord(i);
 }
 
 void Particule::set_pos(unsigned int i, double x) {
@@ -50,11 +50,11 @@ void Particule::set_vit(unsigned int i, double x) {
 
 void Particule::evolue(double dt) {
   Vecteur3D deplacement(vitesse*=dt);
-  position+=deplacement; 
+  position+=deplacement;
 }
 
 void Particule::collision_particule(Particule const& autre) {
   if ((this->position-autre.position).norme() <= EPSILON) {
-    
+
   }
 }

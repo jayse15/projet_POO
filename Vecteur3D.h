@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <array>
-#include "utils.h"
 
 class Vecteur3D
 {

@@ -1,4 +1,5 @@
-#pragma once 
+#pragma once
+#include <iostream>
 #include <random>
 
 class GenerateurAleatoire {

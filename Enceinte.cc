@@ -1,18 +1,18 @@
-#include <iostream>
 #include "Enceinte.h"
+#include <iostream>
 
 using namespace std;
 
 double Enceinte::get_h() const{
-    return hauteur_; 
+    return hauteur_;
 }
 
 double Enceinte::get_l() const{
-    return largeur_; 
+    return largeur_;
 }
 
 double Enceinte::get_p() const{
-    return profondeur_; 
+    return profondeur_;
 }
 
 ostream& Enceinte::affiche(ostream& sortie) const {

@@ -41,6 +41,6 @@ testParticule.o: testParticule.cc Particule.h Vecteur3D.h utils.h \
 testSystem1.o: testSystem1.cc Systeme.h Particule.h Vecteur3D.h utils.h \
   Dessinable.h SupportADessin.h Enceinte.h GenerateurAleatoire.h
 
-testVecteur3D.o: testVecteur3D.cc Vecteur3D.h utils.h
+testVecteur3D.o: testVecteur3D.cc Vecteur3D.h
 
 utils.o: utils.cc utils.h

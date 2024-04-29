@@ -1,4 +1,6 @@
 #include "Systeme.h"
+#include <iostream>
+
 using namespace std;
 
 ostream& Systeme::affiche(ostream& sortie) const {

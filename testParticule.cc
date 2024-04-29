@@ -1,5 +1,6 @@
-#include <iostream>
 #include "Particule.h"
+#include <iostream>
+
 using namespace std;
 
 int main() {

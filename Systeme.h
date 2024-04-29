@@ -4,6 +4,8 @@
 #include "Particule.h"
 #include "Enceinte.h"
 #include "GenerateurAleatoire.h"
+#include "Dessinable.h"
+#include "SupportADessin.h"
 
 class Systeme : public Dessinable
 {
