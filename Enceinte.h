@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Dessinable.h"
 #include "SupportADessin.h"
+#include "Dessinable.h"
 
 class Enceinte : public Dessinable
 {
@@ -11,18 +11,15 @@ class Enceinte : public Dessinable
         double profondeur_;
 
     public:
-        Enceinte (double h = 20, double l = 20, double p = 20){
-            hauteur_ = h;
-            largeur_ = l;
-            profondeur_ = p;
-        }
+        Enceinte (double h = 20, double l = 20, double p = 20) :
+          hauteur_(h), largeur_(l), profondeur_(p) {}
 
         std::ostream& affiche(std::ostream& sortie) const;
 
-        double get_h() const; 
-        double get_l() const; 
-        double get_p() const; 
-        
+        double get_h() const;
+        double get_l() const;
+        double get_p() const;
+
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
     };

@@ -1,14 +1,17 @@
 #pragma once
-#include <iostream>
-#include "Enceinte.h"
-#include "Particule.h"
-#include "Systeme.h"
 #include "SupportADessin.h"
+
+class Enceinte;
+class Particule;
+class Neon;
+class Argon;
+class Helium;
+class Systeme;
 
 class TextViewer : public SupportADessin
 {
     private :
-        std::ostream& visualisation; 
+        std::ostream& visualisation;
     public :
         TextViewer(std::ostream& flot)
             : visualisation(flot) {}

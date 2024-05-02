@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include "Particule.h"
-#include "Enceinte.h"
 #include "GenerateurAleatoire.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
+#include "Enceinte.h"
+
+class Particule;
 
 class Systeme : public Dessinable
 {
@@ -15,12 +16,16 @@ class Systeme : public Dessinable
         static GenerateurAleatoire tirage_;
 
     public :
-        Systeme(double h = 20, double l = 20, double p = 20) {
-            *enceinte_ = (h,l,p);
-            particules_ = {};
-        }
+        Systeme(double h = 20, double l = 20, double p = 20) :
+          enceinte_(new Enceinte(h,l,p)), particules_{} {}
 
         Systeme(Systeme const&) = delete;
+
+        ~Systeme()
+        {
+          delete enceinte_;
+          enceinte_ = nullptr;
+        }
 
         Systeme operator=(Systeme const&) = delete;
 
@@ -33,9 +38,9 @@ class Systeme : public Dessinable
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
 
-        void collision_paroi(Particule);
+        void collision_paroi(Particule&);
 
-        void collision_particules(Particule, int);
+        void collision_particules(Particule&, int);
 
         void evolue(double);
 };

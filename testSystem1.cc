@@ -1,4 +1,5 @@
 #include "Systeme.h"
+#include "Particule.h"
 #include <iostream>
 
 using namespace std;

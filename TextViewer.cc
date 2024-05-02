@@ -1,4 +1,7 @@
 #include "TextViewer.h"
+#include "Particule.h"
+#include "Enceinte.h"
+#include "Systeme.h"
 #include <iostream>
 
 using namespace std;
