@@ -31,7 +31,7 @@ bool Vecteur3D::compare(Vecteur3D const& autre) const
 {
   for(uint i(0); i<3; i++)
   {
-    if(round_to_decimal(autre.get_coord(i)) !=
+    if(round_to_decimal(autre.vect_[i]) !=
        round_to_decimal(vect_[i])) {return false;}
   }
   return true;
@@ -52,20 +52,20 @@ bool Vecteur3D::operator!=(Vecteur3D const& autre) const
 }
 
 const Vecteur3D& Vecteur3D::operator+=(Vecteur3D const& autre) {
-  for (uint i(0); i<3; i++) {vect_[i] += autre.get_coord(i);}
+  for (uint i(0); i<3; i++) {vect_[i] += autre.vect_[i];}
   return *this;
 }
 
 
 const Vecteur3D& Vecteur3D::operator-=(Vecteur3D const& autre) {
-  for (uint i(0); i<3; i++) {vect_[i] -= autre.get_coord(i);}
+  for (uint i(0); i<3; i++) {vect_[i] -= autre.vect_[i];}
   return *this;
 }
 
 const Vecteur3D& Vecteur3D::operator^=(Vecteur3D const& autre) {
-  vect_ = {vect_[1]*autre.get_coord(2) - vect_[2]*autre.get_coord(1),
-           vect_[2]*autre.get_coord(0) - vect_[0]*autre.get_coord(2),
-           vect_[0]*autre.get_coord(1) - vect_[1]*autre.get_coord(0)};
+  vect_ = {vect_[1]*autre.vect_[2] - vect_[2]*autre.vect_[1],
+           vect_[2]*autre.vect_[0] - vect_[0]*autre.vect_[2],
+           vect_[0]*autre.vect_[1] - vect_[1]*autre.vect_[0]};
   return *this;
 }
 
