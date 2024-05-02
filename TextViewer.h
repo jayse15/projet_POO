@@ -1,14 +1,18 @@
 #pragma once
-#include <iostream>
-#include "Enceinte.h"
-#include "Particule.h"
-#include "Systeme.h"
 #include "SupportADessin.h"
+#include <iostream>
+
+class Enceinte;
+class Particule;
+class Neon;
+class Argon;
+class Helium;
+class Systeme;
 
 class TextViewer : public SupportADessin
 {
     private :
-        std::ostream& visualisation; 
+        std::ostream& visualisation;
     public :
         TextViewer(std::ostream& flot)
             : visualisation(flot) {}
@@ -16,9 +20,9 @@ class TextViewer : public SupportADessin
         // on ne copie pas les TextViewer
         TextViewer(TextViewer const&) = delete;
         TextViewer& operator=(TextViewer const&) = delete;
-        // mais on peut les déplacer
-        TextViewer(TextViewer&&) = default;
-        TextViewer& operator=(TextViewer&&) = default;
+        // et on peut pas les déplacer
+        TextViewer(TextViewer&&) = delete;
+        TextViewer& operator=(TextViewer&&) = delete;
 
         void dessine(Neon const&) override;
         void dessine(Argon const&) override;

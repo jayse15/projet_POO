@@ -15,31 +15,27 @@ Particule: Particule.o testParticule.o Vecteur3D.o utils.o Enceinte.o \
 	Systeme.o
 
 
-Enceinte.o: Enceinte.cc Enceinte.h Dessinable.h SupportADessin.h \
-  Particule.h Vecteur3D.h utils.h Systeme.h GenerateurAleatoire.h
+Enceinte.o: Enceinte.cc Enceinte.h SupportADessin.h Dessinable.h
 
-Particule.o: Particule.cc Particule.h Vecteur3D.h utils.h Dessinable.h \
-  SupportADessin.h Enceinte.h Systeme.h GenerateurAleatoire.h
+Particule.o: Particule.cc Particule.h Vecteur3D.h Dessinable.h \
+  SupportADessin.h GenerateurAleatoire.h utils.h
 
-Systeme.o: Systeme.cc Systeme.h Particule.h Vecteur3D.h utils.h \
-  Dessinable.h SupportADessin.h Enceinte.h GenerateurAleatoire.h
+Systeme.o: Systeme.cc Systeme.h GenerateurAleatoire.h Dessinable.h \
+  SupportADessin.h Enceinte.h utils.h Particule.h Vecteur3D.h
 
-TextViewer.o: TextViewer.cc TextViewer.h Enceinte.h Dessinable.h \
-  SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h \
-  GenerateurAleatoire.h
+TextViewer.o: TextViewer.cc TextViewer.h SupportADessin.h Particule.h \
+  Vecteur3D.h Dessinable.h GenerateurAleatoire.h Enceinte.h Systeme.h
 
 Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
 
-exerciceP7.o: exerciceP7.cc TextViewer.h Enceinte.h Dessinable.h \
-  SupportADessin.h Particule.h Vecteur3D.h utils.h Systeme.h \
-  GenerateurAleatoire.h
+exerciceP7.o: exerciceP7.cc TextViewer.h SupportADessin.h Particule.h \
+  Vecteur3D.h Dessinable.h GenerateurAleatoire.h Systeme.h Enceinte.h
 
-testParticule.o: testParticule.cc Particule.h Vecteur3D.h utils.h \
-  Dessinable.h SupportADessin.h Enceinte.h Systeme.h \
-  GenerateurAleatoire.h
+testParticule.o: testParticule.cc Particule.h Vecteur3D.h Dessinable.h \
+  SupportADessin.h GenerateurAleatoire.h
 
-testSystem1.o: testSystem1.cc Systeme.h Particule.h Vecteur3D.h utils.h \
-  Dessinable.h SupportADessin.h Enceinte.h GenerateurAleatoire.h
+testSystem1.o: testSystem1.cc Systeme.h GenerateurAleatoire.h \
+  Dessinable.h SupportADessin.h Enceinte.h Particule.h Vecteur3D.h
 
 testVecteur3D.o: testVecteur3D.cc Vecteur3D.h
 

@@ -1,10 +1,11 @@
 #pragma once
-#include <iostream>
-#include "Enceinte.h"
-#include "Particule.h"
-#include "Systeme.h"
 
-
+class Neon;
+class Argon;
+class Helium;
+class Enceinte;
+class Particule;
+class Systeme;
 
 class SupportADessin
 {
@@ -18,7 +19,7 @@ class SupportADessin
       // mais on peut les déplacer
       SupportADessin(SupportADessin&&) = default;
       SupportADessin& operator=(SupportADessin&&) = default;
- 
+
       SupportADessin() = default;
 
       virtual void dessine(Neon const&) = 0;

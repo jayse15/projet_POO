@@ -1,6 +1,6 @@
 #include "Systeme.h"
 #include "utils.h"
-#include <iostream>
+#include "Particule.h"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ void Systeme::supp_all() {
     particules_.clear();
 }
 
-void Systeme::collision_paroi(Particule p) {
+void Systeme::collision_paroi(Particule& p) {
     if (p.get_pos(2) - enceinte_->get_h() >= PRECISION) {
         p.set_pos(2,2*enceinte_->get_h()-p.get_pos(2));
         p.set_vit(2,-p.get_vit(2));
@@ -45,7 +45,7 @@ void Systeme::collision_paroi(Particule p) {
 // Par défaut nous définissons que la hauteur de l'enceinte est le long de l'axe z, donc la troisième coordonnées d'un Vecteur3D
 // la longueur est le long de l'axe x, donc la première coordonnée, et la profondeur le long de l'axe y, donc la deuxième coordonnée.
 
-void Systeme::collision_particules(Particule p, int j) {
+void Systeme::collision_particules(Particule& p, int j) {
     if (j >= particules_.size()) {
         for (int i(j); i < particules_.size(); ++i) {
             p.collision_particule(*particules_[i], tirage_);

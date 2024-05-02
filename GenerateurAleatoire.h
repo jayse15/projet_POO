@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <random>
 
 class GenerateurAleatoire {
@@ -10,7 +9,8 @@ public:
 
   double uniforme(double min, double max)
   {
-    return distribution_uniforme(generateur, std::uniform_real_distribution<double>::param_type{min, max});
+    return distribution_uniforme(generateur,
+                  std::uniform_real_distribution<double>::param_type{min, max});
   }
 
   double gaussienne(double moyenne, double ecart_type) {

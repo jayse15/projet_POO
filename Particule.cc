@@ -1,7 +1,6 @@
 #include "Particule.h"
-#include "Vecteur3D.h"
 #include "utils.h"
-#include <iostream>
+#include <cmath>
 
 using namespace std;
 
