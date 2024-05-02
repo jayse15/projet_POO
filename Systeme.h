@@ -14,6 +14,7 @@ class Systeme : public Dessinable
         Enceinte* enceinte_;
         std::vector<Particule*> particules_;
         GenerateurAleatoire tirage_;
+        enum type_particule {}; 
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
@@ -42,7 +43,10 @@ class Systeme : public Dessinable
 
         void collision_particules(Particule&, int);
 
+        void initialisation(double, unsigned int, enum type_particule, GenerateurAleatoire); 
+
         void evolue(double);
+
 };
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& S);
