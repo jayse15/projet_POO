@@ -13,11 +13,11 @@ class Systeme : public Dessinable
     private :
         Enceinte* enceinte_;
         std::vector<Particule*> particules_;
-        static GenerateurAleatoire tirage_;
+        GenerateurAleatoire tirage_;
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
-          enceinte_(new Enceinte(h,l,p)), particules_{} {}
+          enceinte_(new Enceinte(h,l,p)), particules_{}, tirage_() {}
 
         Systeme(Systeme const&) = delete;
 

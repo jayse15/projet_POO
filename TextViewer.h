@@ -1,5 +1,6 @@
 #pragma once
 #include "SupportADessin.h"
+#include <iostream>
 
 class Enceinte;
 class Particule;
@@ -19,9 +20,9 @@ class TextViewer : public SupportADessin
         // on ne copie pas les TextViewer
         TextViewer(TextViewer const&) = delete;
         TextViewer& operator=(TextViewer const&) = delete;
-        // mais on peut les déplacer
-        TextViewer(TextViewer&&) = default;
-        TextViewer& operator=(TextViewer&&) = default;
+        // et on peut pas les déplacer
+        TextViewer(TextViewer&&) = delete;
+        TextViewer& operator=(TextViewer&&) = delete;
 
         void dessine(Neon const&) override;
         void dessine(Argon const&) override;
