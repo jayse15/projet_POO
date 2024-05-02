@@ -69,3 +69,14 @@ Semaine 8:
 Retour Jason//
 Suite au retour de Jason, nous avons débriefé de mon avancée en semaine 7. Nous n'avons 
 pas pu poursuivre énormément l'avancée du projet. 
+Nous avons pu terminer la définition des méthodes modélisant les chocs entre particules. 
+Cependant, la compilation du projet indiquait des messages d'erreurs que nous n'arrivions
+pas à résoudre. En effet, les inclusions de fichiers .h dans d'autres posaient problème. 
+De la partie P9, il nous restait donc à tester le fonctionnement de l'exerciceP9. 
+
+Semaine 9: 
+Après avoir corrigé les problèmes de compilation, nous avons fait quelques modifications
+du programme pour rectifier des erreurs de modélisation. 
+Comme conseillé par le professeur, nous avons sauté le graphisme pour l'instant, et avons
+commencé la partie P12. 
+
