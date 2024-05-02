@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Vecteur3D.h"
-#include "utils.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
 #include "GenerateurAleatoire.h"
@@ -36,9 +35,9 @@ class Particule : public Dessinable
     void evolue(double);
     // Méthode permettant de faire bouger une particule d'un temps dt
 
-    bool test_contact(Particule const& autre) const; 
+    bool test_contact(Particule const& autre) const;
 
-    virtual void collision_particule(Particule&, GenerateurAleatoire); 
+    virtual void collision_particule(Particule&, GenerateurAleatoire);
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);

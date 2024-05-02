@@ -1,4 +1,6 @@
 #include "Particule.h"
+#include "Vecteur3D.h"
+#include "utils.h"
 #include <iostream>
 
 using namespace std;
@@ -49,22 +51,23 @@ void Particule::set_vit(unsigned int i, double x) {
 }
 
 void Particule::evolue(double dt) {
-  Vecteur3D deplacement(vitesse*=dt);
-  position+=deplacement;
+  position+=vitesse*dt;
 }
 
 bool Particule::test_contact(Particule const& autre) const {
     if ((position-autre.position).norme() <= EPSILON) return true;
-    else return false;
+    return false;
 }
 
 void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage) {
   if (test_contact(autre)) {
     Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) + autre.vitesse*(autre.masse/(masse+autre.masse)));
+
     double L((vitesse-v_g).norme());
     double z(tirage.uniforme(-L, L));
     double phi(tirage.uniforme(0, 2*M_PI));
     double r(sqrt(L*L - z*z));
+
     Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
     vitesse = v_g + v_0;
     autre.vitesse = v_g - v_0*masse/autre.masse;
