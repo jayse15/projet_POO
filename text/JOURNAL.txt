@@ -79,4 +79,7 @@ Après avoir corrigé les problèmes de compilation, nous avons fait quelques mo
 du programme pour rectifier des erreurs de modélisation. 
 Comme conseillé par le professeur, nous avons sauté le graphisme pour l'instant, et avons
 commencé la partie P12. 
+Pour réussir à mettre en place l'exerciceP9, nous avons du modifier plusieurs définitions 
+de nos méthodes, pour introduire un indice, correspondant à la position de la particule 
+dans le système (sa position dans le vector de Particules). 
 

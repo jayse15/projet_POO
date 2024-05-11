@@ -7,6 +7,9 @@ all: Vecteur3D Particule Systeme exerciceP7
 exerciceP7: exerciceP7.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 	TextViewer.o
 
+exerciceP9: exerciceP9.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
+	TextViewer.o
+
 Systeme: testSystem1.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
@@ -29,6 +32,9 @@ TextViewer.o: TextViewer.cc TextViewer.h SupportADessin.h Particule.h \
 Vecteur3D.o: Vecteur3D.cc Vecteur3D.h utils.h
 
 exerciceP7.o: exerciceP7.cc TextViewer.h SupportADessin.h Particule.h \
+  Vecteur3D.h Dessinable.h GenerateurAleatoire.h Systeme.h Enceinte.h
+
+exerciceP9.o: exerciceP9.cc TextViewer.h SupportADessin.h Particule.h \
   Vecteur3D.h Dessinable.h GenerateurAleatoire.h Systeme.h Enceinte.h
 
 testParticule.o: testParticule.cc Particule.h Vecteur3D.h Dessinable.h \

@@ -39,9 +39,11 @@ class Systeme : public Dessinable
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
 
-        void collision_paroi(Particule&);
+        void collision_paroi(Particule&, unsigned int);
 
         void collision_particules(Particule&, int);
+        
+        void afficher_collision(Particule const&, unsigned int) const; 
 
         void initialisation(double, unsigned int, enum type_particule, GenerateurAleatoire); 
 
