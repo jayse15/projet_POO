@@ -38,6 +38,8 @@ class Particule : public Dessinable
     bool test_contact(Particule const& autre) const;
 
     virtual void collision_particule(Particule&, GenerateurAleatoire);
+
+    virtual void collision_particule_save(Particule&, GenerateurAleatoire);
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);

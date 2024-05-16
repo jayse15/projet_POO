@@ -5,7 +5,6 @@
 using namespace std; 
 
 int main() {
-
     int i(0);
 
     Helium p1(4.002602, {1, 1, 1}, {0, 0, 0});

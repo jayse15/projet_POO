@@ -63,6 +63,21 @@ void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage
     Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) + autre.vitesse*(autre.masse/(masse+autre.masse)));
 
     double L((vitesse-v_g).norme());
+    double z(0);
+    double phi(M_PI/3);
+    double r(sqrt(L*L - z*z));
+
+    Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
+    vitesse = v_g + v_0;
+    autre.vitesse = v_g - v_0*masse/autre.masse;
+  }
+}
+
+void Particule::collision_particule_save(Particule& autre, GenerateurAleatoire tirage) {
+  if (test_contact(autre)) {
+    Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) + autre.vitesse*(autre.masse/(masse+autre.masse)));
+
+    double L((vitesse-v_g).norme());
     double z(tirage.uniforme(-L, L));
     double phi(tirage.uniforme(0, 2*M_PI));
     double r(sqrt(L*L - z*z));
@@ -72,3 +87,4 @@ void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage
     autre.vitesse = v_g - v_0*masse/autre.masse;
   }
 }
+

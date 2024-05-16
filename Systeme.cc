@@ -8,6 +8,7 @@ ostream& Systeme::affiche(ostream& sortie) const {
     if (particules_.size() == 0) {sortie << "Le système est vide.";}
     else {
         sortie << "Le système est constitué des " << particules_.size() << " particules suivantes: " << endl;
+        cout << endl; 
         for (auto element : particules_) {
             cout << *element << endl;
         }
@@ -66,24 +67,25 @@ void Systeme::collision_paroi(Particule& p, unsigned int i) {
 // La paroi 1 est la ...
 
 void Systeme::collision_particules(Particule& p, int j) {
-    if (j >= particules_.size()) {
+    if (j <= particules_.size()) {
         for (int i(j); i < particules_.size(); ++i) {
-            afficher_collision(p, i);
-            p.collision_particule(*particules_[i], tirage_);
-            afficher_collision(p, i);
+            if (p.test_contact(*particules_[i])) {
+                cout << "La particule " << i+1 << " entre collision avec une autre particule." << endl;
+                cout << "avant le choc : " << endl; 
+                afficher_collision(p, i);
+                p.collision_particule(*particules_[i], tirage_);
+                cout << "après le choc : " << endl; 
+                afficher_collision(p, i);
+            }
         }
     }
 }
 
 void Systeme::afficher_collision(Particule const& p, unsigned int i) const{
-     if (p.test_contact(*particules_[i])) {
-        cout << "La particule " << i+1 << " entre collision avec une autre particule." << endl;
-        cout << "avant le choc : " << endl; 
         cout << "part. " << i+1 << " : : "; 
         particules_[i]->Particule::affiche(cout) << endl; 
         cout << "autre : : "; 
         p.Particule::affiche(cout) << endl; 
-    }
 }
 
 void Systeme::evolue(double dt) {
