@@ -16,14 +16,11 @@ int main() {
     Argon p3(39.948, {1, 1, 3.1}, {0, 0, -0.5});
 
     Systeme S;
-    S.ajouter_particule(Helium(p1));
-    S.ajouter_particule(Neon(p2));
-    S.ajouter_particule(Argon(p3));
+    S.ajouter_particule(new Helium(p1));
+    S.ajouter_particule(new Neon(p2));
+    S.ajouter_particule(new Argon(p3));
 
-    ofstream sortie("testP9.txt");
-    TextViewer T(sortie);
-
-    S.affiche(cout);
+    cout << S << endl;
 
     cout << "Lancement de la simulation" << endl;
 

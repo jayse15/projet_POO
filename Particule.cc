@@ -51,6 +51,7 @@ void Particule::set_vit(unsigned int i, double x) {
 
 void Particule::evolue(double dt) {
   position+=vitesse*dt;
+  cout << *this << endl;
 }
 
 bool Particule::test_contact(Particule const& autre) const {

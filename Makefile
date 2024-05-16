@@ -1,7 +1,7 @@
 CC = $(CXX)
 CXXFLAGS = -std=c++20 -pedantic -Wall
 
-all: Vecteur3D Particule Systeme exerciceP7
+all: Vecteur3D Particule Systeme exerciceP7 exerciceP9
 
 
 exerciceP7: exerciceP7.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \

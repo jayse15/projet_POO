@@ -87,3 +87,8 @@ Pour réussir à mettre en place l'exerciceP9, nous avons du modifier plusieurs
 définitions de nos méthodes, pour introduire un indice, correspondant à la
 position de la particule dans le système (sa position dans le vector de
 Particules).
+
+Semaine 10:
+On a décidé de faire en sorte que les attributs de systeme soient des unique_ptr
+sur des particules et une enceinte. L'exercice P9 est fini mais nous avons
+rencontré des problèmes au niveau d'imposer le choix du zenith et de l'azimut.

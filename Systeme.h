@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <memory>
 #include "GenerateurAleatoire.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -11,8 +12,8 @@ class Particule;
 class Systeme : public Dessinable
 {
     private :
-        unique_ptr<Enceinte> enceinte_;
-        std::vector<unique_ptr<Particule>> particules_;
+        std::unique_ptr<Enceinte> enceinte_;
+        std::vector<std::unique_ptr<Particule>> particules_;
         // On utilise des pointeurs pour le polymorphisme. Comme on fait de
         // l'allocation dynamique, on utilise des unique_ptr puisque chaque
         // objet dans le système est unique et ne sera pas affecté ou
@@ -21,7 +22,7 @@ class Systeme : public Dessinable
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
-          enceinte_(make_unique<Enceinte>(h,l,p)), particules_{}, tirage_() {}
+          enceinte_(std::make_unique<Enceinte>(h,l,p)), particules_{}, tirage_() {}
         // Constructeur et constructeur par défaut de la classe Systeme.
         // Le systeme par défaut crée est une enceinte
 
@@ -35,7 +36,7 @@ class Systeme : public Dessinable
         // Méthode d'affichage d'un système. Affiche le nombre de particules et
         // les affiche une par une.
 
-        void ajouter_particule(Particule const& p);
+        void ajouter_particule(Particule* p);
         // Ajoute une particule au système
 
         void supp_all();
@@ -45,7 +46,7 @@ class Systeme : public Dessinable
         { support.dessine(*this); }
         // Méthode pour dessiner le système sur un support à dessin quelconque
 
-        void collision_paroi(Particule&, uint);
+        void collision_paroi(Particule& p, size_t i);
         // Méthode pour la collision d'une particule sur une paroi. Par défaut
         // nous définissons que la hauteur de l'enceinte est le long de l'axe z,
         // donc la troisième coordonnées d'un Vecteur3D. La longueur est le long
@@ -59,13 +60,12 @@ class Systeme : public Dessinable
         // dans des directions aléatoires et avec des vitesses calculées avec
         // la conservation de la quantité de mouvement
 
-        void afficher_collision(Particule const& p, size_t i,
-                                std::ostream& sortie) const;
+        void afficher_collision(Particule const& p, size_t i) const;
 
         void initialisation(double masse, uint temperature, enum type_particule,
                             GenerateurAleatoire tirage);
 
-        void evolue(double dt, ostream& sortie);
+        void evolue(double dt);
 
 };
 
