@@ -31,6 +31,12 @@ class Vecteur3D
   // Retourne true si this et autre ont les mêmes composantes à une "precision"
   // près, false sinon.
 
+  double norme2() const;
+  // Retourne la norme au carré de this
+
+  double norme() const;
+  // Retourne la norme de this.
+
   bool operator==(Vecteur3D const& autre) const;
   // Opérateur de comparaison entre deux vecteurs
 
@@ -55,12 +61,6 @@ class Vecteur3D
   double operator*(Vecteur3D const& v) const;
   // Opérateur interne du produit scalaire entre this et v
 
-  double norme2() const;
-  // Retourne la norme au carré de this
-
-  double norme() const;
-  // Retourne la norme de this.
-
   Vecteur3D operator~() const;
   // Retourne le vecteur unitaire associé à this.
 };
@@ -71,6 +71,9 @@ const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2);
 const Vecteur3D operator-(Vecteur3D v1, Vecteur3D const& v2);
 // Opérateur de soustraction de vecteurs
 
+const Vecteur3D operator-(Vecteur3D const& autre);
+// Opérateur de l'opposé de vecteurs
+
 const Vecteur3D operator^(Vecteur3D v, Vecteur3D const& v2);
 // Opérateur de produit vectoriel de vecteurs
 
@@ -79,9 +82,6 @@ const Vecteur3D operator*(Vecteur3D v, double const lambda);
 
 const Vecteur3D operator/(Vecteur3D v, double const lambda);
 // Opérateur de division de vecteurs par scalaires
-
-const Vecteur3D operator-(Vecteur3D const& autre);
-// Opérateur de l'opposé de vecteurs
 
 std::ostream& operator<<(std::ostream& sortie, Vecteur3D const& v);
 // Opérateur d'affichage de vecteurs

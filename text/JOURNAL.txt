@@ -6,80 +6,84 @@ Nous avons mis en place notre dépôt sur github.
 Semaine 2:
 
 Nous avons fini la conception des fichiers Vecteur 3D. Nous avons rajouté un
-module "utils" afin d'y mettre des fonctions qui pourront être utile pour ce
-projet. Le makefile est fonctionnel mais il faut imposer l'utilisation de C++
-(par défaut C), et indiquer la version. Toutes les méthodes de base de Vecteur3D
-sont fonctionelles.
-Nous avons utilisé des array de dimension 3 pour représenter les vecteurs,
-mais il nous faut encore gérer les cas d'erreurs où l'utilisateur tente d'entrer
-une coordonnées dans un mauvais index.
+module "utils" afin d'y mettre des fonctions et constantes qui pourront être
+utile pour ce projet. Le makefile est fonctionnel mais il faut imposer
+l'utilisation de C++ (par défaut C), et indiquer la version. Toutes les méthodes
+de base de Vecteur3D sont fonctionelles.
+Nous avons utilisé des array de dimension 3 pour représenter les vecteurs, mais
+il nous faut encore gérer les cas d'erreurs où l'utilisateur tente d'entrer une
+coordonnée dans un mauvais index.
 
 Semaine 3:
 
-Le make avait déjà été créée lors de la conception des fichiers en semaine 2,
-et était déjà fonctionnel. Aucune question n'ayant été posée dans le sujet de
-cette semaine, nous avons repris le programme en quête d'optimisation.
+Le make avait déjà été créée lors de la conception des fichiers en semaine 2, et
+était déjà fonctionnel. Aucune question n'ayant été posée dans le sujet de cette
+semaine, nous avons repris le programme en quête d'optimisation.
 
 Semaine 4:
 
-Nous avons défini les différents constructeurs de la classe Vecteur3D
-(par défaut, qui renvoie le vecteur nul / copie).
-Nous avons également définis de nombreux opérateurs pour simplifier l'utilisation
-du programme par le programmeur utilisateur.
+Nous avons défini les différents constructeurs de la classe Vecteur3D (par
+défaut, qui renvoie le vecteur nul / copie).
+Nous avons également définis de nombreux opérateurs pour simplifier
+l'utilisation du programme par le programmeur utilisateur.
 Cependant, nous avons rencontré certaines difficultés lors de la définition de
 l'opérateur d'affichage, <<.
-Enfin, nous avons remodellé complétement le programme testVecteur3D.cc de manière
-à ne faire des tests que grâce aux opérateurs, sans passer par les fonctions
-créées en semaine 2.
+Enfin, nous avons remodellé complétement le programme testVecteur3D.cc de
+manière à ne faire des tests que grâce aux opérateurs, sans passer par les
+fonctions créées en semaine 2.
 
 Semaine 5:
 
 Nous avons remplacé toutes les fonctions faites en semaine 2 par des opérateurs,
-il reste plus qu'un setter, un getter et un comparateur afin de pouvoir manipuler
-la précision de comparaison entre vecteurs. Toutes les opérations algébriques
-entre vecteurs et entre vecteurs et scalaires sont opérationelles ainsi que la
-méthode d'affichage <<. Nous avons aussi crée la classe Particule et la classe
-Enceinte, qui compilent sans problème.
+il reste plus qu'un setter, un getter et un comparateur afin de pouvoir
+manipuler la précision de comparaison entre vecteurs. Toutes les opérations
+algébriques entre vecteurs et entre vecteurs et scalaires sont opérationelles
+ainsi que la méthode d'affichage <<. Nous avons aussi crée la classe Particule
+et la classe Enceinte, qui compilent sans problème.
 
-Semaine 6: 
+Semaine 6:
 
-Dans un premier temps, nous avons pour l'instant introduit 2 sous classe de la 
-classe Particule, Argon et Néon, dont nous avons juste redéfini l'opérateur 
-d'affichage <<, pour que lorsque l'on veut afficher une telle particule, 
-son élément chimique apparaisse. 
-Deuxièmement, nous avons défini les différentes classes liées au graphisme de notre
-projet, les classes Dessinable, SupportADessin, et TextViewer. 
-Cependant, nous avons rencontré des difficultés au niveau de la compréhension de 
-la classe TextViewer, ce qui nous a ralenti dans l'écriture du fichier exerciceP7.cc.
+Dans un premier temps, nous avons pour l'instant introduit 2 sous classes de la
+classe Particule; Argon et Néon, dont nous avons juste redéfini l'opérateur
+d'affichage <<, pour que lorsque l'on veut afficher une telle particule, son nom
+apparaisse.
+Deuxièmement, nous avons défini les différentes classes liées au graphisme de
+notre projet, les classes Dessinable, SupportADessin, et TextViewer.
+Cependant, nous avons rencontré des difficultés au niveau de la compréhension de
+la classe TextViewer, ce qui nous a ralenti dans l'écriture du fichier
+exerciceP7.cc.
 
-Semaine 7: 
+Semaine 7:
 Alban//
-Dans un premier temps, j'ai suivi le tutoriel graphique associé au projet pour mettre à 
-jour la classe TextViewer. 
-De manière à mieux notifier des erreurs de présentation dans le programme, nous avons
-introduit une troisième sous classe de particule, Helium, qui reprend simplement le meme
-modèle que les classes Argon et Néon introduites précédemment. 
-Pour pouvoir gérer les collisions, nous avons du introduire des getter dans les classes 
-Enceintes et Particule, pour accéder aux dimensions de l'enceinte créée dans le système
-ainsi que les coordonnées et les composantes de la vitesse de chaque particules. 
-En effet, lors d'une collision, nous devons modifier la direction de la vitesse et/ou 
-les valeurs de ses composantes (notamment dans le cas d'un choc entre particules). 
+Dans un premier temps, j'ai suivi le tutoriel graphique associé au projet pour
+mettre à jour la classe TextViewer.
+De manière à mieux notifier des erreurs de présentation dans le programme, nous
+avons introduit une troisième sous classe de particule, Helium, qui reprend
+simplement le meme modèle que les classes Argon et Néon introduites précédemment.
+Pour pouvoir gérer les collisions, nous avons du introduire des getter dans les
+classes Enceinte et Particule, pour accéder aux dimensions de l'enceinte créée
+dans le système ainsi que les coordonnées et les composantes de la vitesse de
+chaque particules. En effet, lors d'une collision, nous devons modifier la
+direction de la vitesse et/ou les valeurs de ses composantes (notamment dans le
+cas d'un choc entre particules).
 
-Semaine 8: 
+Semaine 8:
 Retour Jason//
-Suite au retour de Jason, nous avons débriefé de mon avancée en semaine 7. Nous n'avons 
-pas pu poursuivre énormément l'avancée du projet. 
-Nous avons pu terminer la définition des méthodes modélisant les chocs entre particules. 
-Cependant, la compilation du projet indiquait des messages d'erreurs que nous n'arrivions
-pas à résoudre. En effet, les inclusions de fichiers .h dans d'autres posaient problème. 
-De la partie P9, il nous restait donc à tester le fonctionnement de l'exerciceP9. 
+Suite au retour de Jason, nous avons débriefé de mon avancée en semaine 7. Nous
+n'avons pas pu poursuivre énormément l'avancée du projet.
+Nous avons pu terminer la définition des méthodes modélisant les chocs entre
+particules. Cependant, la compilation du projet indiquait des messages d'erreurs
+que nous n'arrivions pas à résoudre. En effet, les inclusions de fichiers .h
+dans d'autres posaient problème. De la partie P9, il nous restait donc à tester
+le fonctionnement de l'exerciceP9.
 
-Semaine 9: 
-Après avoir corrigé les problèmes de compilation, nous avons fait quelques modifications
-du programme pour rectifier des erreurs de modélisation. 
-Comme conseillé par le professeur, nous avons sauté le graphisme pour l'instant, et avons
-commencé la partie P12. 
-Pour réussir à mettre en place l'exerciceP9, nous avons du modifier plusieurs définitions 
-de nos méthodes, pour introduire un indice, correspondant à la position de la particule 
-dans le système (sa position dans le vector de Particules). 
-
+Semaine 9:
+Après avoir corrigé les problèmes de compilation liés aux inclusions, nous avons
+fait quelques modifications du programme pour rectifier des erreurs de
+modélisation.
+Comme conseillé par le professeur, nous avons sauté le graphisme pour l'instant,
+et avonscommencé la partie P12.
+Pour réussir à mettre en place l'exerciceP9, nous avons du modifier plusieurs
+définitions de nos méthodes, pour introduire un indice, correspondant à la
+position de la particule dans le système (sa position dans le vector de
+Particules).

@@ -54,7 +54,7 @@ void Particule::evolue(double dt) {
 }
 
 bool Particule::test_contact(Particule const& autre) const {
-    if ((position-autre.position).norme() <= EPSILON) return true;
+    if ((position-autre.position).norme() <= EPSILON) {return true;}
     return false;
 }
 
