@@ -98,7 +98,7 @@ void Systeme::evolue(double dt) {
     }
 }
 
-void Systeme::initialisation(double masse, unsigned int temperature, enum type_particule, GenerateurAleatoire tirage) {
+void Systeme::initialisation(double masse, unsigned int temperature, string type, GenerateurAleatoire tirage) {
     double pos_x(tirage.uniforme(0.0,enceinte_->get_l())); 
     double pos_y(tirage.uniforme(0.0,enceinte_->get_p())); 
     double pos_z(tirage.uniforme(0.0,enceinte_->get_h())); 
@@ -107,7 +107,21 @@ void Systeme::initialisation(double masse, unsigned int temperature, enum type_p
     double vit_y(tirage.gaussienne(0.0,sqrt(k_B * temperature / masse))); 
     double vit_z(tirage.gaussienne(0.0,sqrt(k_B * temperature / masse))); 
     
-    Particule p(masse, {pos_x, pos_y, pos_z}, {vit_x, vit_y, vit_z});
+    if (type == type_particule::neon) {
+        Neon p(masse_Neon, {pos_x, pos_y, pos_z}, {vit_x, vit_y, vit_z});
+    } 
+
+    else if (type == type_particule::helium) {
+        Helium p(masse_Neon, {pos_x, pos_y, pos_z}, {vit_x, vit_y, vit_z});
+    } 
+
+    else if (type == type_particule::argon) {
+        Argon p(masse_Neon, {pos_x, pos_y, pos_z}, {vit_x, vit_y, vit_z});
+    } 
+
+    else cout << "Le type de la particule voulue n'existe pas." << endl; 
+
+    //Particule p(masse, {pos_x, pos_y, pos_z}, {vit_x, vit_y, vit_z});
 
     ajouter_particule(new Particule(p)); 
 }

@@ -14,7 +14,7 @@ class Systeme : public Dessinable
         Enceinte* enceinte_;
         std::vector<Particule*> particules_;
         GenerateurAleatoire tirage_;
-        enum type_particule {}; 
+        enum type_particule {neon = 'Neon', helium = 'Helium', argon = 'Argon'}; 
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
@@ -45,7 +45,7 @@ class Systeme : public Dessinable
         
         void afficher_collision(Particule const&, unsigned int) const; 
 
-        void initialisation(double, unsigned int, enum type_particule, GenerateurAleatoire); 
+        void initialisation(double, unsigned int, string, GenerateurAleatoire); 
 
         void evolue(double);
 
