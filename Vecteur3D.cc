@@ -37,6 +37,16 @@ bool Vecteur3D::compare(Vecteur3D const& autre) const
   return true;
 }
 
+double Vecteur3D::norme2() const
+{
+  return pow(vect_[0], 2) + pow(vect_[1], 2) + pow(vect_[2], 2);
+}
+
+double Vecteur3D::norme() const
+{
+  return sqrt(this->norme2());
+}
+
 // *****************************************************************************
 // Opérateurs internes de la classe Vecteur3D
 // *****************************************************************************
@@ -84,16 +94,6 @@ double Vecteur3D::operator*(Vecteur3D const& v) const{
   return scal;
 }
 
-double Vecteur3D::norme2() const
-{
-  return pow(vect_[0], 2) + pow(vect_[1], 2) + pow(vect_[2], 2);
-}
-
-double Vecteur3D::norme() const
-{
-  return sqrt(this->norme2());
-}
-
 Vecteur3D Vecteur3D::operator~() const {return *this/this->norme();}
 
 // *****************************************************************************
@@ -104,12 +104,12 @@ const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {return v1+=v2;}
 
 const Vecteur3D operator-(Vecteur3D v1, Vecteur3D const& v2) {return v1-=v2;}
 
-const Vecteur3D operator^(Vecteur3D v1, Vecteur3D const& v2) {return v1^=v2;}
-
 const Vecteur3D operator-(Vecteur3D const& autre) {
   Vecteur3D v;
   return v-autre;
 }
+
+const Vecteur3D operator^(Vecteur3D v1, Vecteur3D const& v2) {return v1^=v2;}
 
 const Vecteur3D operator*(Vecteur3D v, double const lambda) {return v*=lambda;}
 

@@ -24,15 +24,15 @@ class Particule : public Dessinable
     virtual void dessine_sur(SupportADessin& support) override
     { support.dessine(*this); }
 
-    double get_pos(unsigned int) const;
+    double get_pos(unsigned int i) const;
 
-    double get_vit(unsigned int) const;
+    double get_vit(unsigned int i) const;
 
-    void set_pos(unsigned int, double);
+    void set_pos(unsigned int i, double x);
 
-    void set_vit(unsigned int, double);
+    void set_vit(unsigned int i, double x);
 
-    void evolue(double);
+    void evolue(double dt);
     // Méthode permettant de faire bouger une particule d'un temps dt
 
     bool test_contact(Particule const& autre) const;
