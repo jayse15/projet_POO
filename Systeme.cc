@@ -62,8 +62,8 @@ void Systeme::collision_particules(Particule& p, size_t j) {
                 cout << "La particule " << i+1 << " entre collision avec une autre particule." << endl;
                 cout << setw(1) << "avant le choc : " << endl;
                 afficher_collision(p, i);
-                p.collision_particule(*particules_[i], tirage_);
-                cout << setw(1) << "après le choc : " << endl;
+                particules_[i]->collision_particule(p, tirage_);
+                cout << setw(1) << "après le choc : " << endl; 
                 afficher_collision(p, i);
             }
         }
@@ -83,6 +83,7 @@ void Systeme::evolue(double dt) {
         particules_[i]->evolue(dt);
         collision_paroi(*particules_[i], i);
         collision_particules(*particules_[i], i+1);
+        cout << *particules_[i] << endl; 
     }
 }
 
