@@ -36,7 +36,7 @@ void Systeme::collision_paroi(Particule& p, size_t i) {
             cout << "La particule " << i+1 << " rebondit sur la face " << j+1 << endl;
             p.set_pos(j, 2*p.get_pos(j)-PRECISION);
             p.set_vit(j,-p.get_vit(j));
-        }   
+        }
     }
     if (enceinte_->get_l() - p.get_pos(0) < PRECISION) {
         cout << "La particule " << i+1 << " rebondit sur la face 4" << endl;
@@ -60,10 +60,10 @@ void Systeme::collision_particules(Particule& p, size_t j) {
         for (size_t i(j); i < particules_.size(); ++i) {
             if (p.test_contact(*particules_[i])) {
                 cout << "La particule " << i+1 << " entre collision avec une autre particule." << endl;
-                cout << setw(1) << "avant le choc : " << endl;  
+                cout << setw(1) << "avant le choc : " << endl;
                 afficher_collision(p, i);
                 p.collision_particule(*particules_[i], tirage_);
-                cout << setw(1) << "après le choc : " << endl; 
+                cout << setw(1) << "après le choc : " << endl;
                 afficher_collision(p, i);
             }
         }
@@ -71,9 +71,9 @@ void Systeme::collision_particules(Particule& p, size_t j) {
 }
 
 void Systeme::afficher_collision(Particule const& p, size_t i) const{
-        cout << setw(3) << "part. " << i+1 << " : : "; 
-        particules_[i]->Particule::affiche(cout) << endl; 
-        cout << setw(3) << "autre : : "; 
+        cout << setw(3) << "part. " << i+1 << " : : ";
+        particules_[i]->Particule::affiche(cout) << endl;
+        cout << setw(3) << "autre : : ";
         p.Particule::affiche(cout) << endl;
 }
 
@@ -84,7 +84,6 @@ void Systeme::evolue(double dt) {
         collision_paroi(*particules_[i], i);
         collision_particules(*particules_[i], i+1);
     }
-    cout << this; 
 }
 
 void Systeme::initialisation(double masse, uint temperature, enum type_particule, GenerateurAleatoire tirage) {
@@ -104,4 +103,3 @@ ostream& operator<<(ostream& sortie, Systeme const& S) {
     S.affiche(sortie);
     return sortie;
 }
-     
