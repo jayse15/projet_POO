@@ -33,19 +33,19 @@ ostream& operator<<(ostream& sortie, Particule const& P) {
   return P.affiche(sortie);
 }
 
-double Particule::get_pos(unsigned int i) const {
+double Particule::get_pos(uint i) const {
   return position.get_coord(i);
 }
 
-double Particule::get_vit(unsigned int i) const {
+double Particule::get_vit(uint i) const {
   return vitesse.get_coord(i);
 }
 
-void Particule::set_pos(unsigned int i, double x) {
+void Particule::set_pos(uint i, double x) {
   position.set_coord(i, x);
 }
 
-void Particule::set_vit(unsigned int i, double x) {
+void Particule::set_vit(uint i, double x) {
   vitesse.set_coord(i, x);
 }
 
@@ -87,4 +87,3 @@ void Particule::collision_particule_save(Particule& autre, GenerateurAleatoire t
     autre.vitesse = v_g - v_0*masse/autre.masse;
   }
 }
-

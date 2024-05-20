@@ -25,7 +25,7 @@ utile !
 
 P4.3)
 Pour l'affichage et la comparaison, nous avons introduit les opérateurs suivants:
-    -les opérateurs internes == et !=; // qui utilisent Vecteur3D::compare
+    -les opérateurs internes == et !=;
     -l'opérateur externe <<; // qui utilise Vecteur3D::affiche
 
 P7.1)

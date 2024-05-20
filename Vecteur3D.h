@@ -16,6 +16,9 @@ class Vecteur3D
   // Constructeur et constructeur par défaut de la classe Vecteur3D.
   // Le vecteur par défaut créé est le vecteur nul
 
+  std::ostream& affiche(std::ostream& sortie) const;
+  // Méthode d'affichage de Vecteur3D
+
   void set_coord(uint i, double x);
   // Met la i-ème composante de this égale à la valeur donnée (0=x, 1=y, 2=z).
   // Message d'erreur si i > 2.

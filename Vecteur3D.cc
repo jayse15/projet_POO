@@ -9,6 +9,11 @@ using namespace std;
 // Méthodes de la classe Vecteur3D
 // *****************************************************************************
 
+ostream& Vecteur3D::affiche(ostream& sortie) const{
+  for(auto& coord:vect_){sortie << coord << " ";}
+  return sortie;
+}
+
 void Vecteur3D::set_coord(uint i, double x)
 {
   if (i > 2) {cerr << "False indexing !!" << endl;}
@@ -79,7 +84,7 @@ const Vecteur3D& Vecteur3D::operator/=(double const lambda) {
 
 double Vecteur3D::operator*(Vecteur3D const& v) const{
   double scal(0);
-  for(uint i(0); i<3; i++) {scal += vect_[i]*v.get_coord(i);}
+  for(uint i(0); i<3; i++) {scal += vect_[i]*v.vect_[i];}
   return scal;
 }
 
@@ -105,6 +110,6 @@ const Vecteur3D operator*(Vecteur3D v, double const lambda) {return v*=lambda;}
 const Vecteur3D operator/(Vecteur3D v, double const lambda) {return v/=lambda;}
 
 ostream& operator<<(ostream& sortie, Vecteur3D const& v) {
-  for(size_t i(0); i<3; i++){sortie << v.get_coord(i) << " ";}
-  return sortie;;
+  v.affiche(sortie);
+  return sortie;
 }

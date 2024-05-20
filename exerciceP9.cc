@@ -8,7 +8,6 @@
 using namespace std;
 
 int main() {
-    int i(0);
 
     Helium p1(4.002602, {1, 1, 1}, {0, 0, 0});
     Neon p2(20.1797, {1, 18.5, 1}, {0, 0.2, 0});
@@ -19,16 +18,16 @@ int main() {
     S.ajouter_particule(new Neon(p2));
     S.ajouter_particule(new Argon(p3));
 
+    string line("==========----------");
     cout << S << endl;
 
     cout << "Lancement de la simulation" << endl;
 
-    while (i <= 10) {
-        cout << "==========----------" << endl;
+    for (size_t i(0); i<10; i++) {
+        cout << line << endl;
         S.evolue(1);
-        ++i;
     }
-    cout << "==========----------" << endl;
+    cout << line << endl;
 
     return 0;
 }
