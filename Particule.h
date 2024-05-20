@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "utils.h"
 #include "Vecteur3D.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -8,7 +9,7 @@
 class Particule : public Dessinable
 {
   protected :
-    double masse;
+    const double masse;
     Vecteur3D position;
     Vecteur3D vitesse;
     // On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
@@ -18,6 +19,7 @@ class Particule : public Dessinable
     Particule(double m, Vecteur3D p, Vecteur3D v)
       : masse(m), position(p), vitesse(v) {}
     // Constructeur de la classe Particule. Pas de constructeur par défaut.
+
     virtual std::ostream& affiche(std::ostream& sortie) const;
     // Méthode d'affiche des attributs d'une particule
 
@@ -47,6 +49,9 @@ std::ostream& operator<<(std::ostream& sortie, Particule const& P);
 
 class Neon : public Particule
 {
+  private:
+    static constexpr double masse = masse_Neon;
+
   public:
     Neon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
@@ -55,6 +60,9 @@ class Neon : public Particule
 
 class Argon : public Particule
 {
+  private:
+    static constexpr double masse = masse_Argon;
+
   public:
     Argon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
@@ -63,6 +71,9 @@ class Argon : public Particule
 
 class Helium : public Particule
 {
+  private:
+    static constexpr double masse = masse_Helium;
+
   public:
     Helium(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
