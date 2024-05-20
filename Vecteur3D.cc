@@ -21,22 +21,6 @@ double Vecteur3D::get_coord(uint i) const
   return vect_[i];
 }
 
-ostream& Vecteur3D::affiche(ostream& sortie) const
-{
-  for(auto coord:vect_){sortie << coord << " ";}
-  return sortie;
-}
-
-bool Vecteur3D::compare(Vecteur3D const& autre) const
-{
-  for(uint i(0); i<3; i++)
-  {
-    if(round_to_decimal(autre.vect_[i]) !=
-       round_to_decimal(vect_[i])) {return false;}
-  }
-  return true;
-}
-
 double Vecteur3D::norme2() const
 {
   return pow(vect_[0], 2) + pow(vect_[1], 2) + pow(vect_[2], 2);
@@ -53,12 +37,17 @@ double Vecteur3D::norme() const
 
 bool Vecteur3D::operator==(Vecteur3D const& autre) const
 {
-  return this->compare(autre);
+  for(size_t i(0); i<3; i++)
+  {
+    if(round_to_decimal(autre.vect_[i]) !=
+       round_to_decimal(vect_[i])) {return false;}
+  }
+  return true;
 }
 
 bool Vecteur3D::operator!=(Vecteur3D const& autre) const
 {
-  return not this->compare(autre);
+  return not(*this==autre);
 }
 
 const Vecteur3D& Vecteur3D::operator+=(Vecteur3D const& autre) {
@@ -116,5 +105,6 @@ const Vecteur3D operator*(Vecteur3D v, double const lambda) {return v*=lambda;}
 const Vecteur3D operator/(Vecteur3D v, double const lambda) {return v/=lambda;}
 
 ostream& operator<<(ostream& sortie, Vecteur3D const& v) {
-  return v.affiche(sortie);
+  for(size_t i(0); i<3; i++){sortie << v.get_coord(i) << " ";}
+  return sortie;;
 }

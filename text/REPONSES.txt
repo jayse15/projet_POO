@@ -24,17 +24,9 @@ d'initialiser en spheriques ne pose pas de problème et pourrait même être tr�
 utile !
 
 P4.3)
-Nous avons introduit de nombreux opérateurs:
-    -les opérateurs += et -=; //incrémentation et décrémentation
-    -les opérateurs + et -; //addition et soustraction
-    -les opérateurs == et !=; //comparaison
-    -les opérateurs *= et /=; //multiplication et division scalaire
-    -les opérateurs * et /; // idem mais pour retourner un vecteur
-    -l'opérateur *; //produit scalaire
-    -l'opérateur ^=; //le produit vectoriel d'un vecteur avec lui même
-    -l'opérateur ^; //produit vectoriel
-    -l'opérateur ~; //vecteur unitaire
-    -l'opérateur -; //l'inverse d'un vecteur
+Pour l'affichage et la comparaison, nous avons introduit les opérateurs suivants:
+    -les opérateurs internes == et !=; // qui utilisent Vecteur3D::compare
+    -l'opérateur externe <<; // qui utilise Vecteur3D::affiche
 
 P7.1)
 la méthode dessine_sur est, pour la classe Dessinable, une methode virtuelle

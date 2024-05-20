@@ -24,13 +24,6 @@ class Vecteur3D
   // Retourne la valeur de la i-ème composante de this. Il faut gérer une
   // exception si i > 2.
 
-  std::ostream& affiche(std::ostream& sortie) const;
-  // Affiche les 3 coordonnées de this dans sortie.
-
-  bool compare(Vecteur3D const& autre) const;
-  // Retourne true si this et autre ont les mêmes composantes à une "precision"
-  // près, false sinon.
-
   double norme2() const;
   // Retourne la norme au carré de this
 
