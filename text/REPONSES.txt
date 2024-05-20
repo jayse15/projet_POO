@@ -48,7 +48,7 @@ Notre classe étant dessinable, elle va hériter de la classe Dessinable, et de 
 méthode virutelle "dessine_sur".
 De plus, le système sera composé d'une enceinte, et d'un ensemble de particules.
 Ainsi, les attributs de la classe Systeme sont un unique_ptr sur une instance de
-la classe Enceinte, ainsi qu'un tableau dynamique (vector) de pointeurs sur des
+la classe Enceinte, ainsi qu'un tableau dynamique (vector) de unique_ptr sur des
 instances de la classe Particule.
 Nous utilisons des pointeurs afin de réaliser du polymorphisme, notamment au
 niveau des différentes particules, car les sous classes associées possèdent des
@@ -60,6 +60,16 @@ Systeme, nous allons utiliser la commande "delete" offerte par c++11, qui efface
 le constructeur de copie par défaut.
 
 P9.1)
+On a implémenté la création d'une situation initiale avec la méthode
+Systeme::initialisation. Cette méthode est un template afin que l'on puisse
+choisir quel type de particule créer et on teste la validité du type avec un
+static_assert. La méthode tire aléatoirement les positions et
+vitesses de la particule en fonction de la température du système et ajoute
+ensuite cette particule au systeme.
+Nous avons implémenté l'évolution du système avec plusieurs méthodes. L'évolution
+commence avec la méthode Systeme::evolue. Cette méthode va, pour une particule à
+la fois, la faire avancer avec la méthode Particule::evolue, tester s'il elle
+entre en collision avec une paroi avec la méthode Systeme::
 
 
 P9.2)
