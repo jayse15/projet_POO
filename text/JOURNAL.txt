@@ -92,3 +92,16 @@ Semaine 10:
 On a décidé de faire en sorte que les attributs de systeme soient des unique_ptr
 sur des particules et une enceinte. L'exercice P9 est fini mais nous avons
 rencontré des problèmes au niveau d'imposer le choix du zenith et de l'azimut.
+La solution que nous avons décidé d'implémenter (suite aux conseils de notre
+assistant) est d'avoir deux fois la méthodes collision_particule (dans la classe
+Particule). Une d'entre elle aura des paramètres fixes (zénith et azimut comme 
+demandé dans l'exerciceP9), et une sera la formule générale (nommée 
+collision_particule_save), dont les paramètres z et phi sont tirés uniformément. 
+
+Semaine 11: 
+De manière à pouvoir indiquer quel type de partiucle nous allons initialiser dans 
+la méthode initialisation, nous avons défini un template, ainsi que des tests
+permettant de vérifier quel type est entré dans la fonction. De plus, nous avons
+fixé les masses des différentes sous classe de Particule, et adaptés la fonction
+initialisation pour que si un Néon, Argon ou Hélium est choisi, il n'y ait pas 
+de masse à entrer en paramètre. 
