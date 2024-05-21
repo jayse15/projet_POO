@@ -1,9 +1,5 @@
 #include "Systeme.h"
-#include "utils.h"
-#include "Particule.h"
-#include "Vecteur3D.h"
 #include <iomanip>
-#include <type_traits>
 
 using namespace std;
 
@@ -80,29 +76,12 @@ void Systeme::afficher_collision(Particule const& p, size_t i) const{
 }
 
 void Systeme::evolue(double dt) {
-    for (size_t i(0); i < particules_.size() ; ++i)
-    {
-        particules_[i]->evolue(dt);
+    for (auto& p:particules_) {p->evolue(dt);}
+    for (size_t i(0); i < particules_.size() ; ++i){
         collision_paroi(*particules_[i], i+1);
         collision_particules(*particules_[i], i+1);
         cout << *particules_[i] << endl;
     }
-}
-
-template <typename T>
-void Systeme::initialisation(double masse, uint temperature, GenerateurAleatoire tirage) {
-    static_assert(is_base_of<Particule, T>::value,
-                  "Erreur, ce type n'est pas une particule.");
-    double pos_x(tirage.uniforme(0.0,enceinte_->get_l()));
-    double pos_y(tirage.uniforme(0.0,enceinte_->get_p()));
-    double pos_z(tirage.uniforme(0.0,enceinte_->get_h()));
-
-    double vit_x(tirage.gaussienne(0.0,sqrt(k_B * temperature / masse)));
-    double vit_y(tirage.gaussienne(0.0,sqrt(k_B * temperature / masse)));
-    double vit_z(tirage.gaussienne(0.0,sqrt(k_B * temperature / masse)));
-
-    Particule* p(new T(masse, {pos_x, pos_y, pos_z}, {vit_x ,vit_y ,vit_z }));
-    ajouter_particule(p);
 }
 
 ostream& operator<<(ostream& sortie, Systeme const& S) {

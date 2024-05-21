@@ -53,9 +53,11 @@ class Neon : public Particule
     static constexpr double masse = masse_Neon;
 
   public:
-    Neon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
+    Neon(Vecteur3D p, Vecteur3D v) : Particule(masse_Neon, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour le néon
+
+    static double get_masse() {return masse;}
 };
 
 class Argon : public Particule
@@ -64,9 +66,11 @@ class Argon : public Particule
     static constexpr double masse = masse_Argon;
 
   public:
-    Argon(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
+    Argon(Vecteur3D p, Vecteur3D v) : Particule(masse_Argon, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'argon
+
+    static double get_masse() {return masse;}
 };
 
 class Helium : public Particule
@@ -75,7 +79,9 @@ class Helium : public Particule
     static constexpr double masse = masse_Helium;
 
   public:
-    Helium(double m, Vecteur3D p, Vecteur3D v) : Particule(m, p, v) {}
+    Helium(Vecteur3D p, Vecteur3D v) : Particule(masse_Helium, p, v) {}
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'hélium
+
+    static double get_masse() {return masse;}
 };

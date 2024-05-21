@@ -62,22 +62,28 @@ le constructeur de copie par défaut.
 P9.1)
 On a implémenté la création d'une situation initiale avec la méthode
 Systeme::initialisation. Cette méthode est un template afin que l'on puisse
-choisir quel type de particule créer et on teste la validité du type avec un
-static_assert. La méthode tire aléatoirement les positions et
+choisir quel type de particule créer et on teste la validité du type avec des
+if constexpr à la compilation. La méthode tire aléatoirement les positions et
 vitesses de la particule en fonction de la température du système et ajoute
 ensuite cette particule au systeme.
 Nous avons implémenté l'évolution du système avec plusieurs méthodes. L'évolution
 commence avec la méthode Systeme::evolue. Cette méthode va, pour une particule à
-la fois, la faire avancer avec la méthode Particule::evolue, tester s'il elle
-entre en collision avec une paroi avec la méthode Systeme::
+la fois, la faire avancer avec la méthode Particule::evolue. Ensuite elle va
+refaire une boucle sur chaque particule et tester si elle entre en collision
+avec une paroi avec la méthode Systeme::collision_paroi, et tester si elle entre
+en collision avec une particule avec la méthode systeme::collision_particules
+qui parcoure toutes les particules du systeme et fait un appel à la fonction
+Particule::collision_particule pour chaque cas possible. Comme indiqué dans
+l'ennoncé, on a décidé qu'une distance plus petite que "PRECISION" d'une paroi
+entrainerait un rebond et une distance plus petite que "EPSILON" entre deux
+particules entrainerait une collision.
 
 
 P9.2)
-Si on pose n le nombre de particules dans notre système, alors étant donné que
-l'on compare les positions d'une particule par rapport à toutes les autres, la
-complexité de l'algorithme est en grand_théta(n) (à condition qu'une comparaison
-est en grand_théta(1)). Maintenant, si nous faisons cela pour toute les
-particules (et en supposant que une fois qu'une particule a été comparée à
-toutes les autres, on ne répète pas l'opération lorsque l'on fait cette
-comparaison depuis une autre particule), nous aurons un algorithme qui fait
-(n-1) + ... + 1 = n(n-1)/2 opérations qui est en grand_théta(n^2).
+Si on pose n le nombre de particules dans notre système, on a une première
+boucle pour faire avancer chaque particule qui est fait n opérations. Puis on
+les parcoure à nouveau et on compare les positions de chaque particule par
+rapport aux autres. En supposant qu'une comparaison et un avancement est en O(1)
+et qu'on compare chaque paire de particules une seule fois, nous aurons un
+algorithme qui fait n + ((n-1) + ... + 1) = n + n(n-1)/2 = n(n+1)/2 opérations
+qui est en O(n^2).
