@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   Systeme S;
 
-  double T(300.65);
+  double T(20);
   S.initialisation<>(T, 2, 4.21);
   S.initialisation<Argon>(T,2);
   S.initialisation<Helium>(T,1);

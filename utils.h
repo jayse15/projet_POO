@@ -5,7 +5,7 @@ typedef unsigned int uint;
 
 constexpr double PRECISION = 1e-10; // utilisée pour la comparaison de vecteurs
 
-constexpr double EPSILON = 1; // =0.1 [nm] (~rayon d'une particule)
+constexpr double EPSILON = 1; // =0.1 [nm] (~diametre d'une particule)
 
 constexpr double R = 8.314472; // constante des gaz parfaits
 
