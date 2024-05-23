@@ -12,8 +12,8 @@ class Particule : public Dessinable
     const double masse;
     Vecteur3D position;
     Vecteur3D vitesse;
-    // On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
-    // les opérations définies dans la classe Vecteur3D
+    /* On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
+     * les opérations définies dans la classe Vecteur3D */
 
   public :
     Particule(double m, Vecteur3D p, Vecteur3D v)
@@ -44,11 +44,11 @@ class Particule : public Dessinable
     void collision_particule_save(Particule& p, GenerateurAleatoire tirage);
 
     void collision_paroi(Enceinte const& E, size_t i);
-    // Méthode pour la collision contre une paroi. Par défaut nous définissons
-    // que l'origine (0,0,0) est sur un coin de l'enceinte. la hauteur est selon
-    // z, la largeur selon y et la profondeur selon x.la face 1 est dans le plan
-    // x=0, la 2 dans le plan y=0 et la 3 dans le plan z=0. La face 4 est
-    // opposée a la 1, la 5 à la 2 et la 6 à la 3.
+    /* Méthode pour la collision contre une paroi. Par défaut nous définissons
+     * que l'origine (0,0,0) est sur un coin de l'enceinte. la hauteur est selon
+     * z, la largeur selon y et la profondeur selon x.la face 1 est dans le plan
+     * x=0, la 2 dans le plan y=0 et la 3 dans le plan z=0. La face 4 est
+     * opposée a la 1, la 5 à la 2 et la 6 à la 3. */
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);

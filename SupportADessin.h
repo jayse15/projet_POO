@@ -28,5 +28,4 @@ class SupportADessin
       virtual void dessine(Particule const&) = 0;
       virtual void dessine(Enceinte const&) = 0;
       virtual void dessine(Systeme const&) = 0;
-      // ... autres choses que vous voudriez dessiner...
 };

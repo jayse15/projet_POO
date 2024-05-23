@@ -6,26 +6,26 @@ class Vecteur3D
 {
   private:
   std::array<double, 3> vect_;
-  // Choix d'un array car le travail en boucle est beaucoup plus simple quand
-  // on aimerait traiter plusieurs vecteurs et toutes leurs composantes à la
-  // suite.
+  /* Choix d'un array car le travail en boucle est beaucoup plus simple quand
+   * on aimerait traiter plusieurs vecteurs et toutes leurs composantes à la
+   * suite. */
 
   public:
 
   Vecteur3D(double x=0, double y=0, double z=0) : vect_({x, y, z}) {}
-  // Constructeur et constructeur par défaut de la classe Vecteur3D.
-  // Le vecteur par défaut créé est le vecteur nul
+  /* Constructeur et constructeur par défaut de la classe Vecteur3D.
+   * Le vecteur par défaut créé est le vecteur nul */
 
   std::ostream& affiche(std::ostream& sortie) const;
   // Méthode d'affichage de Vecteur3D
 
   void set_coord(uint i, double x);
-  // Met la i-ème composante de this égale à la valeur donnée (0=x, 1=y, 2=z).
-  // Message d'erreur si i > 2.
+  /* Met la i-ème composante de this égale à la valeur donnée (0=x, 1=y, 2=z).
+   * Message d'erreur si i > 2. */
 
   double get_coord(uint i) const;
-  // Retourne la valeur de la i-ème composante de this. Il faut gérer une
-  // exception si i > 2.
+  /* Retourne la valeur de la i-ème composante de this. Il faut gérer une
+   * exception si i > 2. */
 
   double norme2() const;
   // Retourne la norme au carré de this
