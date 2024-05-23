@@ -59,7 +59,8 @@ bool Particule::test_contact(Particule const& autre) const {
 
 void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage) {
   if (test_contact(autre)) {
-    Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) + autre.vitesse*(autre.masse/(masse+autre.masse)));
+    Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) +
+                  autre.vitesse*(autre.masse/(masse+autre.masse)));
 
     double L((vitesse-v_g).norme());
     double z(0);
@@ -85,4 +86,23 @@ void Particule::collision_particule_save(Particule& autre, GenerateurAleatoire t
     vitesse = v_g + v_0;
     autre.vitesse = v_g - v_0*masse/autre.masse;
   }
+}
+
+void Particule::collision_paroi(Enceinte const& E, size_t i) {
+    for (size_t j(0); j<=2; ++j) {
+      Vecteur3D V_J{kroneckerDelta(0,j), kroneckerDelta(1,j),
+                    kroneckerDelta(2,j)};
+      double posj(position*V_J);
+      double vitj(vitesse*V_J);
+        if (posj < PRECISION) {
+            cout << "La particule " << i << " rebondit sur la face " << j+1 << endl;
+            position-= V_J*(2*posj*-PRECISION);
+            vitesse-= V_J*(2*vitj);
+        }
+        if (E.get_l() - posj < PRECISION) {
+        cout << "La particule " << i << " rebondit sur la face " << j+4 << endl;
+        p.set_pos(0,enceinte_->get_l()-PRECISION);
+        p.set_vit(0,-p.get_vit(0));
+        }
+    }
 }

@@ -24,7 +24,6 @@ class Systeme : public Dessinable
         // l'allocation dynamique, on utilise des unique_ptr puisque chaque
         // objet dans le système est unique et ne sera pas affecté ou déplacé.
         GenerateurAleatoire tirage_;
-        enum type_particule {};
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
@@ -72,41 +71,50 @@ class Systeme : public Dessinable
 
         void evolue(double dt);
         // Fait evoluer le système sur un temps dt en faisant evoluer chaque
-        // particule sur un temps dt
+        // particule sur un temps dt (en [s])
 
-        template<typename T=Particule>
-        void initialisation(double temperature, uint nb_part, double masse=1);
-        // Méthode d'initialisation aléatoire de nb_part particules a partir de
-        // la température du système. Le template nous permet de choisir le type
-        // de particule.
+        template <typename T=Particule>
+        void initialisation(double temperature, uint nb_part, double masse=1) {
+          // Méthode d'initialisation aléatoire de nb_part particules a partir
+          // de la température du système en suivant la distribution des
+          // vitesses de Maxwell. Le template nous permet de choisir le type de
+          // particule voulu mais cela oblige que cette méthode soit définie ici.
+
+          if (temperature<0) {
+            throw std::invalid_argument("Temperature must be in kelvin !");
+          }
+          else if constexpr(std::is_base_of<Particule, T>::value){
+
+            bool const is_p(std::is_same<Particule, T>::value);
+            if constexpr (not is_p) {
+              masse = T::get_masse();
+            }
+            double maxwell(sqrt(1000 * R/masse * temperature));
+
+            for (size_t j(0); j<nb_part; ++j){
+
+              double pos_x(tirage_.uniforme(0.0,enceinte_->get_l()));
+              double pos_y(tirage_.uniforme(0.0,enceinte_->get_p()));
+              double pos_z(tirage_.uniforme(0.0,enceinte_->get_h()));
+
+              double vit_x(tirage_.gaussienne(0.0, maxwell));
+              double vit_y(tirage_.gaussienne(0.0, maxwell));
+              double vit_z(tirage_.gaussienne(0.0, maxwell));
+
+              if constexpr (is_p) {
+                ajouter_particule(new T(masse, {pos_x, pos_y, pos_z},
+                                               {vit_x ,vit_y ,vit_z }));
+              } else {
+                 ajouter_particule(new T({pos_x, pos_y, pos_z},
+                                         {vit_x ,vit_y ,vit_z }));
+                }
+            }
+          }else {
+            throw std::invalid_argument("Given type is not a Particule !");
+          }
+        }
 
 };
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& S);
-
-template <typename T>
-void Systeme::initialisation(double temperature, uint nb_part, double masse) {
-  if (temperature<0) {throw "Température en Kelvin !!";}
-
-  else if constexpr(std::is_base_of<Particule, T>::value){
-    bool const is_p(std::is_same<Particule, T>::value);
-    if constexpr (not is_p) {masse = T::get_masse();}
-    double maxwell(sqrt(1000 * R/masse * temperature));
-
-    for (size_t j(0); j<nb_part; ++j){
-      double pos_x(tirage_.uniforme(0.0,enceinte_->get_l()));
-      double pos_y(tirage_.uniforme(0.0,enceinte_->get_p()));
-      double pos_z(tirage_.uniforme(0.0,enceinte_->get_h()));
-      double vit_x(tirage_.gaussienne(0.0, maxwell));
-      double vit_y(tirage_.gaussienne(0.0, maxwell));
-      double vit_z(tirage_.gaussienne(0.0, maxwell));
-      if constexpr (is_p) {
-        ajouter_particule(new T(masse, {pos_x, pos_y, pos_z},
-                                       {vit_x ,vit_y ,vit_z }));
-      } else {
-        ajouter_particule(new T({pos_x, pos_y, pos_z}, {vit_x ,vit_y ,vit_z }));
-        }
-    }
-  }else {std::cerr << "Type is not a Particule !!" << std::endl;}
-}
-// Defini ici puisque c'est un template.
+// Opérateur d'affichage de Systeme.

@@ -2,6 +2,7 @@
 #include "utils.h"
 #include <cmath>
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -16,13 +17,13 @@ ostream& Vecteur3D::affiche(ostream& sortie) const{
 
 void Vecteur3D::set_coord(uint i, double x)
 {
-  if (i > 2) {cerr << "False indexing !!" << endl;}
+  if (i > 2) {throw invalid_argument("False indexing !!");}
   else {vect_[i] = x;}
 }
 
 double Vecteur3D::get_coord(uint i) const
 {
-  if (i > 2) {throw "False indexing !!";}
+  if (i > 2) {throw invalid_argument("False indexing !!");}
   return vect_[i];
 }
 
