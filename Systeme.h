@@ -17,7 +17,7 @@ class Particule;
 
 class Systeme : public Dessinable
 {
-    private :
+    protected :
         std::unique_ptr<Enceinte> enceinte_;
         std::vector<std::unique_ptr<Particule>> particules_;
         // On utilise des pointeurs pour le polymorphisme. Comme on fait de
@@ -70,7 +70,7 @@ class Systeme : public Dessinable
         // Affiche le résultat de la collision de la particule p avec la i-ème
         // particule du système.
 
-        void evolue(double dt);
+        void evolue_1(double dt);
         // Fait evoluer le système sur un temps dt en faisant evoluer chaque
         // particule sur un temps dt
 

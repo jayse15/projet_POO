@@ -75,7 +75,7 @@ void Systeme::afficher_collision(Particule const& p, size_t i) const{
         p.Particule::affiche(cout) << endl;
 }
 
-void Systeme::evolue(double dt) {
+void Systeme::evolue_1(double dt) {
     for (auto& p:particules_) {p->evolue(dt);}
     for (size_t i(0); i < particules_.size() ; ++i){
         collision_paroi(*particules_[i], i+1);

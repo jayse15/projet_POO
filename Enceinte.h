@@ -5,10 +5,10 @@
 
 class Enceinte : public Dessinable
 {
-    private:
-        double hauteur_;
-        double largeur_;
-        double profondeur_;
+    protected:
+        double const hauteur_;
+        double const largeur_;
+        double const profondeur_;
 
     public:
         Enceinte (double h = 20, double l = 20, double p = 20) :
