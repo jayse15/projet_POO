@@ -8,7 +8,8 @@
 
 class Grid {
     private: 
-        std::map<std::array<int,3>, Particule> grille_; 
+        std::map<std::array<int,3>, Particule*> grille_; 
     public: 
+
         
 };
