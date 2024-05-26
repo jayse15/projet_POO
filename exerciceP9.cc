@@ -24,7 +24,7 @@ int main() {
 
     for (size_t i(0); i<10; i++) {
         cout << line << endl;
-        S.evolue(1);
+        S.evolue_1(1);
     }
     cout << line << endl;
 
