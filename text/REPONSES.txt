@@ -2,7 +2,7 @@ P1.1)
 Nous avons représenté leurs coordonnées comme un array de taille 3. Cela nous
 permet de plus facilement travailler avec des boucles, l'inconvenient est
 qu'il y a la possibilité de mal indexer ces array, mais nous allons gérer ces
-situations avec des messages d'erreur ou des exceptions (try, throw).
+situations avec des messages d'erreur avec un throw.
 Pour l'instant nous avons un attribut privé, l'array en question, et 4 méthodes
 publiques, set_coord, get_coord, affiche et compare, toutes expliquées dans le
 fichier Vecteur3D.h. Nous avons suivi les consignes données mais la méthode en
@@ -17,55 +17,53 @@ bien.
 P4.2)
 Si l'on devait définir un constructeur en coordonnées sphériques, il n'y aurait
 aucune différence au niveau des attributs, on peut simplement convertir de
-sphériques à cartésiennes. Il y aura un conflit avec le constructeur en
-coordonnées cartésiennes car on aurait les mêmes entrées, mais cela peut être
-résolu avec un booléen en plus comme entrée. Au final, rajouter l'option
-d'initialiser en spheriques ne pose pas de problème et pourrait même être très
-utile !
+sphériques à cartésiennes. Mais il y aura un conflit avec le constructeur en
+coordonnées cartésiennes car on aurait les mêmes entrées, donc il faudrait
+ajouter un booléen comme entrée pour ce constructeur ce qui ne serait pas optimal..
 
 P4.3)
 Pour l'affichage et la comparaison, nous avons introduit les opérateurs suivants:
-    -les opérateurs internes == et !=;
-    -l'opérateur externe <<; // qui utilise Vecteur3D::affiche
+    -les opérateurs internes == et !=
+    -l'opérateur externe << qui utilise Vecteur3D::affiche
 
 P7.1)
-la méthode dessine_sur est, pour la classe Dessinable, une methode virtuelle
-qui sera héritée et "overridée" par les differents objets dessinables du systeme
-(partiucle, enceinte, ...). Dessinable sera une classe abstraite, car on
-utilisera les méthodes d'affichage prédéfinies dans les sous-classes de
-Dessinable et dans les différentes sous-classes de SupportADessin pour les
-dessiner.
+la méthode dessine_sur est, pour la classe Dessinable, une methode virtuelle pure
+qui sera héritée et devra être "overridée" par les differentes sous classes de
+Dessinable du systeme (partiucle, enceinte, ...). Ceci nous permettera de
+dessiner un objet dessinable sur un support à dessin sans devoir se soucier de
+quel type d'objet c'est. #polymorphisme :()
 
 P8.1)
 Il faut faire attention aux copies (surface ou profonde), le concept d'unicité
 ou non (unique_ptr) et tout ce qui est liée a l'allocation et la déallocation de
-mémoire. Il faudra aussi prendre en compte la structure des méthodes si l'on
-cherche a faire du polymorphisme, il faut que les methodes soient virtuelles et
-prennent en compte qu'on travaille avec des pointeurs !
+mémoire. Les copies peuvent être gérées par la supression du constructeur de
+copie et de l'opérateur =, si on utilise des unique_ptr il faudra adapter les
+méthodes pour qu'elles ne fassent pas de copie des pointeurs, et l'allocation et
+la déallocation peut être gérée par le destructeur si on utilise des pointeurs
+"à la C" et se fait tout seul avec les réferences et les pointeurs C++11.
 
 P8.2)
 Notre classe étant dessinable, elle va hériter de la classe Dessinable, et de sa
 méthode virutelle "dessine_sur".
 De plus, le système sera composé d'une enceinte, et d'un ensemble de particules.
-Ainsi, les attributs de la classe Systeme sont un unique_ptr sur une instance de
-la classe Enceinte, ainsi qu'un tableau dynamique (vector) de unique_ptr sur des
-instances de la classe Particule.
-Nous utilisons des pointeurs afin de réaliser du polymorphisme, notamment au
-niveau des différentes particules, car les sous classes associées possèdent des
-méthodes différentes de la super classe Particule.
+Ainsi, les attributs de la classe Systeme sont une instance de la classe
+Enceinte, ainsi qu'un tableau dynamique (vector) de unique_ptr sur des
+instances de la classe Particule. Nous utilisons des pointeurs afin de réaliser
+du polymorphisme avec les particules, qui peuvent avoir plusieures formes et ils
+sont unique car une particule ne peut pas appartenir a deux systèmes.
 
 P8.3)
 Pour empêcher totalement la copie et l'affectation des instances de la classe
 Systeme, nous allons utiliser la commande "delete" offerte par c++11, qui efface
-le constructeur de copie par défaut.
+le constructeur de copie et l'opérateur "=" par défaut.
 
 P9.1)
 On a implémenté la création d'une situation initiale avec la méthode
 Systeme::initialisation. Cette méthode est un template afin que l'on puisse
 choisir quel type de particule créer et on teste la validité du type avec des
 if constexpr à la compilation. La méthode tire aléatoirement les positions et
-vitesses de la particule en fonction de la température du système et ajoute
-ensuite cette particule au systeme.
+vitesses de la particule en fonction de sa masse et la température du système et
+ajoute ensuite cette particule au systeme.
 Nous avons implémenté l'évolution du système avec plusieurs méthodes. L'évolution
 commence avec la méthode Systeme::evolue. Cette méthode va, pour une particule à
 la fois, la faire avancer avec la méthode Particule::evolue. Ensuite elle va

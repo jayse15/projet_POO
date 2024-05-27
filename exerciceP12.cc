@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   Systeme S;
 
-  double T(20);
+  double T(40);
   S.initialisation<>(T, 2, 4.21);
   S.initialisation<Argon>(T,2);
   S.initialisation<Helium>(T,1);
@@ -21,7 +21,7 @@ int main() {
 
   for (size_t i(0); i<10; i++) {
       cout << line << endl;
-      S.evolue_1(1);
+      S.evolue(1);
   }
   cout << line << endl;
 

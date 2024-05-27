@@ -2,12 +2,13 @@
 #include "utils.h"
 #include <cmath>
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
-// *****************************************************************************
-// Méthodes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Méthodes de la classe Vecteur3D
+ ******************************************************************************/
 
 ostream& Vecteur3D::affiche(ostream& sortie) const{
   for(auto& coord:vect_){sortie << coord << " ";}
@@ -16,13 +17,13 @@ ostream& Vecteur3D::affiche(ostream& sortie) const{
 
 void Vecteur3D::set_coord(uint i, double x)
 {
-  if (i > 2) {cerr << "False indexing !!" << endl;}
+  if (i > 2) {throw invalid_argument("False indexing !!");}
   else {vect_[i] = x;}
 }
 
 double Vecteur3D::get_coord(uint i) const
 {
-  if (i > 2) {throw "False indexing !!";}
+  if (i > 2) {throw invalid_argument("False indexing !!");}
   return vect_[i];
 }
 
@@ -36,9 +37,9 @@ double Vecteur3D::norme() const
   return sqrt(this->norme2());
 }
 
-// *****************************************************************************
-// Opérateurs internes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Opérateurs internes de la classe Vecteur3D
+ ******************************************************************************/
 
 bool Vecteur3D::operator==(Vecteur3D const& autre) const
 {
@@ -90,9 +91,9 @@ double Vecteur3D::operator*(Vecteur3D const& v) const{
 
 Vecteur3D Vecteur3D::operator~() const {return *this/this->norme();}
 
-// *****************************************************************************
-// Opérateurs externes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Opérateurs externes de la classe Vecteur3D
+ ******************************************************************************/
 
 const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {return v1+=v2;}
 

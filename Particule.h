@@ -12,8 +12,8 @@ class Particule : public Dessinable
     const double masse;
     Vecteur3D position;
     Vecteur3D vitesse;
-    // On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
-    // les opérations définies dans la classe Vecteur3D
+    /* On utilise des Vecteurs3D comme position et vitesse pour pouvoir utiliser
+     * les opérations définies dans la classe Vecteur3D */
 
   public :
     Particule(double m, Vecteur3D p, Vecteur3D v)
@@ -26,6 +26,7 @@ class Particule : public Dessinable
     virtual void dessine_sur(SupportADessin& support) override
     { support.dessine(*this); }
 
+    // "Getters" et "Setters" pour les particules
     double get_pos(uint i) const;
 
     double get_vit(uint i) const;
@@ -35,17 +36,30 @@ class Particule : public Dessinable
     void set_vit(uint i, double x);
 
     void evolue(double dt);
-    // Méthode permettant de faire bouger une particule d'un temps dt
+    // Méthode permettant de faire bouger une particule sur un temps dt
 
-    bool test_contact(Particule const& autre) const;
+    bool test_contact(Particule const& p) const;
+    /* Méthode qui test si this et autre sont en contact
+     * (différence des normes <= EPSILON). */
 
-    virtual void collision_particule(Particule&, GenerateurAleatoire);
+    void collision_particule(Particule& p, GenerateurAleatoire tirage);
+    /* Méthode qui effectue les changements de vitesse et de direction lorsque
+     * this et p entrent en collision. Ici on fixe le zenith à PI/2 et l'azimut
+     * à PI/3 (phi=PI/3, z=0). */
 
-    virtual void collision_particule_save(Particule&, GenerateurAleatoire);
+    void collision_particule_save(Particule& p, GenerateurAleatoire tirage);
+    /* Identique que collision_particule mais le zenith et l'azimut sont tirés
+     * aléatoirement. */
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
 // Opérateur d'affichage de particules
+
+
+/******************************************************************************
+  Sous classes de Particule
+ ******************************************************************************/
+
 
 class Neon : public Particule
 {
@@ -54,6 +68,7 @@ class Neon : public Particule
 
   public:
     Neon(Vecteur3D p, Vecteur3D v) : Particule(masse_Neon, p, v) {}
+
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour le néon
 
@@ -67,6 +82,7 @@ class Argon : public Particule
 
   public:
     Argon(Vecteur3D p, Vecteur3D v) : Particule(masse_Argon, p, v) {}
+
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'argon
 
@@ -80,6 +96,7 @@ class Helium : public Particule
 
   public:
     Helium(Vecteur3D p, Vecteur3D v) : Particule(masse_Helium, p, v) {}
+
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'hélium
 
