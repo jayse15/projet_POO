@@ -16,5 +16,3 @@ constexpr double masse_Argon  = 39.948;
 constexpr double masse_Helium  = 4.002602;
 
 double round_to_decimal(double x, double precision = PRECISION);
-
-int kroneckerDelta(int i, int j);

@@ -52,15 +52,15 @@ void Particule::evolue(double dt) {
   position+=vitesse*dt;
 }
 
-bool Particule::test_contact(Particule const& autre) const {
-    if ((position-autre.position).norme() <= EPSILON) {return true;}
+bool Particule::test_contact(Particule const& p) const {
+    if ((position-p.position).norme() <= EPSILON) {return true;}
     return false;
 }
 
-void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage) {
-  if (test_contact(autre)) {
-    Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) +
-                  autre.vitesse*(autre.masse/(masse+autre.masse)));
+void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage) {
+  if (test_contact(p)) {
+    Vecteur3D v_g(vitesse*(masse/(masse + p.masse)) +
+                  p.vitesse*(p.masse/(masse+p.masse)));
 
     double L((vitesse-v_g).norme());
     double z(0);
@@ -69,13 +69,14 @@ void Particule::collision_particule(Particule& autre, GenerateurAleatoire tirage
 
     Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
     vitesse = v_g + v_0;
-    autre.vitesse = v_g - v_0*masse/autre.masse;
+    p.vitesse = v_g - v_0*masse/p.masse;
   }
 }
 
-void Particule::collision_particule_save(Particule& autre, GenerateurAleatoire tirage) {
-  if (test_contact(autre)) {
-    Vecteur3D v_g(vitesse*(masse/(masse + autre.masse)) + autre.vitesse*(autre.masse/(masse+autre.masse)));
+void Particule::collision_particule_save(Particule& p, GenerateurAleatoire tirage) {
+  if (test_contact(p)) {
+    Vecteur3D v_g(vitesse*(masse/(masse + p.masse)) +
+                  p.vitesse*(p.masse/(masse+p.masse)));
 
     double L((vitesse-v_g).norme());
     double z(tirage.uniforme(-L, L));
@@ -84,25 +85,6 @@ void Particule::collision_particule_save(Particule& autre, GenerateurAleatoire t
 
     Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
     vitesse = v_g + v_0;
-    autre.vitesse = v_g - v_0*masse/autre.masse;
+    p.vitesse = v_g - v_0*masse/p.masse;
   }
-}
-
-void Particule::collision_paroi(Enceinte const& E, size_t i) {
-    for (size_t j(0); j<=2; ++j) {
-      Vecteur3D V_J{kroneckerDelta(0,j), kroneckerDelta(1,j),
-                    kroneckerDelta(2,j)};
-      double posj(position*V_J);
-      double vitj(vitesse*V_J);
-        if (posj < PRECISION) {
-            cout << "La particule " << i << " rebondit sur la face " << j+1 << endl;
-            position-= V_J*(2*posj*-PRECISION);
-            vitesse-= V_J*(2*vitj);
-        }
-        if (E.get_l() - posj < PRECISION) {
-        cout << "La particule " << i << " rebondit sur la face " << j+4 << endl;
-        p.set_pos(0,enceinte_->get_l()-PRECISION);
-        p.set_vit(0,-p.get_vit(0));
-        }
-    }
 }

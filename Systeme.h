@@ -18,7 +18,7 @@ class Particule;
 class Systeme : public Dessinable
 {
     private :
-        std::unique_ptr<Enceinte> enceinte_;
+        Enceinte enceinte_;
         std::vector<std::unique_ptr<Particule>> particules_;
         /* On utilise des pointeurs pour le polymorphisme. Comme on fait de
          * l'allocation dynamique, on utilise des unique_ptr puisque chaque
@@ -27,7 +27,7 @@ class Systeme : public Dessinable
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
-          enceinte_(std::make_unique<Enceinte>(h,l,p)), particules_{}, tirage_() {}
+          enceinte_(Enceinte(h,l,p)), particules_{}, tirage_() {}
         /* Constructeur et constructeur par défaut de la classe Systeme.
          * Le systeme par défaut crée possède une enceinte de dimensions 20x20x20
          * et sans aucune particule. */
@@ -71,7 +71,7 @@ class Systeme : public Dessinable
 
         void evolue(double dt);
         /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
-        /* particule sur un temps dt (en [s]) */
+         * particule sur un temps dt (en [s]) */
 
         template <typename T=Particule>
         void initialisation(double temperature, uint nb_part, double masse=1) {
@@ -93,9 +93,9 @@ class Systeme : public Dessinable
 
             for (size_t j(0); j<nb_part; ++j){
 
-              double pos_x(tirage_.uniforme(0.0,enceinte_->get_l()));
-              double pos_y(tirage_.uniforme(0.0,enceinte_->get_p()));
-              double pos_z(tirage_.uniforme(0.0,enceinte_->get_h()));
+              double pos_x(tirage_.uniforme(0.0,enceinte_.get_l()));
+              double pos_y(tirage_.uniforme(0.0,enceinte_.get_p()));
+              double pos_z(tirage_.uniforme(0.0,enceinte_.get_h()));
 
               double vit_x(tirage_.gaussienne(0.0, maxwell));
               double vit_y(tirage_.gaussienne(0.0, maxwell));

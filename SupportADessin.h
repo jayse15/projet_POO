@@ -9,8 +9,6 @@ class Systeme;
 
 class SupportADessin
 {
-    private:
-
     public:
       virtual ~SupportADessin() = default;
       // on ne copie pas les Supports

@@ -6,9 +6,9 @@
 
 using namespace std;
 
-// *****************************************************************************
-// Méthodes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Méthodes de la classe Vecteur3D
+ ******************************************************************************/
 
 ostream& Vecteur3D::affiche(ostream& sortie) const{
   for(auto& coord:vect_){sortie << coord << " ";}
@@ -37,9 +37,9 @@ double Vecteur3D::norme() const
   return sqrt(this->norme2());
 }
 
-// *****************************************************************************
-// Opérateurs internes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Opérateurs internes de la classe Vecteur3D
+ ******************************************************************************/
 
 bool Vecteur3D::operator==(Vecteur3D const& autre) const
 {
@@ -91,9 +91,9 @@ double Vecteur3D::operator*(Vecteur3D const& v) const{
 
 Vecteur3D Vecteur3D::operator~() const {return *this/this->norme();}
 
-// *****************************************************************************
-// Opérateurs externes de la classe Vecteur3D
-// *****************************************************************************
+/******************************************************************************
+  Opérateurs externes de la classe Vecteur3D
+ ******************************************************************************/
 
 const Vecteur3D operator+(Vecteur3D v1, Vecteur3D const& v2) {return v1+=v2;}
 
