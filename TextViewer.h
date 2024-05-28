@@ -11,22 +11,21 @@ class Systeme;
 
 class TextViewer : public SupportADessin
 {
-    private :
+    protected :
         std::ostream& visualisation;
     public :
         TextViewer(std::ostream& flot)
             : visualisation(flot) {}
+
         virtual ~TextViewer() = default;
-        TextViewer(TextViewer const&) = delete;
-        TextViewer& operator=(TextViewer const&) = delete;
         TextViewer(TextViewer&&) = delete;
         TextViewer& operator=(TextViewer&&) = delete;
-        // on ne copie et on ne déplace pas les TextViewer
+        // on ne déplace pas les TextViewer
 
-        void dessine(Neon const&) override;
-        void dessine(Argon const&) override;
-        void dessine(Helium const&) override;
-        void dessine(Particule const&) override;
+        virtual void dessine(Neon const&) override;
+        virtual void dessine(Argon const&) override;
+        virtual void dessine(Helium const&) override;
+        virtual void dessine(Particule const&) override;
         void dessine(Enceinte const&) override;
         void dessine(Systeme const&) override;
         // methodes pour afficher un objet dessinable sur un TextViewer

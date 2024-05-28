@@ -11,6 +11,7 @@
 #include "utils.h"
 #include "Particule.h"
 #include "Vecteur3D.h"
+#include "TextViewer.h"
 
 
 class Particule;
@@ -69,7 +70,7 @@ class Systeme : public Dessinable
         /* Affiche le résultat de la collision de la particule p avec la i-ème
          * particule du système. */
 
-        void evolue(double dt);
+        void evolue(double dt, SupportADessin& s);
         /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
          * particule sur un temps dt (en [s]) */
 
