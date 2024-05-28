@@ -68,19 +68,19 @@ void Systeme::collision_particules(Particule& p, size_t i) {
     }
 }
 
-void Systeme::afficher_collision(Particule const& p, size_t i) const{
+void Systeme::afficher_collision(Particule const& p, size_t i) const {
         cout << setw(3) << "" << "part. " << i+1 << " : : ";
         particules_[i]->Particule::affiche(cout) << endl;
         cout << setw(3) << "" << "autre : : ";
         p.Particule::affiche(cout) << endl;
 }
 
-void Systeme::evolue(double dt) {
+void Systeme::evolue(double dt, SupportADessin& s) {
     for (auto& p:particules_) {p->evolue(dt);}
     for (size_t i(0); i < particules_.size() ; ++i){
         collision_paroi(*particules_[i], i+1);
         collision_particules(*particules_[i], i+1);
-        cout << *particules_[i] << endl;
+        particules_[i]->dessine_sur(s);
     }
 }
 

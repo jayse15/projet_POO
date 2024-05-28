@@ -27,11 +27,6 @@ ostream& Helium::affiche(ostream& sortie) const {
   return sortie;
 }
 
-ostream& operator<<(ostream& sortie, Particule const& P) {
-  sortie << "particule ";
-  return P.affiche(sortie);
-}
-
 double Particule::get_pos(uint i) const {
   return position.get_coord(i);
 }
@@ -57,14 +52,22 @@ bool Particule::test_contact(Particule const& p) const {
     return false;
 }
 
-void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage) {
+void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage,
+                                    bool ex9) {
   if (test_contact(p)) {
     Vecteur3D v_g(vitesse*(masse/(masse + p.masse)) +
                   p.vitesse*(p.masse/(masse+p.masse)));
 
     double L((vitesse-v_g).norme());
-    double z(0);
-    double phi(M_PI/3);
+    double z;
+    double phi;
+    if (ex9){
+       z = 0;
+       phi = M_PI/3;
+    } else {
+       z = tirage.uniforme(-L, L);
+       phi = tirage.uniforme(0, 2*M_PI);
+    }
     double r(sqrt(L*L - z*z));
 
     Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
@@ -73,18 +76,7 @@ void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage) {
   }
 }
 
-void Particule::collision_particule_save(Particule& p, GenerateurAleatoire tirage) {
-  if (test_contact(p)) {
-    Vecteur3D v_g(vitesse*(masse/(masse + p.masse)) +
-                  p.vitesse*(p.masse/(masse+p.masse)));
-
-    double L((vitesse-v_g).norme());
-    double z(tirage.uniforme(-L, L));
-    double phi(tirage.uniforme(0, 2*M_PI));
-    double r(sqrt(L*L - z*z));
-
-    Vecteur3D v_0(r*cos(phi), r*sin(phi), z);
-    vitesse = v_g + v_0;
-    p.vitesse = v_g - v_0*masse/p.masse;
-  }
+ostream& operator<<(ostream& sortie, Particule const& P) {
+  sortie << "particule ";
+  return P.affiche(sortie);
 }

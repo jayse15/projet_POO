@@ -1,0 +1,10 @@
+particule Argon : pos : 1 5.8 2.5 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 7.6 3 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 9.4 3.5 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 11.2 4 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 13 4.5 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 14.8 5 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 16.6 5.5 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 18.4 6 ; v: 0 1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 40 6.5 ; v: 0 -1.8 0.5 ; m : 39.948
+particule Argon : pos : 1 40 7 ; v: 0 1.8 0.5 ; m : 39.948
