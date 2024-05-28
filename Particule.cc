@@ -47,7 +47,6 @@ void Particule::set_pos(uint i, double x) {
 void Particule::set_vit(uint i, double x) {
   vitesse.set_coord(i, x);
 }
-
 void Particule::evolue(double dt) {
   position+=vitesse*dt;
 }
