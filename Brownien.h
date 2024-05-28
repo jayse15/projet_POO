@@ -27,11 +27,6 @@ class Brownien : public TextViewer
           }
 
         virtual ~Brownien() {sortie.close();}
-        Brownien(Brownien const&) = delete;
-        Brownien& operator=(Brownien const&) = delete;
-        Brownien(Brownien&&) = delete;
-        Brownien& operator=(Brownien&&) = delete;
-        // on ne copie et on ne déplace pas les TextViewer Brownien
 
         void dessine(Particule const&) override;
         void dessine(Neon const&) override;

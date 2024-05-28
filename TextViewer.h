@@ -16,12 +16,11 @@ class TextViewer : public SupportADessin
     public :
         TextViewer(std::ostream& flot)
             : visualisation(flot) {}
+
         virtual ~TextViewer() = default;
-        TextViewer(TextViewer const&) = delete;
-        TextViewer& operator=(TextViewer const&) = delete;
         TextViewer(TextViewer&&) = delete;
         TextViewer& operator=(TextViewer&&) = delete;
-        // on ne copie et on ne déplace pas les TextViewer
+        // on ne déplace pas les TextViewer
 
         virtual void dessine(Neon const&) override;
         virtual void dessine(Argon const&) override;
