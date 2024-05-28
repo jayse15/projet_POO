@@ -1,5 +1,5 @@
 CC = $(CXX)
-CXXFLAGS = -std=c++20 -pedantic -Wall
+CXXFLAGS = -std=c++11 -pedantic -Wall
 
 all: Vecteur3D Particule Systeme exerciceP7 exerciceP9 exerciceP12 Brownien
 
