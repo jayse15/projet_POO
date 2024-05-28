@@ -20,7 +20,7 @@ class Brownien : public TextViewer
     public :
         Brownien(std::ostream& flot, std::string const& file, Particule& p)
           : TextViewer(flot), suivie(p) {
-            sortie.open(file);
+            sortie.open(file, std::ios::in | std::ios::out);
             if (not sortie.is_open()){
               throw(std::invalid_argument("Fichier texte pas valide."));
             }
