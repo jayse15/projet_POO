@@ -87,3 +87,14 @@ void Particule::collision_particule_save(Particule& p, GenerateurAleatoire tirag
     p.vitesse = v_g - v_0*masse/p.masse;
   }
 }
+
+array<int,3> Particule::pos_floor() const {
+  double x_1(floor(position.get_coord(0))); 
+  double y_1(floor(position.get_coord(1)));
+  double z_1(floor(position.get_coord(2))); 
+  int x = int(x_1); 
+  int y = int(y_1); 
+  int z = int(z_1); 
+  array<int,3> partie_entiere(x,y,z);
+  return partie_entiere; 
+}

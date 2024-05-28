@@ -18,7 +18,7 @@ class Particule;
 class Systeme : public Dessinable
 {
     private :
-        Enceinte enceinte_;
+        std::unique_ptr<Enceinte> enceinte_;
         std::vector<std::unique_ptr<Particule>> particules_;
         /* On utilise des pointeurs pour le polymorphisme. Comme on fait de
          * l'allocation dynamique, on utilise des unique_ptr puisque chaque
@@ -27,7 +27,7 @@ class Systeme : public Dessinable
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
-          enceinte_(Enceinte(h,l,p)), particules_{}, tirage_() {}
+          enceinte_(make_unique<Enceinte>(h,l,p)), particules_{}, tirage_() {}
         /* Constructeur et constructeur par défaut de la classe Systeme.
          * Le systeme par défaut crée possède une enceinte de dimensions 20x20x20
          * et sans aucune particule. */

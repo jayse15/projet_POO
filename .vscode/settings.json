@@ -54,7 +54,9 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "fstream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "map": "cpp",
+        "__tree": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

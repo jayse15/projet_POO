@@ -35,19 +35,19 @@ void Systeme::collision_paroi(Particule& p, size_t i) {
             p.set_vit(j,-p.get_vit(j));
         }
     }
-    if (enceinte_.get_l() - p.get_pos(0) < PRECISION) {
+    if (enceinte_->get_l() - p.get_pos(0) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 4" << endl;
-        p.set_pos(0,2*enceinte_.get_l()-PRECISION);
+        p.set_pos(0,2*enceinte_->get_l()-PRECISION);
         p.set_vit(0,-p.get_vit(0));
     }
-    if (enceinte_.get_h() - p.get_pos(1) < PRECISION) {
+    if (enceinte_->get_h() - p.get_pos(1) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 5" << endl;
-        p.set_pos(1,2*enceinte_.get_h()-PRECISION);
+        p.set_pos(1,2*enceinte_->get_h()-PRECISION);
         p.set_vit(1,-p.get_vit(1));
     }
-    if (enceinte_.get_p() - p.get_pos(2) < PRECISION) {
+    if (enceinte_->get_p() - p.get_pos(2) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 6" << endl;
-        p.set_pos(2,2*enceinte_.get_p()-PRECISION);
+        p.set_pos(2,2*enceinte_->get_p()-PRECISION);
         p.set_vit(2,-p.get_vit(2));
     }
 }
@@ -78,7 +78,7 @@ void Systeme::afficher_collision(Particule const& p, size_t i) const{
 void Systeme::evolue(double dt) {
     for (auto& p:particules_) {p->evolue(dt);}
     for (size_t i(0); i < particules_.size() ; ++i){
-        collision_paroi(*particules_[i], i+1);
+        enceinte_->collision_paroi(*particules_[i], i+1);
         collision_particules(*particules_[i], i+1);
         cout << *particules_[i] << endl;
     }

@@ -50,6 +50,8 @@ class Particule : public Dessinable
     void collision_particule_save(Particule& p, GenerateurAleatoire tirage);
     /* Identique que collision_particule mais le zenith et l'azimut sont tirés
      * aléatoirement. */
+
+    std::array<int, 3> pos_floor() const; 
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
