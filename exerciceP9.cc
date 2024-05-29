@@ -4,7 +4,6 @@
 #include "Particule.h"
 #include "TextViewer.h"
 
-
 using namespace std;
 
 int main() {

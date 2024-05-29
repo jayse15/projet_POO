@@ -13,7 +13,7 @@ exerciceP9: exerciceP9.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 exerciceP12: exerciceP12.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 	TextViewer.o
 
-Systeme: testSystem1.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o
+Systeme: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testGrid.o TextViewer.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
 
@@ -62,6 +62,10 @@ testParticule.o: testParticule.cc Particule.h utils.h Vecteur3D.h \
 testSystem1.o: testSystem1.cc Systeme.h GenerateurAleatoire.h \
   Dessinable.h SupportADessin.h Enceinte.h Particule.h utils.h \
   Vecteur3D.h
+
+testGrid.o: testGrid.cc Systeme.h GenerateurAleatoire.h \
+  Dessinable.h SupportADessin.h Enceinte.h Particule.h utils.h \
+  Vecteur3D.h TextViewer.h
 
 testVecteur3D.o: testVecteur3D.cc Vecteur3D.h
 
