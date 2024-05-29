@@ -88,16 +88,16 @@ void Systeme::evolue(double dt, SupportADessin& s) {
 // Méthodes de la classe Grid
 // *****************************************************************************
 
-void Grid::ajouter_map(const Particule& p) {
+void Grid::ajouter_map(const Particule& p, size_t index) {
     array<int,3> key(p.pos_floor()); 
-    auto it = grille_.find(key); 
-    if (it != grille_.end()) {
-        grille_[key].push_back(particules_.size()-1); 
+    for (auto case_ : grille_){
+        if (case_.first == key) {
+            case_.second.push_back(index); 
+            return;
+        }
     }
-    else{
-        vector<size_t> nouveau = {particules_.size()-1};
-        grille_[p.pos_floor()] = nouveau; 
-    }
+    vector<size_t> nouveau = {index};
+    grille_[p.pos_floor()] = nouveau;
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
@@ -115,8 +115,8 @@ void Grid::retirer_map(Particule& p, size_t i) {
 
 void Grid::ajouter_particule(Particule* p) {
     Systeme::ajouter_particule(p); 
-    ajouter_map(*p); 
-}
+    ajouter_map(*p, particules_.size()-1); 
+} 
 
 void Grid::supp_all() {
     Systeme::supp_all(); 
@@ -126,7 +126,7 @@ void Grid::supp_all() {
 void Grid::collision_paroi(Particule& p, size_t i) {
     retirer_map(p,i); 
     Systeme::collision_paroi(p,i);
-    ajouter_map(p); 
+    ajouter_map(p,i); 
 }
 
 

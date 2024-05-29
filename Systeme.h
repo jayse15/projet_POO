@@ -129,14 +129,14 @@ class Grid : public Systeme {
         virtual void ajouter_particule(Particule* p) override;
         // Ajoute une particule au système et à la map.
 
-        void ajouter_map(const Particule&); 
+        void ajouter_map(const Particule&, size_t index); 
 
         void retirer_map(Particule&, size_t);
 
         virtual void supp_all() override;
         // Désalloue et éfface toutes les particules du système et de la map. 
 
-        virtual void collision_paroi(Particule& p, size_t i);
+        virtual void collision_paroi(Particule& p, size_t i) override;
         /* Méthode pour la collision d'une particule sur une paroi. Par défaut
          * nous définissons que l'origine (0,0,0) est sur un coin de l'enceinte.
          * la hauteur est selon z, la largeur selon y et la profondeur selon x.
