@@ -35,19 +35,19 @@ void Systeme::collision_paroi(Particule& p, size_t i) {
             p.set_vit(j,-p.get_vit(j));
         }
     }
-    if (enceinte_->get_l() - p.get_pos(0) < PRECISION) {
+    if (enceinte_.get_l() - p.get_pos(0) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 4" << endl;
-        p.set_pos(0,2*enceinte_->get_l()-PRECISION);
+        p.set_pos(0,2*enceinte_.get_l()-PRECISION);
         p.set_vit(0,-p.get_vit(0));
     }
-    if (enceinte_->get_h() - p.get_pos(1) < PRECISION) {
+    if (enceinte_.get_h() - p.get_pos(1) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 5" << endl;
-        p.set_pos(1,2*enceinte_->get_h()-PRECISION);
+        p.set_pos(1,2*enceinte_.get_h()-PRECISION);
         p.set_vit(1,-p.get_vit(1));
     }
-    if (enceinte_->get_p() - p.get_pos(2) < PRECISION) {
+    if (enceinte_.get_p() - p.get_pos(2) < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 6" << endl;
-        p.set_pos(2,2*enceinte_->get_p()-PRECISION);
+        p.set_pos(2,2*enceinte_.get_p()-PRECISION);
         p.set_vit(2,-p.get_vit(2));
     }
 }
@@ -78,11 +78,57 @@ void Systeme::afficher_collision(Particule const& p, size_t i) const {
 void Systeme::evolue(double dt, SupportADessin& s) {
     for (auto& p:particules_) {p->evolue(dt);}
     for (size_t i(0); i < particules_.size() ; ++i){
-        enceinte_->collision_paroi(*particules_[i], i+1);
+        collision_paroi(*particules_[i], i+1);
         collision_particules(*particules_[i], i+1);
         particules_[i]->dessine_sur(s);
     }
 }
+
+// *****************************************************************************
+// Méthodes de la classe Grid
+// *****************************************************************************
+
+void Grid::ajouter_map(const Particule& p) {
+    array<int,3> key(p.pos_floor()); 
+    auto it = grille_.find(key); 
+    if (it != grille_.end()) {
+        grille_[key].push_back(particules_.size()-1); 
+    }
+    else{
+        vector<size_t> nouveau = {particules_.size()-1};
+        grille_[p.pos_floor()] = nouveau; 
+    }
+}
+
+void Grid::retirer_map(Particule& p, size_t i) {
+    array<int,3> key (p.pos_floor());
+    auto it = grille_.find(key); 
+    if (it != grille_.end()) {
+        size_t indice_particule;
+        for (size_t j(0); j < grille_[key].size(); ++j){
+            if (grille_[key][j] == i) { indice_particule = j;}
+        }
+        auto element_to_remove = grille_[key].begin() + indice_particule; 
+        if (element_to_remove != grille_[key].end()) {grille_[key].erase(element_to_remove);}
+    }
+}
+
+void Grid::ajouter_particule(Particule* p) {
+    Systeme::ajouter_particule(p); 
+    ajouter_map(*p); 
+}
+
+void Grid::supp_all() {
+    Systeme::supp_all(); 
+    grille_.clear(); 
+}
+
+void Grid::collision_paroi(Particule& p, size_t i) {
+    retirer_map(p,i); 
+    Systeme::collision_paroi(p,i);
+    ajouter_map(p); 
+}
+
 
 ostream& operator<<(ostream& sortie, Systeme const& S) {
     S.affiche(sortie);

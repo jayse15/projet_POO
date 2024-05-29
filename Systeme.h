@@ -4,6 +4,7 @@
 #include <memory>
 #include <type_traits>
 #include <cmath>
+#include <map>
 #include "GenerateurAleatoire.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -18,8 +19,8 @@ class Particule;
 
 class Systeme : public Dessinable
 {
-    private :
-        std::unique_ptr<Enceinte> enceinte_;
+    protected :
+        Enceinte enceinte_;
         std::vector<std::unique_ptr<Particule>> particules_;
         /* On utilise des pointeurs pour le polymorphisme. Comme on fait de
          * l'allocation dynamique, on utilise des unique_ptr puisque chaque
@@ -28,7 +29,7 @@ class Systeme : public Dessinable
 
     public :
         Systeme(double h = 20, double l = 20, double p = 20) :
-          enceinte_(make_unique<Enceinte>(h,l,p)), particules_{}, tirage_() {}
+          enceinte_(h,l,p), particules_{}, tirage_() {}
         /* Constructeur et constructeur par défaut de la classe Systeme.
          * Le systeme par défaut crée possède une enceinte de dimensions 20x20x20
          * et sans aucune particule. */
@@ -43,24 +44,24 @@ class Systeme : public Dessinable
         /* Méthode d'affichage d'un système. Affiche le nombre de particules et
          * les affiche une par une. */
 
-        void ajouter_particule(Particule* p);
+        virtual void ajouter_particule(Particule* p);
         // Ajoute une particule au système.
 
-        void supp_all();
-        // Désalloue et éfface toutes les particules du système
+        virtual void supp_all();
+        // Désalloue et éfface toutes les particules du système.
 
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
         // Méthode pour dessiner le système sur un support à dessin quelconque
 
-        void collision_paroi(Particule& p, size_t i);
+        virtual void collision_paroi(Particule& p, size_t i);
         /* Méthode pour la collision d'une particule sur une paroi. Par défaut
          * nous définissons que l'origine (0,0,0) est sur un coin de l'enceinte.
          * la hauteur est selon z, la largeur selon y et la profondeur selon x.
          * la face 1 est dans le plan x=0, la 2 dans le plan y=0 et la 3 dans le
          * plan z=0. La face 4 est opposée a la 1, la 5 à la 2 et la 6 à la 3. */
 
-        void collision_particules(Particule& p, size_t i);
+        virtual void collision_particules(Particule& p, size_t i);
         /* Méthode pour la collision entre particules. Lorsque deux particules
          * se trovent à une distance EPSILON (voir utils.h) elles sont renvoyés
          * dans des directions aléatoires et avec des vitesses calculées avec
@@ -119,3 +120,26 @@ class Systeme : public Dessinable
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& S);
 // Opérateur d'affichage de Systeme.
+
+
+class Grid : public Systeme {
+  private : 
+      std::map<std::array<int,3>, vector<size_t>> grille_; 
+  public : 
+        virtual void ajouter_particule(Particule* p) override;
+        // Ajoute une particule au système et à la map.
+
+        void ajouter_map(const Particule&); 
+
+        void retirer_map(Particule&, size_t);
+
+        virtual void supp_all() override;
+        // Désalloue et éfface toutes les particules du système et de la map. 
+
+        virtual void collision_paroi(Particule& p, size_t i);
+        /* Méthode pour la collision d'une particule sur une paroi. Par défaut
+         * nous définissons que l'origine (0,0,0) est sur un coin de l'enceinte.
+         * la hauteur est selon z, la largeur selon y et la profondeur selon x.
+         * la face 1 est dans le plan x=0, la 2 dans le plan y=0 et la 3 dans le
+         * plan z=0. La face 4 est opposée a la 1, la 5 à la 2 et la 6 à la 3. */
+}; 
