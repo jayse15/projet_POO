@@ -74,46 +74,52 @@ class Systeme : public Dessinable
         /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
          * particule sur un temps dt (en [s]) */
 
-        template <typename T=Particule>
-        void initialisation(double temperature, uint nb_part, double masse=1) {
-        /* Méthode d'initialisation aléatoire de nb_part particules a partir
-          * de la température du système en suivant la distribution des
-          * vitesses de Maxwell. Le template nous permet de choisir le type de
-          * particule voulu mais cela oblige que cette méthode soit définie ici. */
-
-          if (temperature<0) {
-            throw std::invalid_argument("Temperature must be in kelvin !");
-          }
-          else if constexpr(std::is_base_of<Particule, T>::value){
-
-            bool const is_p(std::is_same<Particule, T>::value);
-            if constexpr (not is_p) {
-              masse = T::get_masse();
-            }
-            double maxwell(sqrt(1000 * R/masse * temperature));
-
-            for (size_t j(0); j<nb_part; ++j){
-
-              double pos_x(tirage_.uniforme(0.0,enceinte_.get_l()));
-              double pos_y(tirage_.uniforme(0.0,enceinte_.get_p()));
-              double pos_z(tirage_.uniforme(0.0,enceinte_.get_h()));
-
-              double vit_x(tirage_.gaussienne(0.0, maxwell));
-              double vit_y(tirage_.gaussienne(0.0, maxwell));
-              double vit_z(tirage_.gaussienne(0.0, maxwell));
-
-              if constexpr (is_p) {
-                ajouter_particule(new T(masse, {pos_x, pos_y, pos_z},
-                                               {vit_x ,vit_y ,vit_z }));
-              } else {
-                 ajouter_particule(new T({pos_x, pos_y, pos_z},
-                                         {vit_x ,vit_y ,vit_z }));
-                }
-            }
-          }else {
-            throw std::invalid_argument("Given type is not a Particule !");
-          }
+        template <bool is_p, typename std::enable_if<is_p, int>::type = 0>
+        void func() {
+            // Code for true case
         }
+
+        template <bool is_p, typename std::enable_if<!is_p, int>::type = 0>
+        void func() {
+            // Code for false case
+        }
+
+        template <typename T = Particule>
+        typename std::enable_if<std::is_base_of<Particule, T>::value>::type
+        initialisation(double temperature, uint nb_part, double masse = 1) {
+          /* Méthode d'initialisation aléatoire de nb_part particules a partir
+           * de la température du système en suivant la distribution des
+           * vitesses de Maxwell. Le template nous permet de choisir le type de
+           * particule voulu mais cela oblige que cette méthode soit définie ici. */
+          if (temperature < 0) {
+            throw std::invalid_argument("Temperature must be in kelvin!");
+          }
+
+          bool const is_p = std::is_same<Particule, T>::value;
+          if (!is_p) {
+            masse = T::get_masse();
+          }
+
+          double maxwell = sqrt(1000 * R / masse * temperature);
+
+          for (size_t j = 0; j < nb_part; ++j) {
+              double pos_x = tirage_.uniforme(0.0, enceinte_.get_l());
+              double pos_y = tirage_.uniforme(0.0, enceinte_.get_p());
+              double pos_z = tirage_.uniforme(0.0, enceinte_.get_h());
+
+              double vit_x = tirage_.gaussienne(0.0, maxwell);
+              double vit_y = tirage_.gaussienne(0.0, maxwell);
+              double vit_z = tirage_.gaussienne(0.0, maxwell);
+
+              if (is_p) {
+                  ajouter_particule(new T(masse, { pos_x, pos_y, pos_z },
+                                               { vit_x, vit_y, vit_z }));
+             } else {
+                  ajouter_particule(new T({ pos_x, pos_y, pos_z },
+                                        { vit_x, vit_y, vit_z }));
+              }
+          }
+    }
 
 };
 

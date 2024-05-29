@@ -5,6 +5,7 @@
 #include "Dessinable.h"
 #include "SupportADessin.h"
 #include "GenerateurAleatoire.h"
+#include <cmath>
 
 class Particule : public Dessinable
 {
@@ -20,6 +21,21 @@ class Particule : public Dessinable
     Particule(double m, Vecteur3D p, Vecteur3D v)
       : masse(m), position(p), vitesse(v) {}
     // Constructeur de la classe Particule. Pas de constructeur par défaut.
+
+    Particule(double temp, double m, Enceinte& E, GenerateurAleatoire& tirage)
+      : masse(m) {
+        position = {tirage.uniforme(0.0, E.get_l()),
+                    tirage.uniforme(0.0, E.get_p()),
+                    tirage.uniforme(0.0, E.get_h())};
+
+        double maxwell(sqrt(1000 * R / m * temp));
+
+        vitesse = {tirage.gaussienne(0.0, maxwell),
+                   tirage.gaussienne(0.0, maxwell),
+                   tirage.gaussienne(0.0, maxwell)};
+      }
+    /* Constructeur de la classe particule sur la base de la température et les
+     * dimensions d'une enceinte. */
 
     virtual std::ostream& affiche(std::ostream& sortie) const;
     // Méthode d'affiche des attributs d'une particule
@@ -46,12 +62,8 @@ class Particule : public Dessinable
     void collision_particule(Particule& p, GenerateurAleatoire tirage,
                              bool ex9 = true);
     /* Méthode qui effectue les changements de vitesse et de direction lorsque
-     * this et p entrent en collision. Ici on fixe le zenith à PI/2 et l'azimut
-     * à PI/3 (phi=PI/3, z=0). */
-
-    void collision_particule_save(Particule& p, GenerateurAleatoire tirage);
-    /* Identique que collision_particule mais le zenith et l'azimut sont tirés
-     * aléatoirement. */
+     * this et p entrent en collision. Avec ex9 = true on fixe le zenith à PI/2
+     * et l'azimut à PI/3 (phi=PI/3, z=0), sinon ils sont tirés aléatoirement. */
 
 };
 
@@ -72,6 +84,9 @@ class Neon : public Particule
   public:
     Neon(Vecteur3D p, Vecteur3D v) : Particule(masse_Neon, p, v) {}
 
+    Neon(double temp, Enceinte& E, GenerateurAleatoire& tirage) :
+      Particule(temp, masse, E, tirage) {}
+
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour le néon
 
@@ -86,6 +101,9 @@ class Argon : public Particule
   public:
     Argon(Vecteur3D p, Vecteur3D v) : Particule(masse_Argon, p, v) {}
 
+    Argon(double temp, Enceinte& E, GenerateurAleatoire& tirage) :
+      Particule(temp, masse, E, tirage) {}
+
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'argon
 
@@ -99,6 +117,9 @@ class Helium : public Particule
 
   public:
     Helium(Vecteur3D p, Vecteur3D v) : Particule(masse_Helium, p, v) {}
+
+    Helium(double temp, Enceinte& E, GenerateurAleatoire& tirage) :
+      Particule(temp, masse, E, tirage) {}
 
     std::ostream& affiche(std::ostream& sortie) const override;
     // Méthode d'affiche pour l'hélium
