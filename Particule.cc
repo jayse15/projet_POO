@@ -81,12 +81,9 @@ ostream& operator<<(ostream& sortie, Particule const& P) {
 }
 
 array<int,3> Particule::pos_floor() const {
-  double x_1(floor(position.get_coord(0))); 
-  double y_1(floor(position.get_coord(1)));
-  double z_1(floor(position.get_coord(2))); 
-  int x = int(x_1); 
-  int y = int(y_1); 
-  int z = int(z_1); 
+  int x(floor(position.get_coord(0))); 
+  int y(floor(position.get_coord(1)));
+  int z(floor(position.get_coord(2))); 
   array<int,3> partie_entiere(x,y,z);
   return partie_entiere; 
 }
