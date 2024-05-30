@@ -27,19 +27,22 @@ ostream& Helium::affiche(ostream& sortie) const {
   return sortie;
 }
 
-double Particule::get_pos(uint i) const {
+double Particule::get_pos(size_t i) const {
   return position.get_coord(i);
 }
 
-double Particule::get_vit(uint i) const {
+double Particule::get_vit(size_t i) const {
   return vitesse.get_coord(i);
 }
 
-void Particule::set_pos(uint i, double x) {
+double Particule::get_masse() const {
+  return masse;
+}
+void Particule::set_pos(size_t i, double x) {
   position.set_coord(i, x);
 }
 
-void Particule::set_vit(uint i, double x) {
+void Particule::set_vit(size_t i, double x) {
   vitesse.set_coord(i, x);
 }
 void Particule::evolue(double dt) {
@@ -81,9 +84,9 @@ ostream& operator<<(ostream& sortie, Particule const& P) {
 }
 
 array<int,3> Particule::pos_floor() const {
-  int x(floor(position.get_coord(0))); 
+  int x(floor(position.get_coord(0)));
   int y(floor(position.get_coord(1)));
-  int z(floor(position.get_coord(2)));  
+  int z(floor(position.get_coord(2)));
   array<int,3> partie_entiere{x,y,z};
-  return partie_entiere; 
+  return partie_entiere;
 }

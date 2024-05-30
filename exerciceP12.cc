@@ -9,7 +9,7 @@ using namespace std;
 int main() {
   Systeme S;
 
-  double T(2);
+  double T(1);
   S.initialisation<>(T, 2, 4.21);
   S.initialisation<Argon>(T,2);
   S.initialisation<Helium>(T,1);

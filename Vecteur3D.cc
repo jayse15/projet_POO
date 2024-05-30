@@ -15,13 +15,13 @@ ostream& Vecteur3D::affiche(ostream& sortie) const{
   return sortie;
 }
 
-void Vecteur3D::set_coord(uint i, double x)
+void Vecteur3D::set_coord(size_t i, double x)
 {
   if (i > 2) {throw invalid_argument("False indexing !!");}
   else {vect_[i] = x;}
 }
 
-double Vecteur3D::get_coord(uint i) const
+double Vecteur3D::get_coord(size_t i) const
 {
   if (i > 2) {throw invalid_argument("False indexing !!");}
   return vect_[i];
