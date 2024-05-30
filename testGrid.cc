@@ -16,7 +16,7 @@ int main() {
     TextViewer T(cout);
 
     string line("==========----------");
-    G.dessine_sur(T);
+    G.dessine_sur(T); 
 
     cout << "Lancement de la simulation" << endl;
 
