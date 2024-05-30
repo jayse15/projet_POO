@@ -94,7 +94,9 @@ class Systeme : public Dessinable
                            tirage_.uniforme(0.0,enceinte_.get_h())}, {}, masse);
 
               for (size_t i(0); i<3; i++){
-                p->set_vit(i, tirage_.gaussienne(0.0, sqrt(1000 * R/p->get_masse() * temperature)));
+                p->set_vit(i, tirage_.gaussienne(0.0, sqrt(1000 *
+                                                           R/p->get_masse() *
+                                                           temperature)));
               }
 
               ajouter_particule(p);
