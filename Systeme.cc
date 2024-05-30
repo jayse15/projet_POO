@@ -84,15 +84,17 @@ void Systeme::evolue(double dt, SupportADessin& s) {
     }
 }
 
+
+
 // *****************************************************************************
 // Méthodes de la classe Grid
 // *****************************************************************************
 
 void Grid::ajouter_map(const Particule& p, size_t index) {
-    array<int,3> key(p.pos_floor()); 
+    array<int,3> key(p.pos_floor());
     for (auto case_ : grille_){
         if (case_.first == key) {
-            case_.second.push_back(index); 
+            case_.second.push_back(index);
             return;
         }
     }
@@ -102,31 +104,31 @@ void Grid::ajouter_map(const Particule& p, size_t index) {
 
 void Grid::retirer_map(Particule& p, size_t i) {
     array<int,3> key (p.pos_floor());
-    auto it = grille_.find(key); 
+    auto it = grille_.find(key);
     if (it != grille_.end()) {
         size_t indice_particule;
         for (size_t j(0); j < grille_[key].size(); ++j){
             if (grille_[key][j] == i) { indice_particule = j;}
         }
-        auto element_to_remove = grille_[key].begin() + indice_particule; 
+        auto element_to_remove = grille_[key].begin() + indice_particule;
         if (element_to_remove != grille_[key].end()) {grille_[key].erase(element_to_remove);}
     }
-} 
+}
 
 void Grid::ajouter_particule(Particule* p) {
-    Systeme::ajouter_particule(p); 
-    ajouter_map(*p, particules_.size()-1); 
-} 
+    Systeme::ajouter_particule(p);
+    ajouter_map(*p, particules_.size()-1);
+}
 
 void Grid::supp_all() {
-    Systeme::supp_all(); 
-    grille_.clear(); 
+    Systeme::supp_all();
+    grille_.clear();
 }
 
 void Grid::collision_paroi(Particule& p, size_t i) {
-    retirer_map(p,i); 
+    retirer_map(p,i);
     Systeme::collision_paroi(p,i);
-    ajouter_map(p,i); 
+    ajouter_map(p,i);
 }
 
 void Grid::collision_particules(Particule& p, size_t i) {

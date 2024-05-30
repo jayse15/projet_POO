@@ -19,11 +19,11 @@ class Vecteur3D
     std::ostream& affiche(std::ostream& sortie) const;
     // Méthode d'affichage de Vecteur3D
 
-    void set_coord(uint i, double x);
+    void set_coord(size_t i, double x);
     /* Met la i-ème composante de this égale à la valeur donnée (0=x, 1=y, 2=z).
      * Message d'erreur si i > 2. */
 
-    double get_coord(uint i) const;
+    double get_coord(size_t i) const;
     /* Retourne la valeur de la i-ème composante de this. Il faut gérer une
      * exception si i > 2. */
 
