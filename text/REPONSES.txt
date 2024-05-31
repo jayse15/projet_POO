@@ -85,3 +85,16 @@ rapport aux autres. En supposant qu'une comparaison et un avancement est en O(1)
 et qu'on compare chaque paire de particules une seule fois, nous aurons un
 algorithme qui fait n + ((n-1) + ... + 1) = n + n(n-1)/2 = n(n+1)/2 opérations
 qui est en O(n^2).
+
+P13.1)
+Cette particule sera comme toutes les autres mais on en gardera une référence
+dans une sous-classe de TextViewer appelée Brownien (Brownien.h). Ceci ne cause
+pas de problème au niveau du unique_ptr car ce n'est qu'une réference et, lors de
+l'affichage, on va comparer les adresses des particules à l'adresse de la
+particule suivie afin de déterminer si ce sont exactement les mêmes. Si ce sont
+les mêmes on va aussi injecter l'affichage de la particule suivie dans le
+fichier brownien.txt, qui doit exister au préalable.
+
+P14.1)
+Comme on suppose qu'une boucle sur les particules dans une case est en O(1),
+alors on aura n opérations pour décplacer les particules, n pour
