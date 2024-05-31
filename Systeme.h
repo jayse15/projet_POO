@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <cmath>
 #include <map>
+#include <set>
 #include "GenerateurAleatoire.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -111,7 +112,7 @@ std::ostream& operator<<(std::ostream& sortie, Systeme const& S);
 class Grid : public Systeme
 {
   private :
-      std::map<std::array<int,3>, std::vector<size_t>> grille_;
+      std::map<std::array<int,3>, std::set<size_t>> grille_;
   public :
       Grid(double h = 20, double l = 20, double p = 20) :
           Systeme(h,l,p), grille_{} {}

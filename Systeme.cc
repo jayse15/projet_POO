@@ -91,28 +91,18 @@ void Systeme::evolue(double dt, SupportADessin& s) {
 // *****************************************************************************
 
 void Grid::ajouter_map(const Particule& p, size_t index) {
-    array<int,3> key(p.pos_floor());
-    for (auto case_ : grille_){
-        if (case_.first == key) {
-            case_.second.push_back(index);
-            return;
-        }
-    }
-    vector<size_t> nouveau = {index};
-    grille_[p.pos_floor()] = nouveau;
+    grille_[p.pos_floor()].insert(index);
+
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
-    array<int,3> key (p.pos_floor());
-    auto it = grille_.find(key);
-    if (it != grille_.end()) {
-        size_t indice_particule;
-        for (size_t j(0); j < grille_[key].size(); ++j){
-            if (grille_[key][j] == i) { indice_particule = j;}
-        }
-        auto element_to_remove = grille_[key].begin() + indice_particule;
-        if (element_to_remove != grille_[key].end()) {grille_[key].erase(element_to_remove);}
-    }
+  for (auto& pair : grille_) {
+          auto& mySet = pair.second;
+          if (pair.second.find(i) != pair.second.end()) {
+              pair.second.erase(i);
+              break;
+          }
+      }
 }
 
 void Grid::ajouter_particule(Particule* p) {
