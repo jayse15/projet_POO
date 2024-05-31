@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-  Particule p1(4.002602, {1,1,1}, {0,0,0});
+  Particule p1({1,1,1}, {0,0,0}, 4.002602);
   Neon p2({1,18.5,1}, {0,0.2,0});
   Argon p3({1,1,3.1}, {0,0,-0.5});
   Particule p4(p2);
