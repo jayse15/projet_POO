@@ -92,6 +92,9 @@ void Grid::ajouter_map(const Particule& p, size_t index) {
     array<int,3> key(p.pos_floor()); 
     for (auto case_ : grille_){
         if (case_.first == key) {
+            for (auto indice : case_.second) {
+                if (case_.second[indice] == index) {return;}
+            }
             case_.second.push_back(index); 
             return;
         }
@@ -146,6 +149,18 @@ void Grid::collision_particules(Particule& p, size_t i) {
     }
 }
 
+void Grid::evolue(double dt, SupportADessin& s) {
+    for (size_t i(0); i < particules_.size(); ++i) {
+        retirer_map(*particules_[i], i); 
+        particules_[i]->evolue(dt);
+        ajouter_map(*particules_[i], i); 
+    }
+    for (size_t i(0); i < particules_.size() ; ++i){
+        collision_paroi(*particules_[i], i+1);
+        collision_particules(*particules_[i], i+1);
+        particules_[i]->dessine_sur(s);
+    }
+}
 
 
 ostream& operator<<(ostream& sortie, Systeme const& S) {

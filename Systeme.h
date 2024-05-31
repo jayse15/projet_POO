@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <cmath>
 #include <map>
+#include <set>
 #include "GenerateurAleatoire.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -71,7 +72,7 @@ class Systeme : public Dessinable
         /* Affiche le résultat de la collision de la particule p avec la i-ème
          * particule du système. */
 
-        void evolue(double dt, SupportADessin& s);
+        virtual void evolue(double dt, SupportADessin& s);
         /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
          * particule sur un temps dt (en [s]) */
 
@@ -133,11 +134,14 @@ class Grid : public Systeme
       // Ajoute une particule au système et à la map.
 
       void ajouter_map(const Particule&, size_t index); 
+      /* Méthode permettant d'ajouter une particule dans la grille_. */
 
       void retirer_map(Particule&, size_t);
+      /* Méthode permettant de vérifier si une particule est dans grille_
+       * et si c'est le cas de la retirer*/
 
       virtual void supp_all() override;
-      // Désalloue et éfface toutes les particules du système et de la map. 
+      // Désalloue et efface toutes les particules du système et de la map. 
 
       virtual void collision_paroi(Particule& p, size_t i) override;
       /* Méthode pour la collision d'une particule sur une paroi. Par défaut
@@ -147,4 +151,12 @@ class Grid : public Systeme
        * plan z=0. La face 4 est opposée a la 1, la 5 à la 2 et la 6 à la 3. */
 
       void collision_particules(Particule& p, size_t i) override;
+      /* Méthode pour la collision entre particules. Lorsque deux particules
+       * se trovent à une distance EPSILON (voir utils.h) elles sont renvoyés
+       * dans des directions aléatoires et avec des vitesses calculées avec
+       * la conservation de la quantité de mouvement */
+
+      void evolue(double dt, SupportADessin& s) override;
+      /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
+       * particule sur un temps dt (en [s]) */
 }; 
