@@ -91,8 +91,8 @@ class Systeme : public Dessinable
             for (size_t j(0); j<nb_part; j++){
 
               T* p = new T({tirage_.uniforme(0.0,enceinte_.get_l()),
-                           tirage_.uniforme(0.0,enceinte_.get_p()),
-                           tirage_.uniforme(0.0,enceinte_.get_h())}, {}, masse);
+                            tirage_.uniforme(0.0,enceinte_.get_p()),
+                            tirage_.uniforme(0.0,enceinte_.get_h())}, {}, masse);
 
               for (size_t i(0); i<3; i++){
                 p->set_vit(i, tirage_.gaussienne(0.0, sqrt(1000 *
