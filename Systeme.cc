@@ -122,20 +122,25 @@ void Grid::collision_paroi(Particule& p, size_t i) {
 }
 
 void Grid::collision_particules(Particule& p, size_t i) {
-    array<int,3> key(p.pos_floor());
-    for (auto case_ : grille_) {
-        if (case_.first == key) {
-            for (size_t j(0); j < case_.second.size(); ++j){
-                cout << "La particule " << i+1 <<
-                " entre en collision avec une autre particule." << endl;
-                cout << " avant le choc : " << endl;
-                afficher_collision(p, i);
-                particules_[case_.second[j]]->collision_particule(p, tirage_);
-                cout << " après le choc : " << endl;
-                afficher_collision(p, i);
-            }
+    for (auto& case_ : grille_){
+        for (auto& index : case_.second){
+            cout << "La particule " << i+1 <<
+                    " entre en collision avec une autre particule." << endl;
+            cout << " avant le choc : " << endl;
+            afficher_collision(p, i);
+            particules_[case_.second[j]]->collision_particule(p, tirage_);
+            cout << " après le choc : " << endl;
+            afficher_collision(p, i);
         }
     }
+
+
+
+
+}
+
+void evolue(double dt, SupportADessin& s) {
+
 }
 
 
