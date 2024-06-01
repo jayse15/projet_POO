@@ -62,15 +62,17 @@ class Systeme : public Dessinable
          * la face 1 est dans le plan x=0, la 2 dans le plan y=0 et la 3 dans le
          * plan z=0. La face 4 est opposée a la 1, la 5 à la 2 et la 6 à la 3. */
 
+        void afficher_collision(Particule const& p, size_t i) const;
+        /* Affiche le résultat de la collision de la particule p avec la i-ème
+         * particule du système. */
+
+        void Systeme::collision(Particule& p, size_t i);
+
         virtual void collision_particules(Particule& p, size_t i);
         /* Méthode pour la collision entre particules. Lorsque deux particules
          * se trovent à une distance EPSILON (voir utils.h) elles sont renvoyés
          * dans des directions aléatoires et avec des vitesses calculées avec
          * la conservation de la quantité de mouvement */
-
-        void afficher_collision(Particule const& p, size_t i) const;
-        /* Affiche le résultat de la collision de la particule p avec la i-ème
-         * particule du système. */
 
         virtual void evolue(double dt, SupportADessin& s);
         /* Fait evoluer le système sur un temps dt en faisant evoluer chaque

@@ -31,48 +31,56 @@ void Systeme::collision_paroi(Particule& p, size_t i) {
     for (size_t j(0); j<=2; ++j) {
         if (p.get_pos(j) < PRECISION) {
             cout << "La particule " << i << " rebondit sur la face " << j+1 << endl;
-            p.set_pos(j, 2*p.get_pos(j)-PRECISION);
+            p.set_pos(j, 2*PRECISION-p.get_pos(j));
             p.set_vit(j,-p.get_vit(j));
         }
     }
-    if (enceinte_.get_l() - p.get_pos(0) < PRECISION) {
+    double diff(enceinte_.get_l() - p.get_pos(0));
+    if (diff < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 4" << endl;
-        p.set_pos(0,2*enceinte_.get_l()-PRECISION);
+        p.set_pos(0,2*(enceinte_.get_l()-PRECISION)-p.get_pos(0));
         p.set_vit(0,-p.get_vit(0));
     }
-    if (enceinte_.get_h() - p.get_pos(1) < PRECISION) {
+    diff = enceinte_.get_h() - p.get_pos(1);
+    if (diff < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 5" << endl;
-        p.set_pos(1,2*enceinte_.get_h()-PRECISION);
+        p.set_pos(1,2*(enceinte_.get_h()-PRECISION)-p.get_pos(1));
         p.set_vit(1,-p.get_vit(1));
     }
-    if (enceinte_.get_p() - p.get_pos(2) < PRECISION) {
+    diff = enceinte_.get_p() - p.get_pos(2);
+    if (diff < PRECISION) {
         cout << "La particule " << i << " rebondit sur la face 6" << endl;
-        p.set_pos(2,2*enceinte_.get_p()-PRECISION);
+        p.set_pos(2,2*(enceinte_.get_p()-PRECISION)-p.get_pos(2));
         p.set_vit(2,-p.get_vit(2));
     }
+}
+
+void Systeme::afficher_collision(Particule const& p, size_t i) const {
+    cout << setw(3) << "" << "part. " << i+1 << " : : ";
+    particules_[i]->Particule::affiche(cout) << endl;
+    cout << setw(3) << "" << "autre : : ";
+    p.Particule::affiche(cout) << endl;
+}
+
+void Systeme::collision(Particule& p, size_t i) {
+    cout << "La particule " << i+1 <<
+            " entre en collision avec une autre particule." << endl;
+    cout << " avant le choc : " << endl;
+    afficher_collision(p, i);
+    particules_[i]->collision_particule(p, tirage_);
+    cout << " après le choc : " << endl;
+    afficher_collision(p, i);
+
 }
 
 void Systeme::collision_particules(Particule& p, size_t i) {
     if (i < particules_.size()) {
         for (;i < particules_.size(); ++i) {
             if (p.test_contact(*particules_[i])) {
-                cout << "La particule " << i+1 <<
-                " entre en collision avec une autre particule." << endl;
-                cout << " avant le choc : " << endl;
-                afficher_collision(p, i);
-                particules_[i]->collision_particule(p, tirage_);
-                cout << " après le choc : " << endl;
-                afficher_collision(p, i);
+                collision(p, i);
             }
         }
     }
-}
-
-void Systeme::afficher_collision(Particule const& p, size_t i) const {
-        cout << setw(3) << "" << "part. " << i+1 << " : : ";
-        particules_[i]->Particule::affiche(cout) << endl;
-        cout << setw(3) << "" << "autre : : ";
-        p.Particule::affiche(cout) << endl;
 }
 
 void Systeme::evolue(double dt, SupportADessin& s) {
@@ -93,20 +101,17 @@ void Grid::ajouter_map(const Particule& p, size_t index) {
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
-    set<size_t> case_(grille_[p.pos_floor()]);
-    auto& mySet = case_;
-    if (mySet.find(i) != mySet.end()) {
-        mySet.erase(i);
-        map<array<int,3>,set<size_t>>::iterator it = grille_.begin(); 
-        for (; it != grille_.end();) {
-            if (mySet.empty()) {
-                grille_.erase(it);
-                break;
-            }
-        }
+    auto it = grille_.find(p.pos_floor());
 
+    if (it != grille_.end()) {
+        std::set<size_t>& mySet = it->second;
+        mySet.erase(i);
+        if (mySet.empty()) {
+            grille_.erase(it);
+        }
     }
 }
+
 
 void Grid::ajouter_particule(Particule* p) {
     Systeme::ajouter_particule(p);
@@ -114,12 +119,12 @@ void Grid::ajouter_particule(Particule* p) {
 }
 
 void Grid::test() const {
-    for (auto case_ : grille_) {
-        cout << "case : "; 
-        for (auto element : case_.second) {
-            cout << element << " "; 
+    for (auto& case_ : grille_) {
+        cout << "case : ";
+        for (auto& element : case_.second) {
+            cout << element << " ";
         }
-        cout << endl; 
+        cout << endl;
     }
 }
 
@@ -137,16 +142,10 @@ void Grid::collision_paroi(Particule& p, size_t i) {
 void Grid::collision_particules(Particule& p, size_t i) {
     set<size_t> case_(grille_[p.pos_floor()]);
     for (auto& index : case_){
-        set<size_t>::const_iterator thispart(case_.find(i)); 
-        set<size_t>::const_iterator indice(case_.find(index)); 
+        set<size_t>::const_iterator thispart(case_.find(i));
+        set<size_t>::const_iterator indice(case_.find(index));
         if ((indice != case_.end()) and (thispart != case_.end()) and (*thispart < *indice)){
-            cout << "La particule " << *indice+1 <<
-                " entre en collision avec une autre particule." << endl;
-            cout << " avant le choc : " << endl;
-            afficher_collision(p, *indice);
-            particules_[*indice]->collision_particule(p, tirage_);
-            cout << " après le choc : " << endl;
-            afficher_collision(p, *indice);
+            collision(p, *indice);
         }
     }
 }
