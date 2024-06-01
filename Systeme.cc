@@ -93,12 +93,18 @@ void Grid::ajouter_map(const Particule& p, size_t index) {
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
-    for (auto& pair : grille_) {
-        auto& mySet = pair.second;
-        if (mySet.find(i) != mySet.end()) {
-            mySet.erase(i);
-            break;
+    set<size_t> case_(grille_[p.pos_floor()]);
+    auto& mySet = case_;
+    if (mySet.find(i) != mySet.end()) {
+        mySet.erase(i);
+        map<array<int,3>,set<size_t>>::iterator it = grille_.begin(); 
+        for (; it != grille_.end();) {
+            if (mySet.empty()) {
+                grille_.erase(it);
+                break;
+            }
         }
+
     }
 }
 
