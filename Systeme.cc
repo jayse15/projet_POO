@@ -84,8 +84,6 @@ void Systeme::evolue(double dt, SupportADessin& s) {
     }
 }
 
-
-
 // *****************************************************************************
 // Méthodes de la classe Grid
 // *****************************************************************************
@@ -143,6 +141,18 @@ void evolue(double dt, SupportADessin& s) {
 
 }
 
+void Grid::evolue(double dt, SupportADessin& s) {
+    for (size_t i(0); i < particules_.size(); ++i) {
+        retirer_map(*particules_[i], i);
+        particules_[i]->evolue(dt);
+        ajouter_map(*particules_[i], i);
+    }
+    for (size_t i(0); i < particules_.size() ; ++i){
+        collision_paroi(*particules_[i], i+1);
+        collision_particules(*particules_[i], i);
+        particules_[i]->dessine_sur(s);
+    }
+}
 
 
 ostream& operator<<(ostream& sortie, Systeme const& S) {
