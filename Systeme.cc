@@ -156,7 +156,7 @@ void Grid::evolue(double dt, SupportADessin& s) {
         ajouter_map(*particules_[i], i); 
     }
     for (size_t i(0); i < particules_.size() ; ++i){
-        collision_paroi(*particules_[i], i);
+        collision_paroi(*particules_[i], i+1);
         collision_particules(*particules_[i], i);
         particules_[i]->dessine_sur(s);
     }
