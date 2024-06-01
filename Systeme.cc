@@ -141,7 +141,7 @@ void Grid::collision_particules(Particule& p, size_t i) {
         set<size_t>::const_iterator indice(case_.find(index)); 
         if ((indice != case_.end()) and (thispart != case_.end()) and (*thispart < *indice)){
             cout << "La particule " << *indice+1 <<
-                " entre en collision avec une autre particule." << endl;
+                    " entre en collision avec une autre particule." << endl;
             cout << " avant le choc : " << endl;
             afficher_collision(p, *indice);
             particules_[*indice]->collision_particule(p, tirage_);
