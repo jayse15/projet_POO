@@ -111,7 +111,7 @@ void Grid::test() const {
     for (auto case_ : grille_) {
         cout << "case : "; 
         for (auto element : case_.second) {
-            cout << element; 
+            cout << element << " "; 
         }
         cout << endl; 
     }
