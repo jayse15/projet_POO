@@ -13,6 +13,8 @@ int main() {
     G.ajouter_particule(new Argon({1, 1, 3.1}, {0, 0, -0.5}));
     G.ajouter_particule(new Helium({1, 1, 1}, {0, 0, 0}));
 
+    G.test(); 
+
     TextViewer T(cout);
 
     string line("==========----------");

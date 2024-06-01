@@ -56,7 +56,8 @@
         "fstream": "cpp",
         "iomanip": "cpp",
         "map": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "set": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

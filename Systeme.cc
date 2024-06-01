@@ -107,6 +107,16 @@ void Grid::ajouter_particule(Particule* p) {
     ajouter_map(*p, particules_.size()-1);
 }
 
+void Grid::test() const {
+    for (auto case_ : grille_) {
+        cout << "case : "; 
+        for (auto element : case_.second) {
+            cout << element; 
+        }
+        cout << endl; 
+    }
+}
+
 void Grid::supp_all() {
     Systeme::supp_all();
     grille_.clear();
@@ -119,19 +129,18 @@ void Grid::collision_paroi(Particule& p, size_t i) {
 }
 
 void Grid::collision_particules(Particule& p, size_t i) {
-    for (auto& case_ : grille_){
-        for (auto& index : case_.second){
-            set<size_t>::const_iterator thispart(case_.second.find(i)); 
-            set<size_t>::const_iterator indice(case_.second.find(index)); 
-            if ((indice != case_.second.end()) and (thispart != case_.second.end()) and (*thispart < *indice)){
-                cout << "La particule " << *indice+1 <<
-                        " entre en collision avec une autre particule." << endl;
-                cout << " avant le choc : " << endl;
-                afficher_collision(p, *indice);
-                particules_[*indice]->collision_particule(p, tirage_);
-                cout << " après le choc : " << endl;
-                afficher_collision(p, *indice);
-            }
+    set<size_t> case_(grille_[p.pos_floor()]);
+    for (auto& index : case_){
+        set<size_t>::const_iterator thispart(case_.find(i)); 
+        set<size_t>::const_iterator indice(case_.find(index)); 
+        if ((indice != case_.end()) and (thispart != case_.end()) and (*thispart < *indice)){
+            cout << "La particule " << *indice+1 <<
+                " entre en collision avec une autre particule." << endl;
+            cout << " avant le choc : " << endl;
+            afficher_collision(p, *indice);
+            particules_[*indice]->collision_particule(p, tirage_);
+            cout << " après le choc : " << endl;
+            afficher_collision(p, *indice);
         }
     }
 }

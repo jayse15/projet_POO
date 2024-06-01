@@ -146,4 +146,6 @@ class Grid : public Systeme
       void evolue(double dt, SupportADessin& s) override;
       /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
        * particule sur un temps dt (en [s]) */
+
+      void test() const;
 };
