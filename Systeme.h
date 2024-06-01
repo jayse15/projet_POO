@@ -66,7 +66,7 @@ class Systeme : public Dessinable
         /* Affiche le résultat de la collision de la particule p avec la i-ème
          * particule du système. */
 
-        void Systeme::collision(Particule& p, size_t i);
+        void collision(Particule& p, size_t i);
 
         virtual void collision_particules(Particule& p, size_t i);
         /* Méthode pour la collision entre particules. Lorsque deux particules
