@@ -68,7 +68,7 @@ class Systeme : public Dessinable
 
         void collision(Particule& p, size_t i);
 
-        virtual void collision_particules(Particule& p, size_t i);
+        void collision_particules(Particule& p, size_t i);
         /* Méthode pour la collision entre particules. Lorsque deux particules
          * se trovent à une distance EPSILON (voir utils.h) elles sont renvoyés
          * dans des directions aléatoires et avec des vitesses calculées avec
@@ -119,6 +119,8 @@ class Grid : public Systeme
       Grid(double h = 20, double l = 20, double p = 20) :
           Systeme(h,l,p), grille_{} {}
 
+      void collision_particules(Particule& p, size_t i) = delete;
+
       virtual void ajouter_particule(Particule* p) override;
       // Ajoute une particule au système et à la map.
 
@@ -139,7 +141,7 @@ class Grid : public Systeme
        * la face 1 est dans le plan x=0, la 2 dans le plan y=0 et la 3 dans le
        * plan z=0. La face 4 est opposée a la 1, la 5 à la 2 et la 6 à la 3. */
 
-      void collision_particules(Particule& p, size_t i) override;
+      void collision_particules();
       /* Méthode pour la collision entre particules. Lorsque deux particules
        * se trovent à une distance EPSILON (voir utils.h) elles sont renvoyés
        * dans des directions aléatoires et avec des vitesses calculées avec
@@ -148,6 +150,4 @@ class Grid : public Systeme
       void evolue(double dt, SupportADessin& s) override;
       /* Fait evoluer le système sur un temps dt en faisant evoluer chaque
        * particule sur un temps dt (en [s]) */
-
-      void test() const;
 };

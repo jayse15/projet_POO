@@ -118,16 +118,6 @@ void Grid::ajouter_particule(Particule* p) {
     ajouter_map(*p, particules_.size()-1);
 }
 
-void Grid::test() const {
-    for (auto& case_ : grille_) {
-        cout << "case : ";
-        for (auto& element : case_.second) {
-            cout << element << " ";
-        }
-        cout << endl;
-    }
-}
-
 void Grid::supp_all() {
     Systeme::supp_all();
     grille_.clear();
@@ -135,19 +125,22 @@ void Grid::supp_all() {
 
 void Grid::collision_paroi(Particule& p, size_t i) {
     retirer_map(p,i);
-    Systeme::collision_paroi(p,i);
+    Systeme::collision_paroi(p,i+1);
     ajouter_map(p,i);
 }
 
-void Grid::collision_particules(Particule& p, size_t i) {
-    set<size_t> case_(grille_[p.pos_floor()]);
-    for (auto& index : case_){
-        set<size_t>::const_iterator thispart(case_.find(i));
-        set<size_t>::const_iterator indice(case_.find(index));
-        if ((indice != case_.end()) and (thispart != case_.end()) and (*thispart < *indice)){
-            collision(p, *indice);
-        }
+void Grid::collision_particules() {
+  for (auto& case_ : grille_) {
+    if (case_.second.size() > 1){
+      auto it = case_.second.begin();
+      size_t p = *it;
+      ++it;
+      for (; it!=case_.second.end(); ++it) {
+        cout << *it << endl;
+        Systeme::collision(*particules_[p], *it);
+      }
     }
+  }
 }
 
 void Grid::evolue(double dt, SupportADessin& s) {
@@ -157,9 +150,11 @@ void Grid::evolue(double dt, SupportADessin& s) {
         ajouter_map(*particules_[i], i);
     }
     for (size_t i(0); i < particules_.size() ; ++i){
-        collision_paroi(*particules_[i], i+1);
-        collision_particules(*particules_[i], i);
-        particules_[i]->dessine_sur(s);
+        collision_paroi(*particules_[i], i);
+    }
+    collision_particules();
+    for (size_t i(0); i < particules_.size() ; ++i){
+      particules_[i]->dessine_sur(s);
     }
 }
 

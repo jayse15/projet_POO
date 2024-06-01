@@ -23,7 +23,6 @@ int main() {
     for (size_t i(0); i<10; i++) {
         cout << line << endl;
         G.evolue(1, T);
-        G.test();
     }
     cout << line << endl;
 
