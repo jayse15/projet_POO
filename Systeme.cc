@@ -90,17 +90,16 @@ void Systeme::evolue(double dt, SupportADessin& s) {
 
 void Grid::ajouter_map(const Particule& p, size_t index) {
     grille_[p.pos_floor()].insert(index);
-
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
-  for (auto& pair : grille_) {
-          auto& mySet = pair.second;
-          if (pair.second.find(i) != pair.second.end()) {
-              pair.second.erase(i);
-              break;
-          }
-      }
+    for (auto& pair : grille_) {
+        auto& mySet = pair.second;
+        if (mySet.find(i) != mySet.end()) {
+            mySet.erase(i);
+            break;
+        }
+    }
 }
 
 void Grid::ajouter_particule(Particule* p) {
@@ -122,23 +121,19 @@ void Grid::collision_paroi(Particule& p, size_t i) {
 void Grid::collision_particules(Particule& p, size_t i) {
     for (auto& case_ : grille_){
         for (auto& index : case_.second){
-            cout << "La particule " << i+1 <<
-                    " entre en collision avec une autre particule." << endl;
-            cout << " avant le choc : " << endl;
-            afficher_collision(p, i);
-            particules_[case_.second[j]]->collision_particule(p, tirage_);
-            cout << " après le choc : " << endl;
-            afficher_collision(p, i);
+            set<size_t>::const_iterator thispart(case_.second.find(i)); 
+            set<size_t>::const_iterator indice(case_.second.find(index)); 
+            if ((indice != case_.second.end()) and (thispart != case_.second.end()) and (*thispart < *indice)){
+                cout << "La particule " << *indice+1 <<
+                        " entre en collision avec une autre particule." << endl;
+                cout << " avant le choc : " << endl;
+                afficher_collision(p, *indice);
+                particules_[*indice]->collision_particule(p, tirage_);
+                cout << " après le choc : " << endl;
+                afficher_collision(p, *indice);
+            }
         }
     }
-
-
-
-
-}
-
-void evolue(double dt, SupportADessin& s) {
-
 }
 
 void Grid::evolue(double dt, SupportADessin& s) {
