@@ -168,8 +168,8 @@ La classe Systeme regroupe un grand nombre de méthode:
       evolue() est découpée en deux boucles. 
       La première vient simplement faire avancée toutes les particules de l'intervalle dt. 
       La deuxième vient d'abord vérifier si certaines particules ont rebondi sur les parois, 
-      puis si il y a des collisions entre les particules, et enfin afficher tout cela sur 
-      le SupportADessin. 
+      (collision_paroi), puis si il y a des collisions entre les particules (collision_particule), 
+      et enfin afficher tout cela sur le SupportADessin (dessine_sur). 
     - Enfin, nous retrouvons un template, qui nous sert dans la méthode initialisation(). 
       Son rôle est de 'générer' un certain nombre de particule, avec des positions et des 
       vitesses tirées aléatoirement selon la distribution de Maxwell. 
@@ -183,7 +183,7 @@ La classe Systeme regroupe un grand nombre de méthode:
         * La position est tirée uniformément, entre l'origine du repère, et les dimensions 
           de l'enceinte (pour s'assurer qu'elle soit bien à l'intérieur). 
         * La vitesse suit un tirage gaussien, grâce à la distribution de Maxwell, dépendant 
-          de la température, de la constante de Boltzmann, et de la masse de la Particule. 
+          de la température, de la constante des gaz parfaits, et de la masse de la Particule. 
           Si nous ne choisissons pas de type au préalable pour la Particule, la masse en 
           question est celle donnée en entrée, et sinon il s'agit de la masse liée à l'espèce
           choisie. 
@@ -210,5 +210,38 @@ Ainsi, nous retrouvons les méthodes suivantes:
       Elle vient simplement ajouter dans la bonne case la particule entrée, et compléter le set 
       associé, avec l'indice. 
     - retirer_map(), qui prend une référence sur une Particule, et un indice (même que pour ajouter_map). 
-      Ici, on vient 
+      Ici, on vient chercher dans la map la particule entrée, et retirer du set associée à sa case, 
+      son indice dans particules_. De plus, si le set est vide après cette opération, on vient supprimer 
+      la case de la map, car sur une grande simulation, nous perdions beaucoup en efficacité avec un grand 
+      nombre de case. 
+    - ajouter_particule() est override dans Grid. En effet, il faut également ajouter la particule dans la 
+      map, donc cette méthode appelle sa version dans Systeme, ainsi que ajouter_map, avec la particule 
+      donnée, et donne comme indice à cette nouvelle particule la taille du tableau particules_ -1 
+      (on compte à partir de 0 dans un vector). 
+    - supp_all() est très similaire à ajouter_particule. En effet, on vient simplement appeler la version 
+      de Systeme, puis on vient utiliser la fonction clear offerte par la bibliothèque <map> pour vider 
+      la map. 
+    - collision_paroi() suit aussi cette logique. Pour déplacer une particule dans la map, il faut d'abord 
+      la retirer de celle-ci, modifier sa position, puis l'ajouter dans sa nouvelle case. Ainsi, 
+      on appelle retirer_map(), puis collision_paroi de Systeme, puis ajouter_map(). L'indice de la 
+      particule reste le même qu'avant son déplacement. 
+    - evolue() est dans le même cas. Dans la première boucle qui vient déplacer toutes les particules, 
+      il faut comme pour collision_paroi d'abord les retirer de la map, changer leur position, puis les 
+      rajouter. Ensuite, on appelle collision_paroi, collision et dessine_sur. 
+Le cas le plus important est bien évidemment celui de collision_particule. La méthode est fondamentalement
+différente de celle de Systeme, donc nous commmencons par delete cette dernière, car dans Grid, elle ne 
+nécessitera plus aucun argument d'entrée. En effet, ici nous allons simplement parcourir les cases 
+présentent dans grille_, et dès lors que le set associé à chaque case contient plus qu'un indice, donc plus 
+qu'une particule, nous allons calculé les collisions entre ces particules, en utilisant la méthode collision()
+du Systeme. 
+
+//utils.h 
+Ce fichier .h nous sert de boite à outils, dans laquelle nous stockons toutes les constantes importantes et 
+méthodes globales du projet: 
+    - PRECISION, qui permet la comparaison entre deux double. 
+    - EPSILON, diamètre des particules, utilisés dans Particule pour tester si deux particules se touchent. 
+    - R, constante des gaz parfaits. 
+    - masse_Neon, masse_Argon, masse_Helium, les masses des différentes sous classe de Particule. 
+    - round_to_decimal, qui permet d'arrondir les doubles, utilisé dans Vecteur3D pour le test d'égalité entre
+      deux vecteurs. 
 

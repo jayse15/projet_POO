@@ -111,7 +111,6 @@ void Grid::retirer_map(Particule& p, size_t i) {
     }
 }
 
-
 void Grid::ajouter_particule(Particule* p) {
     Systeme::ajouter_particule(p);
     ajouter_map(*p, particules_.size()-1);
