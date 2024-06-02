@@ -15,7 +15,7 @@ exerciceP12: exerciceP12.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o 
 
 Grid: testGrid.o Systeme.o Enceinte.o utils.o Particule.o Vecteur3D.o TextViewer.o
 
-Systeme: testSystem.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o TextViewer.o
+Systeme: testSysteme.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o TextViewer.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
 
@@ -61,7 +61,7 @@ testBrownien.o: testBrownien.cc Systeme.h GenerateurAleatoire.h \
 testParticule.o: testParticule.cc Particule.h utils.h Vecteur3D.h \
   Dessinable.h SupportADessin.h GenerateurAleatoire.h
 
-testSystem.o: testSystem.cc Systeme.h GenerateurAleatoire.h \
+testSysteme.o: testSysteme.cc Systeme.h GenerateurAleatoire.h \
   Dessinable.h SupportADessin.h Enceinte.h Particule.h utils.h \
   Vecteur3D.h
 

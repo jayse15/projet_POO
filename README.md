@@ -68,6 +68,19 @@ Pour tester les fonctionnalitées, nous vous recommandons de faire comme suit:
   ./classe_name
   ```
   et le programme s'éxecutera.
+* Vous pouvez aussi run les fichiers **exerciePX.cc** avec :
+  ```bash
+  make exercicePX
+  ```
+  et :
+  ```bash
+  ./exercicePX
+  ```
+* Attention ! Le Makefile a actuellement des problèmes et ne crée pas d'exectuable pour lors de la commande :
+  ```bash
+  make Grid
+  ```
+
 
 
 ## Contribution
@@ -86,7 +99,7 @@ Pour tester les fonctionnalitées, nous vous recommandons de faire comme suit:
    ```
 4. **Pusher votre branche :**
    ```bash
-   git push origin feature/nom-de-votre-branche
+   git push origin nom-de-votre-branche
    ```
 5. **Ouvrir une Pull Request :**
 Allez sur le dépôt d'origine sur GitHub et cliquez sur "New Pull Request".
