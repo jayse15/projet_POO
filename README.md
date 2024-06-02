@@ -34,6 +34,7 @@
    ```bash
    git clone https://github.com/jayse15/Projet_POO.git
    cd Projet_POO
+   ```
 
 2. Pas de dépendances à installer, le programme tourne sur C++11.
 
@@ -57,9 +58,43 @@ Représentation graphique:
 ### Make et Tests
 Pour tester les fonctionnalitées, nous vous recommandons de faire comme suit:
 
-* N'ajoutez pas de méthodes des classes citées plus haut dans
+* Les méthodes utilisées dans les fichiers test sont les seules qu'un utilisateur aurait besoin pour une simulation. Nous vous recommandons d'utiliser que celles ci.
+* Pour construire les liens et créer les fichiers executables nous avons crée un Makefile. la commande :
+  ```bash
+  make classe_name
+  ```
+  va créer les fichiers .o nécessaires et le fichier executable **classe_name** qui va run le main du fichier **testclasse_name.cc**. Il reste plus qu'à faire la commande :
+  ```bash
+  ./classe_name
+  ```
+  et le programme s'éxecutera.
 
 
 ## Contribution
+ Les contributions sont les bienvenues ! Veuillez suivre ces étapes pour contribuer :
+
+1. **Forker le dépôt :**
+   Cliquez sur le bouton "Fork" en haut de la page du dépôt pour créer une copie du dépôt sur votre compte GitHub.
+
+2. **Créer une branche pour votre fonctionnalité ou correction :**
+   ```bash
+   git checkout -b nom-de-votre-branche
+   ````
+3. **Faire un commit de vos modifications :**
+   ```bash
+   git commit -m 'Ajout de la fonctionnalité X'
+   ```
+4. **Pusher votre branche :**
+   ```bash
+   git push origin feature/nom-de-votre-branche
+   ```
+5. **Ouvrir une Pull Request :**
+Allez sur le dépôt d'origine sur GitHub et cliquez sur "New Pull Request".
+
 
 ## Contact
+
+Jason Grieder - jason.grieder@epfl.ch
+Alban Silbeau - alban.silbeau@epfl.ch
+
+Lien du Projet : https://github.com/jayse15/Projet_POO
