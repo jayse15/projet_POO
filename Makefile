@@ -13,9 +13,9 @@ exerciceP9: exerciceP9.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 exerciceP12: exerciceP12.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 	TextViewer.o
 
-Grid: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testGrid.o TextViewer.o
+Grid: testGrid.o Systeme.o Enceinte.o utils.o Particule.o Vecteur3D.o TextViewer.o
 
-Systeme: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testSystem.o TextViewer.o
+Systeme: testSystem.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o TextViewer.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
 
@@ -61,13 +61,13 @@ testBrownien.o: testBrownien.cc Systeme.h GenerateurAleatoire.h \
 testParticule.o: testParticule.cc Particule.h utils.h Vecteur3D.h \
   Dessinable.h SupportADessin.h GenerateurAleatoire.h
 
-testSystem1.o: testSystem1.cc Systeme.h GenerateurAleatoire.h \
+testSystem.o: testSystem.cc Systeme.h GenerateurAleatoire.h \
   Dessinable.h SupportADessin.h Enceinte.h Particule.h utils.h \
   Vecteur3D.h
 
-testGrid.o: testGrid.cc Systeme.h GenerateurAleatoire.h \
-  Dessinable.h SupportADessin.h Enceinte.h Particule.h utils.h \
-  Vecteur3D.h TextViewer.h
+testGrid.o: testGrid.cc Systeme.h GenerateurAleatoire.h Dessinable.h \
+  SupportADessin.h Enceinte.h utils.h Particule.h Vecteur3D.h \
+  TextViewer.h
 
 testVecteur3D.o: testVecteur3D.cc Vecteur3D.h
 

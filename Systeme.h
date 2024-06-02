@@ -52,7 +52,7 @@ class Systeme : public Dessinable
          * dans des directions aléatoires et avec des vitesses calculées avec
          * la conservation de la quantité de mouvement */
 
-        void Systeme::afficher_rebond(size_t i, size_t face);
+        void afficher_rebond(size_t i, size_t face);
         /* Méthode qui affiche le rebond de la i-ème particule contre la face
          * indiquée. */
 

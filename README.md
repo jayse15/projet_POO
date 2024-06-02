@@ -1,9 +1,17 @@
 # Simulation Physique du Comportement de Gaz Parfaits dans une Enceinte
 
+## Table des Matières
+
+- [Aperçu du Projet](#aperçu-du-projet)
+- [Utilisation](#utilisation)
+- [Contribution](#contribution)
+- [Contact](#contact)
+
 ## Aperçu du Projet
 
 ### Progression
 #### Sur 12 semaines de travail, avec en moyenne 5 heures de travail par personne par semaine :
+
 * **Réalisé** :
   * Représentation physique de vecteurs, de différents types de particules et d'enceintes en 3 dimensions.
   * Méthodes de calcul et de déplacement de particules dans un système fermé faisant intergir les particules entre elles, et avec les parois d'une enceinte.
@@ -12,15 +20,46 @@
   * Fonctionalité d'initialisation d'un système thermodynamique en suivant la distribution de Maxwell.
   * Optimisation calculatoire de la collison entre particules par représentation spatiale de "cases" occupées ou non par des particules.
   * Suivi d'une particule, sauvegardant sa trajectoire sous forme textuelle dans un fichier.
-* **Non Réalisé** :
+
+* **À faire** :
   * Interface graphique d'un système.
   * Optimisation des performances
-  * Fonctionalités spéciales telle que la possibilité d'interaction avec le système pendant l'évolution, la récolte de données physiques du système et la vérification des lois de la thermodynamique
+  * Fonctionalités spéciales telle que la possibilité d'interaction avec le système pendant l'évolution, la récolte de données physiques du système et la vérification des lois de la thermodynamique.
+  * Et encore...
 
-## Pour Commencer
+## Utilisation
 
 ### Instructions d'Installation
 1. **Cloner le Dépôt** :
    ```bash
-   git clone https://github.com/votrenomutilisateur/simulation-gaz-parfait.git
-   cd simulation-gaz-parfait
+   git clone https://github.com/jayse15/Projet_POO.git
+   cd Projet_POO
+
+2. Pas de dépendances à installer, le programme tourne sur C++11.
+
+### Organisation des Classes
+Le projet est structuré autour de plusieurs classes principales :
+
+Représentation physique :
+* **Vecteur3D** : Représente un vecteur dans l'espace tridimensionnel. Utilisée pour la vitesse et la position d'une particule.
+* **Particule** : Classe de base pour les particules, contenant des méthodes pour l'affichage, le déplacement et la collision d'une particule avec un autre. On y trouve aussi les sous-classes de **Particule** (**Néon**, **Argon**, **Hélium**).
+* **Enceinte** : Représente l'espace tridimensionnel dans lequel évoluent les particules.
+* **Systeme** : Contient et gère les particules ainsi que l'enceinte. Inclut des méthodes pour calculer les interactions et les déplacements d'un ensemble de particules. Se trouveront ici les méthodes pour faire une simulation physique.
+* **Grid** : Sous-classe de **Systeme**, est une représentation spatiale de cases qui est plus optimale pour la collision entre particules.
+* **GenerateurAleatoire** : Utilisée pour générer aléatoirement des nombres.
+
+Représentation graphique:
+* **Dessinable** : Super-classe virtuelle caractérisant tous les objets qui pourront être affiché graphiquement.
+* **SupportADessin** : Super-classe virtuelle caractérisant tous les suports d'affichage possible.
+* **TextViewer** : Sous-classe de **SupportADessin**, affichage texte simple.
+* **Brownien** : Sous-classe de **TextViewer**, utilisé pour le suivi d'une particule.
+
+### Make et Tests
+Pour tester les fonctionnalitées, nous vous recommandons de faire comme suit:
+
+* N'ajoutez pas de méthodes des classes citées plus haut dans
+
+
+## Contribution
+
+## Contact

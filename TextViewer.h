@@ -14,7 +14,7 @@ class TextViewer : public SupportADessin
     protected :
         std::ostream& visualisation;
     public :
-        TextViewer(std::ostream& flot = cout)
+        TextViewer(std::ostream& flot = std::cout)
             : visualisation(flot) {}
 
         virtual ~TextViewer() = default;
