@@ -108,6 +108,6 @@ Allez sur le dépôt d'origine sur GitHub et cliquez sur "New Pull Request".
 ## Contact
 
 Jason Grieder - jason.grieder@epfl.ch
-Alban Silbeau - alban.silbeau@epfl.ch
+Alban Sibileau - alban.sibileau@epfl.ch
 
 Lien du Projet : https://github.com/jayse15/Projet_POO
