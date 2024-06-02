@@ -140,8 +140,6 @@ GenerateurAleatoire.
 On a simplement deux méthodes qui nous permettent de tirer soit de manière
 uniforme soit de manière gaussienne un nombre entre deux bornes.
 
-
-
 //SYSTEME
 Cette classe est sans aucun doute la plus massive, car elle représente le systeme
 modélisé dans son intégralité. Nous y trouvons comme premier attribut une Enceinte
