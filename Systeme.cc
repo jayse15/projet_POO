@@ -102,7 +102,6 @@ void Grid::ajouter_map(const Particule& p, size_t index) {
 
 void Grid::retirer_map(Particule& p, size_t i) {
     auto it = grille_.find(p.pos_floor());
-
     if (it != grille_.end()) {
         std::set<size_t>& mySet = it->second;
         mySet.erase(i);

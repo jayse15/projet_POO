@@ -34,25 +34,31 @@ collisions entre les particules
     - Une fonction test_contact qui renvoie un booléen si la distance entre 
       le centre de gravité de deux particules est inférieure à la borne EPSILON
       que nous avons choisie comme étant 1 unité d'espace (0,1 nm). 
-    - Une fonction collision_particule, prenant en entrée une autre particule, 
-      ainsi qu'un Générateur aléatoire (classe définie plus tard). Elle utilise 
-      la fonction test_contact pour vérifier si la particule donnée, et celle 
-      actuellement étudiée se touchent, puis modifie leurs vitesses, avec 
-      conservation de la quantité de mouvement et de l'énergie cinétique, mais 
-      avec une direction tirée aléatoirement mais uniformément (d'où la présence
-      d'un 'générateur aléatoire'). 
+    - Une fonction collision_particule, prenant en entrée une référence sur une 
+      autre particule, ainsi qu'un Générateur aléatoire (classe définie plus tard). 
+      Elle utilise la fonction test_contact pour vérifier si la particule donnée, 
+      et celle actuellement étudiée se touchent, puis modifie leurs vitesses 
+      (d'où la référence), avec conservation de la quantité de mouvement et de 
+      l'énergie cinétique, mais avec une direction tirée aléatoirement mais 
+      uniformément (d'où la présence d'un 'générateur aléatoire'). 
       Toujours concernant cette méthode, dans un exercice à rendre, les directions
       normalement tirées aléatoirement doivent être fixées. Pour cette raison, 
       nous lui donnons en argument supplémentaire un booléen. Si il est true, 
       les directions sont fixées, sinon, elles sont tirées aléatoirement comme 
       présentées précédemment. 
-    - Enfin, pour une deuxième modélisation de collision entre particules, nous 
+    - Pour une deuxième modélisation de collision entre particules, nous 
       avons créé la méthode pos_floor, qui renvoie un array<int,3>, composé
       simplement de la partie entière des coordonnées de la particule étudiée. 
+    - La dernière méthode est très importante, car elle permet de 'déplacer' 
+      la particule. evolue prend en entrée un double dt, qui correspond à la durée
+      de déplacement de la particule. Elle vient simplement ajouter à la position
+      de cette dernière, sa vitesse multipliée par ce dt. 
 Cette classe est très générale, car elle permet d'initialiser une particule avec 
 une masse choisie par l'utilisateur. Cependant, pour une modélisation plus réelle, 
 nous avons créé plusieurs sous classe, Néon, Argon et Hélium, à qui nous avons 
-simplement attribué des masses fixes, et aussi modifié légèrement l'affichage. 
+simplement attribué des masses fixes (dans le constructeur, il n'est pas nécessaire 
+de donner de masse, car cette dernière sera toujours initialisée avec les valeurs 
+constantes, présentent dans utils.h), et aussi modifié légèrement l'affichage. 
 En vue d'une représentation graphique, nous retrouvons une méthode virtuelle 
 dessine_sur, que nous utiliserons pour un affichage textuel (classe TextViewer). 
 
@@ -103,13 +109,13 @@ GenerateurAleatoire.
 
 //SYSTEME
 Cette classe est sans aucun doute la plus massive, car elle représente le systeme 
-modélisé dans son intégralité. Nous y trouvons comme premier attribut une Enceinte, 
-déclaré comme const car, comme expliqué dans la classe Enceinte, une fois définie, 
-nous ne modifions pas les dimensions de celle ci. Le second attribut est un 
-tableau dynamique, vector, de unique_ptr sur des Particule. Le choix du vector est 
-motivée par le fait que le nombre de particules est choisi au moment de la construction
-du système, et peut être modifié si besoin. Quant au choix d'utiliser des unique_ptr, 
-il provient de plusieurs points: 
+modélisé dans son intégralité. Nous y trouvons comme premier attribut une Enceinte 
+(enceinte_), déclaré comme const car, comme expliqué dans la classe Enceinte, une fois 
+définie, nous ne modifions pas les dimensions de celle ci. Le second attribut est un 
+tableau dynamique, vector, de unique_ptr sur des Particule (particules_). Le choix du 
+vector est motivé par le fait que le nombre de particules est choisi au moment de la 
+construction du système, et peut être modifié si besoin. Quant au choix d'utiliser des 
+unique_ptr, il provient de plusieurs points: 
     - Dans un premier temps, nous avons besoin d'utiliser des pointeurs sur des particules, 
       pour pouvoir appliquer le polymorphisme, et utiliser les méthodes des sous classes 
       de Particule, dans les cas (principaux) où les particules étudiées sont d'une espèce
@@ -118,5 +124,91 @@ il provient de plusieurs points:
       sont d'une même espèce, nous ne voulons pas que plusieurs pointeurs pointent sur 
       une même particule. 
 En prenant cela en compte, ainsi que pour protéger la mémoire, les unique_ptr nous semblaient
-être la meilleur option. 
-      
+être la meilleur option. Le dernier attribut du Systeme est une instance de 
+GenerateurAleatoire (tirage_), qui nous servivira dans plusieurs cas où nous avons besoin 
+d'aléatoire. 
+Pour le constructeur, nous donnons 3 double, utilisés pour la construction de l'enceinte ou 
+construisons l'enceinte par défaut, le tout via le constructeur de la classe Enceinte, 
+initialisons le vector de particules comme vide, et utilisons le constructeur par défaut de 
+GenerateurAleatoire pour tirage_. 
+Pour le destructeur, nous laissons le constructeur par défaut offert par C++. En effet, ce 
+destructeur est suffisant pour tirage_ et enceinte_, et manipulant des unique_ptr dans 
+particules_, la désallocation de la mémoire se fait automatiquement. 
+Nous avons décidé que les systemes ne pourront être copiés, c'est pourquoi le constructeur 
+de copie, ainsi que l'operateur d'allocation ont été delete. 
+La classe Systeme regroupe un grand nombre de méthode: 
+    - affiche(), qui permet la définition de l'opérateur d'affichage <<. 
+    - ajouter_particule(), qui prend un pointeur sur une particule en entrée. Elle vient 
+      construire un unique_ptr sur cette Particule, et l'ajouter à particules_. 
+    - supp_all(), qui vient vider le systeme, en vidant particules_. A nouveau, l'usage
+      de unique_ptr permet une désallocation automatique de la mémoire, donc cette méthode
+      se rédige très facilement. 
+    - collision_paroi(), qui prend en entrée une référence sur une particule et un indice 
+      (size_t), et vient vérifier si elle est dans l'enceinte. Si jamais une des coordonnées 
+      de position de la particule est plus grande qu'une des dimensions de l'enceinte. Si 
+      telle est le cas, elle replace cette particule (d'où la référence dessus), à la 
+      position symétrique par rapport à la paroi qui a été dépassée. L'indice donnée 
+      correspond à celui de la particule dans le vector particules_ (dès que nous mentionnerons 
+      un indice dans cette classe, nous ferons référence à cette définition), ce qui permet 
+      lors de l'affichage de préciser le numéro de la particule entrant en collision avec la paroi. 
+    - collision_particules(), qui prend en entrée une référence sur une particule, et un 
+      indice (size_t). L'indice donné est celui de la particule d'entrée. Ainsi, cette méthode
+      va parcourir particules_ (boucle), à partir de celle d'entrée, pour tester les collisions 
+      entre la particule d'entrée et toutes celles qui suivent dans le vector. 
+      On trouve dans cette fonction un appel à la méthode collision(). Elle prend la même particule 
+      en entrée, et l'indice de la particule dans la boucle. Son rôle est d'appeler la méthode
+      collision_particule définie dans la classe Particule, et d'afficher différent message, si 
+      test_contact s'avère être true. 
+      L'affichage demandé est géré par afficher_collision(). 
+    - evolue(), qui prend en entrée un double dt, et un SupportADessin. Cette méthode est
+      primordiale dans notre projet. En effet, c'est celle qui va permettre de modéliser le 
+      déplacement de toutes les particules, ainsi que les différents types de collision. 
+      dt correspond à l'intervalle de temps durant lequel toutes les particules vont bouger, 
+      et le SupportADessin servira de support visuel (dans notre cas affichage textuel). 
+      evolue() est découpée en deux boucles. 
+      La première vient simplement faire avancée toutes les particules de l'intervalle dt. 
+      La deuxième vient d'abord vérifier si certaines particules ont rebondi sur les parois, 
+      puis si il y a des collisions entre les particules, et enfin afficher tout cela sur 
+      le SupportADessin. 
+    - Enfin, nous retrouvons un template, qui nous sert dans la méthode initialisation(). 
+      Son rôle est de 'générer' un certain nombre de particule, avec des positions et des 
+      vitesses tirées aléatoirement selon la distribution de Maxwell. 
+      Elle prend en entrée une température (double), un nombre de particule (uint)
+      une masse (double), initialisée par défaut à 1. Le template nous permet de définir le 
+      type de Particule que l'on veut initialiser. Nous y avons implémenté un test pour 
+      vérifier que le type donnée dans le template est bien une Particule où une de ses 
+      sous-classes. 
+      Nous créons un pointeur sur notre nouvel particule, et les composantes de la Particule 
+      sont initialisées de la manière suivantes: 
+        * La position est tirée uniformément, entre l'origine du repère, et les dimensions 
+          de l'enceinte (pour s'assurer qu'elle soit bien à l'intérieur). 
+        * La vitesse suit un tirage gaussien, grâce à la distribution de Maxwell, dépendant 
+          de la température, de la constante de Boltzmann, et de la masse de la Particule. 
+          Si nous ne choisissons pas de type au préalable pour la Particule, la masse en 
+          question est celle donnée en entrée, et sinon il s'agit de la masse liée à l'espèce
+          choisie. 
+      Enfin, le pointeur est converti en unique_ptr et ajouté à particules_ via la méthode 
+      ajouter_particule().
+
+Enfin, pour améliorer la complexité de nos algorithmes de calculs de collision entre particules, 
+nous avons défini une sous-classe de Systeme, nommée Grid. 
+Cette dernière permet de changer de point de vue sur les collisions. Plutôt que vérifier si chaque
+particule entre en contact avec une autre, nous allons étudié quelles particules sont dans les
+mêmes cases de l'espace. 
+Pour se faire, un attribut supplémentaire est ajouté à Grid, une map de array<int,3>, et de 
+set<size_t>, nommée grille_. Les array correspondent à nos cases d'espace. En effet, une particule 
+est dans la case carré de coté 1, dont l'origine est le triplet d'entier, correspondant à la partie 
+entière de la position de la particule. Le set quant à lui regroupe les indices des particule présentes 
+dans la case. 
+Le constructeur de Grid est celui de Systeme, plus une initialisation de grille_ à vide. 
+Les seules méthodes de Systeme à modifier sont celles qui déplacent une particule, et évidemment, 
+collision_particule. En effet, dès lors qu'une particule bouge, elle peut changer de case, et
+collision_particule est la raison même de l'existence de Grid. 
+Ainsi, nous retrouvons les méthodes suivantes: 
+    - ajouter_map(), qui prend une référence constante sur une Particule, ainsi qu'un indice (size_t). 
+      Cet indice est celui de la particule dans le vector particules_. 
+      Elle vient simplement ajouter dans la bonne case la particule entrée, et compléter le set 
+      associé, avec l'indice. 
+    - retirer_map(), qui prend une référence sur une Particule, et un indice (même que pour ajouter_map). 
+      Ici, on vient 
+

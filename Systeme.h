@@ -49,7 +49,7 @@ class Systeme : public Dessinable
         // Ajoute une particule au système.
 
         virtual void supp_all();
-        // Désalloue et éfface toutes les particules du système.
+        // Désalloue et efface toutes les particules du système.
 
         virtual void dessine_sur(SupportADessin& support) override
         { support.dessine(*this); }
@@ -67,6 +67,8 @@ class Systeme : public Dessinable
          * particule du système. */
 
         void collision(Particule& p, size_t i);
+        /* Méthode regroupant l'affichage et les calculs en lien avec les 
+         * collisions entre particules. */
 
         void collision_particules(Particule& p, size_t i);
         /* Méthode pour la collision entre particules. Lorsque deux particules
