@@ -15,8 +15,8 @@ class SupportADessin
       SupportADessin(SupportADessin const&) = delete;
       SupportADessin& operator=(SupportADessin const&) = delete;
       // mais on peut les déplacer
-      SupportADessin(SupportADessin&&) = default;
-      SupportADessin& operator=(SupportADessin&&) = default;
+      SupportADessin(SupportADessin&&) = delete;
+      SupportADessin& operator=(SupportADessin&&) = delete;
 
       SupportADessin() = default;
 

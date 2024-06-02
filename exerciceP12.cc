@@ -15,7 +15,7 @@ int main() {
   S.initialisation<Helium>(T,1);
   S.initialisation<Neon>(T,2);
 
-  TextViewer Text(cout);
+  TextViewer Text;
 
   string line("==========----------");
   S.dessine_sur(Text);

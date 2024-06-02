@@ -51,10 +51,6 @@ class Particule : public Dessinable
      * this et p entrent en collision. Ici on fixe le zenith à PI/2 et l'azimut
      * à PI/3 (phi=PI/3, z=0). */
 
-    void collision_particule_save(Particule& p, GenerateurAleatoire tirage);
-    /* Identique que collision_particule mais le zenith et l'azimut sont tirés
-     * aléatoirement. */
-
     std::array<int, 3> pos_floor() const;
 };
 
@@ -69,7 +65,6 @@ std::ostream& operator<<(std::ostream& sortie, Particule const& P);
 
 class Neon : public Particule
 {
-
   public:
     Neon(Vecteur3D p, Vecteur3D v, double m=0) : Particule(p, v, masse_Neon) {}
 

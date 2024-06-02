@@ -113,4 +113,7 @@ et qui redéfini certaines méthodes de la classe Systeme, comme collision_paroi
 evolue. Nous y avons aussi ajouté des méthodes comme ajouter_map et 
 retirer_map, car dès qu'une particule change de position, il faut mettre à jour la 
 map. 
-
+Après réflexion sur l'exerciceP9, nous avons finalement décidé de donner un booléen
+en argument de la fonction Particule::collision_particule(). Si ce booléen est true, 
+alors les directions de collisions sont fixées, si il est false, elles sont tirées
+aléatoirement. 

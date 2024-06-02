@@ -96,5 +96,11 @@ les mêmes on va aussi injecter l'affichage de la particule suivie dans le
 fichier brownien.txt, qui doit exister au préalable.
 
 P14.1)
-Comme on suppose qu'une boucle sur les particules dans une case est en O(1),
-alors on aura n opérations pour décplacer les particules, n pour
+La méthode proposé dans le P14 consiste à ne plus comparer chaque particule 
+avec tous les autres pour vérifier les collisions, mais à regarder quelles 
+"cases" de l'espace contiennent plus d'une particule. Ainsi, en supposant que 
+les algorithmes 'insert', 'erase', et 'find' soient en O(1), nous viendront 
+toujours effectuer une seule boucle sur toutes les cases du système, 
+c'est-à-dire dans le pire des cas, sur toutes les particules du système, noté n. 
+De ce fait, une telle méthode de calcul des collisions entre particules a une 
+complexité en O(n). 

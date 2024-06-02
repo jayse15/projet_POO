@@ -21,7 +21,7 @@ class Particule;
 class Systeme : public Dessinable
 {
     protected :
-        Enceinte enceinte_;
+        const Enceinte enceinte_;
         std::vector<std::unique_ptr<Particule>> particules_;
         /* On utilise des pointeurs pour le polymorphisme. Comme on fait de
          * l'allocation dynamique, on utilise des unique_ptr puisque chaque

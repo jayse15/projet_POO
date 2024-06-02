@@ -3,8 +3,6 @@
 class SupportADessin;
 
 class Dessinable {
-    private:
-
     public:
         virtual void dessine_sur(SupportADessin&) = 0;
 
@@ -14,7 +12,5 @@ class Dessinable {
         Dessinable& operator=(Dessinable const&) = default;
         Dessinable(Dessinable&&)                 = default;
         Dessinable& operator=(Dessinable&&)      = default;
-
         Dessinable() = default;
-
 };

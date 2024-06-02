@@ -11,10 +11,10 @@ class Systeme;
 
 class TextViewer : public SupportADessin
 {
-    protected :
+    private :
         std::ostream& visualisation;
     public :
-        TextViewer(std::ostream& flot)
+        TextViewer(std::ostream& flot = cout)
             : visualisation(flot) {}
 
         virtual ~TextViewer() = default;
