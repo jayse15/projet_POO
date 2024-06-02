@@ -93,7 +93,7 @@ On a décidé de faire en sorte que les attributs de systeme soient des unique_p
 sur des particules et une enceinte. L'exercice P9 est fini mais nous avons
 rencontré des problèmes au niveau d'imposer le choix du zenith et de l'azimut.
 La solution que nous avons décidé d'implémenter (suite aux conseils de notre
-assistant) est d'avoir deux fois la méthodes collision_particule (dans la classe
+assistant) est d'avoir deux fois la méthode collision_particule (dans la classe
 Particule). Une d'entre elle aura des paramètres fixes (zénith et azimut comme
 demandé dans l'exerciceP9), et une sera la formule générale (nommée
 collision_particule_save), dont les paramètres z et phi sont tirés uniformément.
@@ -105,3 +105,12 @@ permettant de vérifier quel type est entré dans la fonction. De plus, nous avo
 fixé les masses des différentes sous classe de Particule, et adapté la fonction
 initialisation pour que si un Néon, Argon ou Hélium est choisi, il n'y ait pas
 de masse à entrer en paramètre.
+
+Semaine 12: 
+Pour la partie P14, nous avons opté pour la création d'une sous classe de Systeme, 
+nommée Grid, dans laquelle nous avons ajouté un attribut supplémentaire, une map, 
+et qui redéfini certaines méthodes de la classe Systeme, comme collision_paroi et 
+evolue. Nous y avons aussi ajouté des méthodes comme ajouter_map et 
+retirer_map, car dès qu'une particule change de position, il faut mettre à jour la 
+map. 
+
