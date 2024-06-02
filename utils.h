@@ -3,7 +3,7 @@
 
 typedef unsigned int uint;
 
-constexpr double PRECISION = 1e-10; // utilisée pour la comparaison de vecteurs
+constexpr double PRECISION = 1e-10; // utilisée pour la comparaison de double
 
 constexpr double EPSILON = 1; // =0.1 [nm] (~diametre d'une particule)
 

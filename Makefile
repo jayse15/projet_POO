@@ -1,7 +1,7 @@
 CC = $(CXX)
 CXXFLAGS = -std=c++11 -pedantic -Wall
 
-all: Vecteur3D Particule Systeme exerciceP7 exerciceP9 exerciceP12 Brownien
+all: Vecteur3D Particule Systeme exerciceP7 exerciceP9 exerciceP12 Brownien Grid
 
 
 exerciceP7: exerciceP7.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
@@ -13,7 +13,9 @@ exerciceP9: exerciceP9.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 exerciceP12: exerciceP12.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o \
 	TextViewer.o
 
-Systeme: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testGrid.o TextViewer.o
+Grid: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testGrid.o TextViewer.o
+
+Systeme: Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o testSystem.o TextViewer.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
 

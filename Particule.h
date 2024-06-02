@@ -8,7 +8,7 @@
 
 class Particule : public Dessinable
 {
-  protected :
+  private :
     Vecteur3D position;
     Vecteur3D vitesse;
     const double masse;
@@ -49,9 +49,11 @@ class Particule : public Dessinable
                              bool ex9 = true);
     /* Méthode qui effectue les changements de vitesse et de direction lorsque
      * this et p entrent en collision. Ici on fixe le zenith à PI/2 et l'azimut
-     * à PI/3 (phi=PI/3, z=0). */
+     * à PI/3 (phi=PI/3, z=0) si ex9 = true, sinon ils sont tirés aléatoirement. */
 
     std::array<int, 3> pos_floor() const;
+    /* Méthode qui retourne la position de la particule arrondi vers le bas sous
+     * forme d'un array de int. */
 };
 
 std::ostream& operator<<(std::ostream& sortie, Particule const& P);
@@ -69,7 +71,7 @@ class Neon : public Particule
     Neon(Vecteur3D p, Vecteur3D v, double m=0) : Particule(p, v, masse_Neon) {}
 
     std::ostream& affiche(std::ostream& sortie) const override;
-    // Méthode d'affiche pour le néon
+    // Méthode d'affichage pour le néon
 };
 
 class Argon : public Particule
@@ -78,7 +80,7 @@ class Argon : public Particule
     Argon(Vecteur3D p, Vecteur3D v, double m=0) : Particule(p, v, masse_Argon) {}
 
     std::ostream& affiche(std::ostream& sortie) const override;
-    // Méthode d'affiche pour l'argon
+    // Méthode d'affichage pour l'argon
 };
 
 class Helium : public Particule
@@ -87,5 +89,5 @@ class Helium : public Particule
     Helium (Vecteur3D p, Vecteur3D v, double m=0) : Particule(p, v, masse_Helium) {}
 
     std::ostream& affiche(std::ostream& sortie) const override;
-    // Méthode d'affiche pour l'hélium
+    // Méthode d'affichage pour l'hélium
 };

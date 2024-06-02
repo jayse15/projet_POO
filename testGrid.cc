@@ -13,7 +13,7 @@ int main() {
     G.ajouter_particule(new Argon({1, 1, 3.1}, {0, 0, -1}));
     G.ajouter_particule(new Helium({1, 1, 1}, {0, 0, 0}));
 
-    TextViewer T(cout);
+    TextViewer T;
 
     string line("==========----------");
     G.dessine_sur(T);

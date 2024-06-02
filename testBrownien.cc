@@ -15,7 +15,7 @@ int main() {
     S.ajouter_particule(new Argon({1, 1, 3.1}, {0, 0, -0.5}));
 
     Argon* P = new Argon({1, 4, 2}, {0, 1.8, 0.5});
-    Brownien B(cout, "brownien.txt", *P);
+    Brownien B(cout, "text/brownien.txt", *P);
 
     S.ajouter_particule(P);
 

@@ -7,51 +7,31 @@ using namespace std;
 // Méthodes de la classe Systeme
 // *****************************************************************************
 
-ostream& Systeme::affiche(ostream& sortie) const {
-    if (particules_.size() == 0) {sortie << "Le système est vide.";}
-    else {
-        sortie << "Le système est constitué des " << particules_.size() << " particules suivantes: " << endl;
-        for (auto const& p : particules_) {
-            sortie << endl << *p;
-        }
-        sortie << endl;
-    }
-    return sortie;
-}
-
-void Systeme::ajouter_particule(Particule* p) {
-    particules_.push_back(unique_ptr<Particule>(p));
-}
-
-void Systeme::supp_all() {
-    particules_.clear();
-}
-
 void Systeme::collision_paroi(Particule& p, size_t i) {
     for (size_t j(0); j<=2; ++j) {
         if (p.get_pos(j) < PRECISION) {
-            cout << "La particule " << i << " rebondit sur la face " << j+1 << endl;
-            p.set_pos(j, 2*PRECISION-p.get_pos(j));
-            p.set_vit(j,-p.get_vit(j));
+            afficher_rebond(i, j+1);
+            p.set_pos(j, 2*PRECISION - p.get_pos(j));
+            p.set_vit(j, -p.get_vit(j));
         }
     }
     double diff(enceinte_.get_l() - p.get_pos(0));
     if (diff < PRECISION) {
-        cout << "La particule " << i << " rebondit sur la face 4" << endl;
-        p.set_pos(0,2*(enceinte_.get_l()-PRECISION)-p.get_pos(0));
-        p.set_vit(0,-p.get_vit(0));
+        afficher_rebond(i, 4);
+        p.set_pos(0, 2*(enceinte_.get_l()-PRECISION) - p.get_pos(0));
+        p.set_vit(0, -p.get_vit(0));
     }
     diff = enceinte_.get_h() - p.get_pos(1);
     if (diff < PRECISION) {
-        cout << "La particule " << i << " rebondit sur la face 5" << endl;
-        p.set_pos(1,2*(enceinte_.get_h()-PRECISION)-p.get_pos(1));
-        p.set_vit(1,-p.get_vit(1));
+        afficher_rebond(i, 5);
+        p.set_pos(1, 2*(enceinte_.get_h()-PRECISION) - p.get_pos(1));
+        p.set_vit(1, -p.get_vit(1));
     }
     diff = enceinte_.get_p() - p.get_pos(2);
     if (diff < PRECISION) {
-        cout << "La particule " << i << " rebondit sur la face 6" << endl;
-        p.set_pos(2,2*(enceinte_.get_p()-PRECISION)-p.get_pos(2));
-        p.set_vit(2,-p.get_vit(2));
+        afficher_rebond(i, 6);
+        p.set_pos(2, 2*(enceinte_.get_p()-PRECISION) - p.get_pos(2));
+        p.set_vit(2, -p.get_vit(2));
     }
 }
 
@@ -83,6 +63,31 @@ void Systeme::collision_particules(Particule& p, size_t i) {
     }
 }
 
+void Systeme::afficher_rebond(size_t i, size_t face){
+  cout << "La particule " << i << " rebondit sur la face " << face << endl;
+}
+
+ostream& Systeme::affiche(ostream& sortie) const {
+    if (particules_.size() == 0) {sortie << "Le système est vide.";}
+    else {
+        sortie << "Le système est constitué des " << particules_.size() <<
+                  " particules suivantes: " << endl;
+        for (auto const& p : particules_) {
+            sortie << endl << *p;
+        }
+        sortie << endl;
+    }
+    return sortie;
+}
+
+void Systeme::ajouter_particule(Particule* p) {
+    particules_.push_back(unique_ptr<Particule>(p));
+}
+
+void Systeme::supp_all() {
+    particules_.clear();
+}
+
 void Systeme::evolue(double dt, SupportADessin& s) {
     for (auto& p:particules_) {p->evolue(dt);}
     for (size_t i(0); i < particules_.size() ; ++i){
@@ -92,12 +97,17 @@ void Systeme::evolue(double dt, SupportADessin& s) {
     }
 }
 
+ostream& operator<<(ostream& sortie, Systeme const& S) {
+    S.affiche(sortie);
+    return sortie;
+}
+
 // *****************************************************************************
 // Méthodes de la classe Grid
 // *****************************************************************************
 
-void Grid::ajouter_map(const Particule& p, size_t index) {
-    grille_[p.pos_floor()].insert(index);
+void Grid::ajouter_map(const Particule& p, size_t i) {
+    grille_[p.pos_floor()].insert(i);
 }
 
 void Grid::retirer_map(Particule& p, size_t i) {
@@ -109,16 +119,6 @@ void Grid::retirer_map(Particule& p, size_t i) {
             grille_.erase(it);
         }
     }
-}
-
-void Grid::ajouter_particule(Particule* p) {
-    Systeme::ajouter_particule(p);
-    ajouter_map(*p, particules_.size()-1);
-}
-
-void Grid::supp_all() {
-    Systeme::supp_all();
-    grille_.clear();
 }
 
 void Grid::collision_paroi(Particule& p, size_t i) {
@@ -141,6 +141,16 @@ void Grid::collision_particules() {
   }
 }
 
+void Grid::ajouter_particule(Particule* p) {
+    Systeme::ajouter_particule(p);
+    ajouter_map(*p, particules_.size()-1);
+}
+
+void Grid::supp_all() {
+    Systeme::supp_all();
+    grille_.clear();
+}
+
 void Grid::evolue(double dt, SupportADessin& s) {
     for (size_t i(0); i < particules_.size(); ++i) {
         retirer_map(*particules_[i], i);
@@ -154,10 +164,4 @@ void Grid::evolue(double dt, SupportADessin& s) {
     for (size_t i(0); i < particules_.size() ; ++i){
       particules_[i]->dessine_sur(s);
     }
-}
-
-
-ostream& operator<<(ostream& sortie, Systeme const& S) {
-    S.affiche(sortie);
-    return sortie;
 }

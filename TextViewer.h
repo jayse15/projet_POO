@@ -11,7 +11,7 @@ class Systeme;
 
 class TextViewer : public SupportADessin
 {
-    private :
+    protected :
         std::ostream& visualisation;
     public :
         TextViewer(std::ostream& flot = cout)

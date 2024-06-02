@@ -2,10 +2,6 @@
 #include <iostream>
 #include "SupportADessin.h"
 #include "Dessinable.h"
-#include "Particule.h"
-#include <array>
-#include <vector>
-#include <map>
 
 class Enceinte : public Dessinable
 {
@@ -29,4 +25,3 @@ class Enceinte : public Dessinable
     };
 
 std::ostream& operator<<(std::ostream& sortie, Enceinte const& E);
-

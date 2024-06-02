@@ -9,24 +9,6 @@ ostream& Particule::affiche(ostream& sortie) const {
   return sortie;
 }
 
-ostream& Neon::affiche(ostream& sortie) const {
-  sortie << "Néon : ";
-  Particule::affiche(sortie);
-  return sortie;
-}
-
-ostream& Argon::affiche(ostream& sortie) const {
-  sortie << "Argon : ";
-  Particule::affiche(sortie);
-  return sortie;
-}
-
-ostream& Helium::affiche(ostream& sortie) const {
-  sortie << "Hélium : ";
-  Particule::affiche(sortie);
-  return sortie;
-}
-
 double Particule::get_pos(size_t i) const {
   return position.get_coord(i);
 }
@@ -56,7 +38,6 @@ bool Particule::test_contact(Particule const& p) const {
 
 void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage,
                                     bool ex9) {
-  if (test_contact(p)) {
     Vecteur3D v_g(vitesse*(masse/(masse + p.masse)) +
                   p.vitesse*(p.masse/(masse+p.masse)));
 
@@ -76,12 +57,6 @@ void Particule::collision_particule(Particule& p, GenerateurAleatoire tirage,
     vitesse = v_g + v_0;
     p.vitesse = v_g - v_0*masse/p.masse;
   }
-}
-
-ostream& operator<<(ostream& sortie, Particule const& P) {
-  sortie << "particule ";
-  return P.affiche(sortie);
-}
 
 array<int,3> Particule::pos_floor() const {
   int x(floor(position.get_coord(0)));
@@ -89,4 +64,31 @@ array<int,3> Particule::pos_floor() const {
   int z(floor(position.get_coord(2)));
   array<int,3> partie_entiere{x,y,z};
   return partie_entiere;
+}
+
+/******************************************************************************
+  Sous classes de Particule
+ ******************************************************************************/
+
+ostream& operator<<(ostream& sortie, Particule const& P) {
+  sortie << "particule ";
+  return P.affiche(sortie);
+}
+
+ostream& Neon::affiche(ostream& sortie) const {
+  sortie << "Néon : ";
+  Particule::affiche(sortie);
+  return sortie;
+}
+
+ostream& Argon::affiche(ostream& sortie) const {
+  sortie << "Argon : ";
+  Particule::affiche(sortie);
+  return sortie;
+}
+
+ostream& Helium::affiche(ostream& sortie) const {
+  sortie << "Hélium : ";
+  Particule::affiche(sortie);
+  return sortie;
 }

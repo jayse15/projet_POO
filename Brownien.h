@@ -25,12 +25,14 @@ class Brownien : public TextViewer
               throw(std::invalid_argument("Fichier texte pas valide."));
             }
           }
+          /* constructeur de Brownien qui envoie un message d'erreur si le
+           * fichier text fourni est invalide ou non-existant */
 
-        virtual ~Brownien() {sortie.close();}
+          virtual ~Brownien() {sortie.close();}
 
-        void dessine(Particule const&) override;
-        void dessine(Neon const&) override;
-        void dessine(Argon const&) override;
-        void dessine(Helium const&) override;
-        // methode pour afficher un objet dessinable sur un TextViewer Brownien
+          void dessine(Particule const&) override;
+          void dessine(Neon const&) override;
+          void dessine(Argon const&) override;
+          void dessine(Helium const&) override;
+          // methodes pour afficher un objet dessinable sur un TextViewer Brownien
 };

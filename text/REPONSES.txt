@@ -92,15 +92,27 @@ dans une sous-classe de TextViewer appelée Brownien (Brownien.h). Ceci ne cause
 pas de problème au niveau du unique_ptr car ce n'est qu'une réference et, lors de
 l'affichage, on va comparer les adresses des particules à l'adresse de la
 particule suivie afin de déterminer si ce sont exactement les mêmes. Si ce sont
-les mêmes on va aussi injecter l'affichage de la particule suivie dans le
-fichier brownien.txt, qui doit exister au préalable.
+les mêmes on va aussi injecter l'affichage de la particule suivie dans un
+fichier texte, qui doit exister au préalable.
 
 P14.1)
-La méthode proposé dans le P14 consiste à ne plus comparer chaque particule 
-avec tous les autres pour vérifier les collisions, mais à regarder quelles 
-"cases" de l'espace contiennent plus d'une particule. Ainsi, en supposant que 
-les algorithmes 'insert', 'erase', et 'find' soient en O(1), nous viendront 
-toujours effectuer une seule boucle sur toutes les cases du système, 
-c'est-à-dire dans le pire des cas, sur toutes les particules du système, noté n. 
-De ce fait, une telle méthode de calcul des collisions entre particules a une 
-complexité en O(n). 
+La méthode proposé dans le P14 consiste à ne plus comparer chaque particule
+avec tous les autres pour vérifier les collisions, mais à regarder quelles
+"cases" de l'espace contiennent plus d'une particule. Ainsi, en supposant que il
+y a en général qu'une seule particule par case, et donc en général n cases,
+les algorithmes 'insert' / '[]', 'erase', et 'find' sont en O(1) sur une case.
+On aurait donc une complexité en O(n) car nous parcourons une fois chaque case
+pour la collision entre particules et nous utilisons ces fonctions qui sont en O(1)
+
+P14.2)
+Nous avons crée la classe Grid dans Systeme.h qui est une sous-classe de système.
+Grid possède aussi une map< array<3, int>, set<size_t> > représentant les cases
+occupées liées à l'ensemble d'indexes des particules s'y trouvant. Nous avons
+delete la methode Systeme::collsion_particules dans Grid afin de la redefinir
+sans entrée. En effet il suffit de parcourir la map et faire entrer en collsion
+la première particule d'une case avec toutes les autres dans la même case. Cette
+dernière étape aurait pu être faite différemment (collision de chaque particule
+avec chacune), mais physiquement il est pas facile de définir lequel est le
+meilleur choix. Comme on a une map et des set, on a utilisé des itérateurs, des
+find et des erase afin d'optimizer la recherche d'indexes et le modification de
+la map.
