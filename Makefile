@@ -15,7 +15,7 @@ exerciceP12: exerciceP12.o Enceinte.o Particule.o Vecteur3D.o utils.o Systeme.o 
 
 Grid: testGrid.o Systeme.o Enceinte.o utils.o Particule.o Vecteur3D.o TextViewer.o
 
-Systeme: testSysteme.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o TextViewer.o
+Systeme: testSysteme.o Systeme.o Particule.o Vecteur3D.o utils.o Enceinte.o
 
 Vecteur3D: Vecteur3D.o testVecteur3D.o utils.o
 

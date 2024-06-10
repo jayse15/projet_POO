@@ -14,10 +14,10 @@
 
 * **Réalisé** :
   * Représentation physique de vecteurs, de différents types de particules et d'enceintes en 3 dimensions.
-  * Méthodes de calcul et de déplacement de particules dans un système fermé faisant intergir les particules entre elles, et avec les parois d'une enceinte.
-  * Implementation des fonctionalités d'affichage des objets du système sur un support, premier pas pour le graphisme.
+  * Méthodes de calcul et de déplacement de particules dans un système fermé faisant intéragir les particules entre elles, et avec les parois d'une enceinte.
+  * Implementation des fonctionalités d'affichage des objets du système sur un support; premier pas pour le graphisme.
   * Simulation textuelle avec affichage des positions et vitesses des particules ainsi que les interactions qui leur arrivent.
-  * Fonctionalité d'initialisation d'un système thermodynamique en suivant la distribution de Maxwell.
+  * Fonctionalité d'initialisation d'un système thermodynamique en respectant la distribution de Maxwell.
   * Optimisation calculatoire de la collison entre particules par représentation spatiale de "cases" occupées ou non par des particules.
   * Suivi d'une particule, sauvegardant sa trajectoire sous forme textuelle dans un fichier.
 
@@ -76,7 +76,7 @@ Pour tester les fonctionnalitées, nous vous recommandons de faire comme suit:
   ```bash
   ./exercicePX
   ```
-* Attention ! Le Makefile a actuellement des problèmes et ne crée pas d'exectuable pour lors de la commande :
+* Attention ! Le Makefile a actuellement des problèmes et ne crée pas d'exectuable lors de la commande :
   ```bash
   make Grid
   ```
